@@ -1,5 +1,5 @@
 '''
-Provide the TravelingSalesmanProblem class.
+Provide the TSP, TSPSolver, LocalSearch classes.
 '''
 from typing import List, Tuple, Set
 import numpy as np
@@ -77,6 +77,7 @@ class TSP(Problem):
 
         This results in a poor choice of neighbors, and finds many repeats (75% are repeated).
         '''
+        self.path = path
         all_cities = set(path)
         all_interpolations = set()
         for a in all_cities:
@@ -89,7 +90,7 @@ class TSP(Problem):
 
     def find_neighbors(self, path):
         # TODO: Find a more computationally efficient definition of neighbor.
-        pass
+        return self._first_find_neighbors(path)
 
     def nearest_neighbor_heuristic_solution(self):
         pass
