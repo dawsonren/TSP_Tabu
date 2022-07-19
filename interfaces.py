@@ -1,11 +1,15 @@
 '''
 Interfaces that we use in the project.
 
+TSPSolution is a valid solution type.
 Problem is meant to be consumed by a SolutionProtocol.
 SolutionProtocol is driven by a Solver.
 Solver is the highest level of abstraction.
 '''
 from abc import ABC, abstractmethod
+from typing import List
+
+TSPSolution = List[int]
 
 class Problem(ABC):
     @abstractmethod
