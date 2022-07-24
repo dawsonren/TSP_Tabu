@@ -4,26 +4,34 @@ Provide the Travelling Salesman Problem class.
 from typing import List, Tuple, Set
 import numpy as np
 
-from interfaces import Problem, TSPSolution
+from shared.interfaces import Problem, TSPSolution
 
 class TSP(Problem):
     def __init__(self, N) -> None:
         self.N = N # number of cities
         self.cities = np.random.rand(N, 2) # coordinates of cities
-        self.path = list(range(N)) # Invariant - integers 0 to N - 1 appear exactly once
-
+        # Invariant - integers 0 to N - 1 appear exactly once in the path
+        self.path = list(range(N)) 
     def _edge_distance(self, i: int, j: int) -> float:
         '''Return the Euclidean distance between cities i and j'''
         x_i, y_i = self.cities[i, :]
         x_j, y_j = self.cities[j, :]
-        return (x_i - x_j) ** 2 + (y_i - y_j) ** 2
+        return np.sqrt((x_i - x_j) ** 2 + (y_i - y_j) ** 2)
 
-    def cost(self, path: TSPSolution) -> float:
-        '''Return the Euclidean distance if the path is followed'''
+    def _slow_cost(self, path: TSPSolution) -> float:
+        '''Return the Euclidean distance if the path is followed, but unvectorized.'''
         total_dist = 0.0
-        for i, j in zip(path, [*path[1:], 0]):
+        for i, j in zip(path, [*path[1:], path[0]]):
             total_dist += self._edge_distance(i, j)
         return total_dist
+
+    def cost(self, path: TSPSolution) -> float:
+        '''Return the Euclidean distance if the path is followed, but vectorized.'''
+        shifted_cities = np.vstack((self.cities[path[1:], :], self.cities[path[0], :]))
+        differences = np.power(self.cities[path] - shifted_cities, 2)
+        cost = np.sum(np.sqrt(differences[:, 0] + differences[:, 1]))
+
+        return cost
 
     def _find_city_neighbors(self, n) -> Tuple[int, int]:
         '''Find adjacent neighbors to n'''

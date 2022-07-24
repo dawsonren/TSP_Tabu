@@ -5,7 +5,7 @@
     "distutils": {
         "name": "search_cy",
         "sources": [
-            "search_cy.pyx"
+            "cython/search_cy.pyx"
         ]
     },
     "module_name": "search_cy"
@@ -914,7 +914,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "search_cy.pyx",
+  "cython/search_cy.pyx",
 };
 
 /*--- Type declarations ---*/
@@ -1429,22 +1429,22 @@ static const char __pyx_k_metaclass[] = "__metaclass__";
 static const char __pyx_k_search_cy[] = "search_cy";
 static const char __pyx_k_tabu_list[] = "tabu_list";
 static const char __pyx_k_TabuSearch[] = "TabuSearch";
-static const char __pyx_k_interfaces[] = "interfaces";
 static const char __pyx_k_LocalSearch[] = "LocalSearch";
 static const char __pyx_k_collections[] = "collections";
 static const char __pyx_k_neighborhood[] = "neighborhood";
 static const char __pyx_k_max_tabu_size[] = "max_tabu_size";
-static const char __pyx_k_search_cy_pyx[] = "search_cy.pyx";
 static const char __pyx_k_best_candidate[] = "best_candidate";
 static const char __pyx_k_find_neighbors[] = "find_neighbors";
 static const char __pyx_k_SolutionProtocol[] = "SolutionProtocol";
 static const char __pyx_k_TabuSearch___init[] = "TabuSearch.__init__";
 static const char __pyx_k_TabuSearch_search[] = "TabuSearch.search";
+static const char __pyx_k_shared_interfaces[] = "shared.interfaces";
 static const char __pyx_k_starting_solution[] = "starting_solution";
 static const char __pyx_k_stoppingCondition[] = "stoppingCondition";
 static const char __pyx_k_LocalSearch___init[] = "LocalSearch.__init__";
 static const char __pyx_k_LocalSearch_search[] = "LocalSearch.search";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
+static const char __pyx_k_cython_search_cy_pyx[] = "cython/search_cy.pyx";
 static const char __pyx_k_Solution_was_improved[] = "Solution was improved! ";
 static const char __pyx_k_Stuck_in_a_local_minima[] = "Stuck in a local minima...";
 static const char __pyx_k_TabuSearch_stoppingCondition[] = "TabuSearch.stoppingCondition";
@@ -1469,12 +1469,12 @@ static PyObject *__pyx_n_s_candidate;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_collections;
 static PyObject *__pyx_n_s_cost;
+static PyObject *__pyx_kp_s_cython_search_cy_pyx;
 static PyObject *__pyx_n_s_deque;
 static PyObject *__pyx_n_s_doc;
 static PyObject *__pyx_n_s_find_neighbors;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_init;
-static PyObject *__pyx_n_s_interfaces;
 static PyObject *__pyx_n_s_iters;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_max_iter;
@@ -1493,8 +1493,8 @@ static PyObject *__pyx_n_s_return;
 static PyObject *__pyx_n_s_sample;
 static PyObject *__pyx_n_s_search;
 static PyObject *__pyx_n_s_search_cy;
-static PyObject *__pyx_kp_s_search_cy_pyx;
 static PyObject *__pyx_n_s_self;
+static PyObject *__pyx_n_s_shared_interfaces;
 static PyObject *__pyx_n_s_starting_solution;
 static PyObject *__pyx_n_s_stoppingCondition;
 static PyObject *__pyx_n_s_tabu_list;
@@ -1507,6 +1507,7 @@ static PyObject *__pyx_pf_9search_cy_10TabuSearch_2stoppingCondition(CYTHON_UNUS
 static PyObject *__pyx_pf_9search_cy_10TabuSearch_4search(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_problem, PyObject *__pyx_v_starting_solution); /* proto */
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
+static PyObject *__pyx_int_30;
 static PyObject *__pyx_int_100;
 static PyObject *__pyx_int_1000;
 static PyObject *__pyx_tuple_;
@@ -1528,7 +1529,7 @@ static PyObject *__pyx_codeobj__13;
  * 
  * class LocalSearch(SolutionProtocol):
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
- *         self.max_iter = 100
+ *         self.max_iter = 30
  *         self.iters = 0
  */
 
@@ -1557,15 +1558,15 @@ static PyObject *__pyx_pf_9search_cy_11LocalSearch___init__(CYTHON_UNUSED PyObje
   /* "search_cy.pyx":10
  * class LocalSearch(SolutionProtocol):
  *     def __init__(self) -> None:
- *         self.max_iter = 100             # <<<<<<<<<<<<<<
+ *         self.max_iter = 30             # <<<<<<<<<<<<<<
  *         self.iters = 0
  * 
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_max_iter, __pyx_int_100) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_max_iter, __pyx_int_30) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
 
   /* "search_cy.pyx":11
  *     def __init__(self) -> None:
- *         self.max_iter = 100
+ *         self.max_iter = 30
  *         self.iters = 0             # <<<<<<<<<<<<<<
  * 
  *     def stoppingCondition(self) -> bool:
@@ -1576,7 +1577,7 @@ static PyObject *__pyx_pf_9search_cy_11LocalSearch___init__(CYTHON_UNUSED PyObje
  * 
  * class LocalSearch(SolutionProtocol):
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
- *         self.max_iter = 100
+ *         self.max_iter = 30
  *         self.iters = 0
  */
 
@@ -3069,12 +3070,12 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_collections, __pyx_k_collections, sizeof(__pyx_k_collections), 0, 0, 1, 1},
   {&__pyx_n_s_cost, __pyx_k_cost, sizeof(__pyx_k_cost), 0, 0, 1, 1},
+  {&__pyx_kp_s_cython_search_cy_pyx, __pyx_k_cython_search_cy_pyx, sizeof(__pyx_k_cython_search_cy_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_deque, __pyx_k_deque, sizeof(__pyx_k_deque), 0, 0, 1, 1},
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
   {&__pyx_n_s_find_neighbors, __pyx_k_find_neighbors, sizeof(__pyx_k_find_neighbors), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_init, __pyx_k_init, sizeof(__pyx_k_init), 0, 0, 1, 1},
-  {&__pyx_n_s_interfaces, __pyx_k_interfaces, sizeof(__pyx_k_interfaces), 0, 0, 1, 1},
   {&__pyx_n_s_iters, __pyx_k_iters, sizeof(__pyx_k_iters), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_max_iter, __pyx_k_max_iter, sizeof(__pyx_k_max_iter), 0, 0, 1, 1},
@@ -3093,8 +3094,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_sample, __pyx_k_sample, sizeof(__pyx_k_sample), 0, 0, 1, 1},
   {&__pyx_n_s_search, __pyx_k_search, sizeof(__pyx_k_search), 0, 0, 1, 1},
   {&__pyx_n_s_search_cy, __pyx_k_search_cy, sizeof(__pyx_k_search_cy), 0, 0, 1, 1},
-  {&__pyx_kp_s_search_cy_pyx, __pyx_k_search_cy_pyx, sizeof(__pyx_k_search_cy_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_self, __pyx_k_self, sizeof(__pyx_k_self), 0, 0, 1, 1},
+  {&__pyx_n_s_shared_interfaces, __pyx_k_shared_interfaces, sizeof(__pyx_k_shared_interfaces), 0, 0, 1, 1},
   {&__pyx_n_s_starting_solution, __pyx_k_starting_solution, sizeof(__pyx_k_starting_solution), 0, 0, 1, 1},
   {&__pyx_n_s_stoppingCondition, __pyx_k_stoppingCondition, sizeof(__pyx_k_stoppingCondition), 0, 0, 1, 1},
   {&__pyx_n_s_tabu_list, __pyx_k_tabu_list, sizeof(__pyx_k_tabu_list), 0, 0, 1, 1},
@@ -3127,13 +3128,13 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * class LocalSearch(SolutionProtocol):
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
- *         self.max_iter = 100
+ *         self.max_iter = 30
  *         self.iters = 0
  */
   __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
-  __pyx_codeobj__3 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__2, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_search_cy_pyx, __pyx_n_s_init, 9, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__3)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_codeobj__3 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__2, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_search_cy_pyx, __pyx_n_s_init, 9, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__3)) __PYX_ERR(0, 9, __pyx_L1_error)
 
   /* "search_cy.pyx":13
  *         self.iters = 0
@@ -3145,7 +3146,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__4 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
-  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_search_cy_pyx, __pyx_n_s_stoppingCondition, 13, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_codeobj__5 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__4, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_search_cy_pyx, __pyx_n_s_stoppingCondition, 13, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__5)) __PYX_ERR(0, 13, __pyx_L1_error)
 
   /* "search_cy.pyx":16
  *         return self.iters > self.max_iter
@@ -3157,7 +3158,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__6 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_problem, __pyx_n_s_starting_solution, __pyx_n_s_best_sol, __pyx_n_s_best_candidate, __pyx_n_s_neighborhood, __pyx_n_s_candidate); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
-  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(3, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_search_cy_pyx, __pyx_n_s_search, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_codeobj__7 = (PyObject*)__Pyx_PyCode_New(3, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__6, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_search_cy_pyx, __pyx_n_s_search, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__7)) __PYX_ERR(0, 16, __pyx_L1_error)
 
   /* "search_cy.pyx":39
  * 
@@ -3169,7 +3170,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__8 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
-  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_search_cy_pyx, __pyx_n_s_init, 39, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_codeobj__9 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__8, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_search_cy_pyx, __pyx_n_s_init, 39, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__9)) __PYX_ERR(0, 39, __pyx_L1_error)
 
   /* "search_cy.pyx":44
  *         self.max_tabu_size = 1000
@@ -3181,7 +3182,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__10 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_search_cy_pyx, __pyx_n_s_stoppingCondition, 44, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_search_cy_pyx, __pyx_n_s_stoppingCondition, 44, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 44, __pyx_L1_error)
 
   /* "search_cy.pyx":47
  *         return self.iters > self.max_iter
@@ -3193,7 +3194,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__12 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_problem, __pyx_n_s_starting_solution, __pyx_n_s_best_sol, __pyx_n_s_best_candidate, __pyx_n_s_tabu_list, __pyx_n_s_neighborhood, __pyx_n_s_candidate); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_search_cy_pyx, __pyx_n_s_search, 47, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(3, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_search_cy_pyx, __pyx_n_s_search, 47, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -3205,6 +3206,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   __pyx_int_0 = PyInt_FromLong(0); if (unlikely(!__pyx_int_0)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_1 = PyInt_FromLong(1); if (unlikely(!__pyx_int_1)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_30 = PyInt_FromLong(30); if (unlikely(!__pyx_int_30)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_100 = PyInt_FromLong(100); if (unlikely(!__pyx_int_100)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_1000 = PyInt_FromLong(1000); if (unlikely(!__pyx_int_1000)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
@@ -3485,7 +3487,7 @@ if (!__Pyx_RefNanny) {
  * '''
  * from collections import deque             # <<<<<<<<<<<<<<
  * import random
- * from interfaces import SolutionProtocol, Problem
+ * from shared.interfaces import SolutionProtocol, Problem
  */
   __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -3505,7 +3507,7 @@ if (!__Pyx_RefNanny) {
  * '''
  * from collections import deque
  * import random             # <<<<<<<<<<<<<<
- * from interfaces import SolutionProtocol, Problem
+ * from shared.interfaces import SolutionProtocol, Problem
  * 
  */
   __pyx_t_2 = __Pyx_Import(__pyx_n_s_random, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
@@ -3516,7 +3518,7 @@ if (!__Pyx_RefNanny) {
   /* "search_cy.pyx":6
  * from collections import deque
  * import random
- * from interfaces import SolutionProtocol, Problem             # <<<<<<<<<<<<<<
+ * from shared.interfaces import SolutionProtocol, Problem             # <<<<<<<<<<<<<<
  * 
  * class LocalSearch(SolutionProtocol):
  */
@@ -3528,7 +3530,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_Problem);
   __Pyx_GIVEREF(__pyx_n_s_Problem);
   PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_Problem);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_interfaces, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_shared_interfaces, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_SolutionProtocol); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 6, __pyx_L1_error)
@@ -3542,11 +3544,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "search_cy.pyx":8
- * from interfaces import SolutionProtocol, Problem
+ * from shared.interfaces import SolutionProtocol, Problem
  * 
  * class LocalSearch(SolutionProtocol):             # <<<<<<<<<<<<<<
  *     def __init__(self) -> None:
- *         self.max_iter = 100
+ *         self.max_iter = 30
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_SolutionProtocol); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -3564,7 +3566,7 @@ if (!__Pyx_RefNanny) {
  * 
  * class LocalSearch(SolutionProtocol):
  *     def __init__(self) -> None:             # <<<<<<<<<<<<<<
- *         self.max_iter = 100
+ *         self.max_iter = 30
  *         self.iters = 0
  */
   __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 9, __pyx_L1_error)
@@ -3616,11 +3618,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "search_cy.pyx":8
- * from interfaces import SolutionProtocol, Problem
+ * from shared.interfaces import SolutionProtocol, Problem
  * 
  * class LocalSearch(SolutionProtocol):             # <<<<<<<<<<<<<<
  *     def __init__(self) -> None:
- *         self.max_iter = 100
+ *         self.max_iter = 30
  */
   __pyx_t_5 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_LocalSearch, __pyx_t_2, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);

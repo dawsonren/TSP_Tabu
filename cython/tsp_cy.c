@@ -5,7 +5,7 @@
     "distutils": {
         "name": "tsp_cy",
         "sources": [
-            "tsp_cy.pyx"
+            "cython/tsp_cy.pyx"
         ]
     },
     "module_name": "tsp_cy"
@@ -914,7 +914,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "tsp_cy.pyx",
+  "cython/tsp_cy.pyx",
 };
 
 /*--- Type declarations ---*/
@@ -1155,6 +1155,9 @@ static CYTHON_INLINE int __Pyx_IterFinish(void);
 /* UnpackItemEndCheck.proto */
 static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected);
 
+/* PyObjectCall2Args.proto */
+static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
+
 /* SliceObject.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(
         PyObject* obj, Py_ssize_t cstart, Py_ssize_t cstop,
@@ -1177,9 +1180,6 @@ static CYTHON_INLINE int __Pyx_ListComp_Append(PyObject* list, PyObject* x) {
 #else
 #define __Pyx_ListComp_Append(L,x) PyList_Append(L,x)
 #endif
-
-/* PyObjectCall2Args.proto */
-static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
 
 /* PyIntBinop.proto */
 #if !CYTHON_COMPILING_IN_PYPY
@@ -1449,6 +1449,7 @@ static const char __pyx_k_Set[] = "Set";
 static const char __pyx_k_TSP[] = "TSP";
 static const char __pyx_k_doc[] = "__doc__";
 static const char __pyx_k_int[] = "int";
+static const char __pyx_k_sum[] = "sum";
 static const char __pyx_k_x_i[] = "x_i";
 static const char __pyx_k_x_j[] = "x_j";
 static const char __pyx_k_y_i[] = "y_i";
@@ -1462,11 +1463,13 @@ static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_path[] = "path";
 static const char __pyx_k_rand[] = "rand";
 static const char __pyx_k_self[] = "self";
+static const char __pyx_k_sqrt[] = "sqrt";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_Tuple[] = "Tuple";
 static const char __pyx_k_float[] = "float";
 static const char __pyx_k_index[] = "index";
 static const char __pyx_k_numpy[] = "numpy";
+static const char __pyx_k_power[] = "power";
 static const char __pyx_k_range[] = "range";
 static const char __pyx_k_cities[] = "cities";
 static const char __pyx_k_import[] = "__import__";
@@ -1478,6 +1481,7 @@ static const char __pyx_k_random[] = "random";
 static const char __pyx_k_return[] = "return";
 static const char __pyx_k_tsp_cy[] = "tsp_cy";
 static const char __pyx_k_typing[] = "typing";
+static const char __pyx_k_vstack[] = "vstack";
 static const char __pyx_k_Problem[] = "Problem";
 static const char __pyx_k_index_a[] = "index_a";
 static const char __pyx_k_index_b[] = "index_b";
@@ -1485,18 +1489,22 @@ static const char __pyx_k_prepare[] = "__prepare__";
 static const char __pyx_k_TSP_cost[] = "TSP.cost";
 static const char __pyx_k_qualname[] = "__qualname__";
 static const char __pyx_k_metaclass[] = "__metaclass__";
+static const char __pyx_k_slow_cost[] = "_slow_cost";
 static const char __pyx_k_TSP___init[] = "TSP.__init__";
 static const char __pyx_k_all_cities[] = "all_cities";
 static const char __pyx_k_difference[] = "difference";
-static const char __pyx_k_interfaces[] = "interfaces";
 static const char __pyx_k_total_dist[] = "total_dist";
-static const char __pyx_k_tsp_cy_pyx[] = "tsp_cy.pyx";
 static const char __pyx_k_TSPSolution[] = "TSPSolution";
+static const char __pyx_k_differences[] = "differences";
 static const char __pyx_k_edge_distance[] = "_edge_distance";
 static const char __pyx_k_reformat_path[] = "_reformat_path";
+static const char __pyx_k_TSP__slow_cost[] = "TSP._slow_cost";
 static const char __pyx_k_find_neighbors[] = "find_neighbors";
 static const char __pyx_k_interpolations[] = "_interpolations";
+static const char __pyx_k_shifted_cities[] = "shifted_cities";
 static const char __pyx_k_interpolations_2[] = "interpolations";
+static const char __pyx_k_cython_tsp_cy_pyx[] = "cython/tsp_cy.pyx";
+static const char __pyx_k_shared_interfaces[] = "shared.interfaces";
 static const char __pyx_k_TSP__edge_distance[] = "TSP._edge_distance";
 static const char __pyx_k_TSP__reformat_path[] = "TSP._reformat_path";
 static const char __pyx_k_TSP_find_neighbors[] = "TSP.find_neighbors";
@@ -1525,6 +1533,7 @@ static PyObject *__pyx_n_s_TSP__find_city_neighbors;
 static PyObject *__pyx_n_s_TSP__first_find_neighbors;
 static PyObject *__pyx_n_s_TSP__interpolations;
 static PyObject *__pyx_n_s_TSP__reformat_path;
+static PyObject *__pyx_n_s_TSP__slow_cost;
 static PyObject *__pyx_n_s_TSP_cost;
 static PyObject *__pyx_n_s_TSP_find_neighbors;
 static PyObject *__pyx_n_s_TSP_nearest_neighbor_heuristic_s;
@@ -1536,7 +1545,9 @@ static PyObject *__pyx_n_s_b;
 static PyObject *__pyx_n_s_cities;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_cost;
+static PyObject *__pyx_kp_s_cython_tsp_cy_pyx;
 static PyObject *__pyx_n_s_difference;
+static PyObject *__pyx_n_s_differences;
 static PyObject *__pyx_n_s_doc;
 static PyObject *__pyx_n_s_edge_distance;
 static PyObject *__pyx_n_s_ensure_order_and_provide_indice;
@@ -1551,7 +1562,6 @@ static PyObject *__pyx_n_s_index_a;
 static PyObject *__pyx_n_s_index_b;
 static PyObject *__pyx_n_s_init;
 static PyObject *__pyx_n_u_int;
-static PyObject *__pyx_n_s_interfaces;
 static PyObject *__pyx_n_s_interp;
 static PyObject *__pyx_n_s_interpolations;
 static PyObject *__pyx_n_s_interpolations_2;
@@ -1568,6 +1578,7 @@ static PyObject *__pyx_n_s_numpy;
 static PyObject *__pyx_n_s_path;
 static PyObject *__pyx_n_s_path_1;
 static PyObject *__pyx_n_s_path_2;
+static PyObject *__pyx_n_s_power;
 static PyObject *__pyx_n_s_prepare;
 static PyObject *__pyx_n_s_qualname;
 static PyObject *__pyx_n_s_rand;
@@ -1576,11 +1587,16 @@ static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_reformat_path;
 static PyObject *__pyx_n_s_return;
 static PyObject *__pyx_n_s_self;
+static PyObject *__pyx_n_s_shared_interfaces;
+static PyObject *__pyx_n_s_shifted_cities;
+static PyObject *__pyx_n_s_slow_cost;
+static PyObject *__pyx_n_s_sqrt;
+static PyObject *__pyx_n_s_sum;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_total_dist;
 static PyObject *__pyx_n_s_tsp_cy;
-static PyObject *__pyx_kp_s_tsp_cy_pyx;
 static PyObject *__pyx_n_s_typing;
+static PyObject *__pyx_n_s_vstack;
 static PyObject *__pyx_n_s_x_i;
 static PyObject *__pyx_n_s_x_j;
 static PyObject *__pyx_n_s_y_i;
@@ -1588,14 +1604,15 @@ static PyObject *__pyx_n_s_y_j;
 static PyObject *__pyx_n_s_zip;
 static PyObject *__pyx_pf_6tsp_cy_3TSP___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_N); /* proto */
 static PyObject *__pyx_pf_6tsp_cy_3TSP_2_edge_distance(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_i, PyObject *__pyx_v_j); /* proto */
-static PyObject *__pyx_pf_6tsp_cy_3TSP_4cost(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_6tsp_cy_3TSP_6_find_city_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_n); /* proto */
-static PyObject *__pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_a, PyObject *__pyx_v_b); /* proto */
-static PyObject *__pyx_pf_6tsp_cy_3TSP_10_reformat_path(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_a, PyObject *__pyx_v_b); /* proto */
-static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_6tsp_cy_3TSP_16find_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_6tsp_cy_3TSP_18nearest_neighbor_heuristic_solution(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_6tsp_cy_3TSP_4_slow_cost(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_6tsp_cy_3TSP_6cost(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_6tsp_cy_3TSP_8_find_city_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_n); /* proto */
+static PyObject *__pyx_pf_6tsp_cy_3TSP_10_ensure_order_and_provide_indices(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_a, PyObject *__pyx_v_b); /* proto */
+static PyObject *__pyx_pf_6tsp_cy_3TSP_12_reformat_path(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_6tsp_cy_3TSP_14_interpolations(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_a, PyObject *__pyx_v_b); /* proto */
+static PyObject *__pyx_pf_6tsp_cy_3TSP_16_first_find_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_6tsp_cy_3TSP_18find_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_6tsp_cy_3TSP_20nearest_neighbor_heuristic_solution(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self); /* proto */
 static __Pyx_CachedCFunction __pyx_umethod_PySet_Type_difference = {0, &__pyx_n_s_difference, 0, 0, 0};
 static PyObject *__pyx_float_0_0;
 static PyObject *__pyx_int_0;
@@ -1604,6 +1621,7 @@ static PyObject *__pyx_int_2;
 static PyObject *__pyx_slice_;
 static PyObject *__pyx_slice__2;
 static PyObject *__pyx_tuple__3;
+static PyObject *__pyx_tuple__4;
 static PyObject *__pyx_tuple__5;
 static PyObject *__pyx_tuple__7;
 static PyObject *__pyx_tuple__9;
@@ -1613,7 +1631,8 @@ static PyObject *__pyx_tuple__15;
 static PyObject *__pyx_tuple__17;
 static PyObject *__pyx_tuple__19;
 static PyObject *__pyx_tuple__21;
-static PyObject *__pyx_codeobj__4;
+static PyObject *__pyx_tuple__23;
+static PyObject *__pyx_tuple__25;
 static PyObject *__pyx_codeobj__6;
 static PyObject *__pyx_codeobj__8;
 static PyObject *__pyx_codeobj__10;
@@ -1623,6 +1642,8 @@ static PyObject *__pyx_codeobj__16;
 static PyObject *__pyx_codeobj__18;
 static PyObject *__pyx_codeobj__20;
 static PyObject *__pyx_codeobj__22;
+static PyObject *__pyx_codeobj__24;
+static PyObject *__pyx_codeobj__26;
 /* Late includes */
 
 /* "tsp_cy.pyx":10
@@ -1716,7 +1737,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP___init__(CYTHON_UNUSED PyObject *__pyx_se
  *     def __init__(self, N) -> None:
  *         self.N = N # number of cities             # <<<<<<<<<<<<<<
  *         self.cities = np.random.rand(N, 2) # coordinates of cities
- *         self.path = list(range(N)) # Invariant - integers 0 to N - 1 appear exactly once
+ *         # Invariant - integers 0 to N - 1 appear exactly once in the path
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_N, __pyx_v_N) < 0) __PYX_ERR(0, 11, __pyx_L1_error)
 
@@ -1724,8 +1745,8 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP___init__(CYTHON_UNUSED PyObject *__pyx_se
  *     def __init__(self, N) -> None:
  *         self.N = N # number of cities
  *         self.cities = np.random.rand(N, 2) # coordinates of cities             # <<<<<<<<<<<<<<
- *         self.path = list(range(N)) # Invariant - integers 0 to N - 1 appear exactly once
- * 
+ *         # Invariant - integers 0 to N - 1 appear exactly once in the path
+ *         self.path = list(range(N))
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -1783,19 +1804,19 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP___init__(CYTHON_UNUSED PyObject *__pyx_se
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_cities, __pyx_t_1) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "tsp_cy.pyx":13
- *         self.N = N # number of cities
+  /* "tsp_cy.pyx":14
  *         self.cities = np.random.rand(N, 2) # coordinates of cities
- *         self.path = list(range(N)) # Invariant - integers 0 to N - 1 appear exactly once             # <<<<<<<<<<<<<<
- * 
+ *         # Invariant - integers 0 to N - 1 appear exactly once in the path
+ *         self.path = list(range(N))             # <<<<<<<<<<<<<<
  *     def _edge_distance(self, i: int, j: int) -> float:
+ *         '''Return the Euclidean distance between cities i and j'''
  */
-  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_v_N); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_range, __pyx_v_N); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_t_2 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 14, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_path, __pyx_t_2) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_path, __pyx_t_2) < 0) __PYX_ERR(0, 14, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "tsp_cy.pyx":10
@@ -1823,8 +1844,8 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP___init__(CYTHON_UNUSED PyObject *__pyx_se
 }
 
 /* "tsp_cy.pyx":15
- *         self.path = list(range(N)) # Invariant - integers 0 to N - 1 appear exactly once
- * 
+ *         # Invariant - integers 0 to N - 1 appear exactly once in the path
+ *         self.path = list(range(N))
  *     def _edge_distance(self, i: int, j: int) -> float:             # <<<<<<<<<<<<<<
  *         '''Return the Euclidean distance between cities i and j'''
  *         x_i, y_i = self.cities[i, :]
@@ -1919,6 +1940,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_2_edge_distance(CYTHON_UNUSED PyObject *_
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   PyObject *(*__pyx_t_5)(PyObject *);
+  PyObject *__pyx_t_6 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -1929,7 +1951,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_2_edge_distance(CYTHON_UNUSED PyObject *_
  *         '''Return the Euclidean distance between cities i and j'''
  *         x_i, y_i = self.cities[i, :]             # <<<<<<<<<<<<<<
  *         x_j, y_j = self.cities[j, :]
- *         return (x_i - x_j) ** 2 + (y_i - y_j) ** 2
+ *         return np.sqrt((x_i - x_j) ** 2 + (y_i - y_j) ** 2)
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cities); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2000,7 +2022,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_2_edge_distance(CYTHON_UNUSED PyObject *_
  *         '''Return the Euclidean distance between cities i and j'''
  *         x_i, y_i = self.cities[i, :]
  *         x_j, y_j = self.cities[j, :]             # <<<<<<<<<<<<<<
- *         return (x_i - x_j) ** 2 + (y_i - y_j) ** 2
+ *         return np.sqrt((x_i - x_j) ** 2 + (y_i - y_j) ** 2)
  * 
  */
   __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cities); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 18, __pyx_L1_error)
@@ -2071,32 +2093,53 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_2_edge_distance(CYTHON_UNUSED PyObject *_
   /* "tsp_cy.pyx":19
  *         x_i, y_i = self.cities[i, :]
  *         x_j, y_j = self.cities[j, :]
- *         return (x_i - x_j) ** 2 + (y_i - y_j) ** 2             # <<<<<<<<<<<<<<
+ *         return np.sqrt((x_i - x_j) ** 2 + (y_i - y_j) ** 2)             # <<<<<<<<<<<<<<
  * 
- *     def cost(self, path: TSPSolution) -> float:
+ *     def _slow_cost(self, path: TSPSolution) -> float:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_v_x_i, __pyx_v_x_j); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Power(__pyx_t_2, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Subtract(__pyx_v_y_i, __pyx_v_y_j); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyNumber_Power(__pyx_t_2, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Add(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Subtract(__pyx_v_x_i, __pyx_v_x_j); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = PyNumber_Power(__pyx_t_3, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Subtract(__pyx_v_y_i, __pyx_v_y_j); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_6 = PyNumber_Power(__pyx_t_3, __pyx_int_2, Py_None); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Add(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_6 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_6)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_6);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+    }
+  }
+  __pyx_t_2 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_6, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
   /* "tsp_cy.pyx":15
- *         self.path = list(range(N)) # Invariant - integers 0 to N - 1 appear exactly once
- * 
+ *         # Invariant - integers 0 to N - 1 appear exactly once in the path
+ *         self.path = list(range(N))
  *     def _edge_distance(self, i: int, j: int) -> float:             # <<<<<<<<<<<<<<
  *         '''Return the Euclidean distance between cities i and j'''
  *         x_i, y_i = self.cities[i, :]
@@ -2108,6 +2151,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_2_edge_distance(CYTHON_UNUSED PyObject *_
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("tsp_cy.TSP._edge_distance", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -2121,18 +2165,18 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_2_edge_distance(CYTHON_UNUSED PyObject *_
 }
 
 /* "tsp_cy.pyx":21
- *         return (x_i - x_j) ** 2 + (y_i - y_j) ** 2
+ *         return np.sqrt((x_i - x_j) ** 2 + (y_i - y_j) ** 2)
  * 
- *     def cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
- *         '''Return the Euclidean distance if the path is followed'''
+ *     def _slow_cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
+ *         '''Return the Euclidean distance if the path is followed, but unvectorized.'''
  *         total_dist = 0.0
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6tsp_cy_3TSP_5cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6tsp_cy_3TSP_4cost[] = "Return the Euclidean distance if the path is followed";
-static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_5cost = {"cost", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_5cost, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_4cost};
-static PyObject *__pyx_pw_6tsp_cy_3TSP_5cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6tsp_cy_3TSP_5_slow_cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6tsp_cy_3TSP_4_slow_cost[] = "Return the Euclidean distance if the path is followed, but unvectorized.";
+static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_5_slow_cost = {"_slow_cost", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_5_slow_cost, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_4_slow_cost};
+static PyObject *__pyx_pw_6tsp_cy_3TSP_5_slow_cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_path = 0;
   int __pyx_lineno = 0;
@@ -2140,7 +2184,7 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_5cost(PyObject *__pyx_self, PyObject *__p
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("cost (wrapper)", 0);
+  __Pyx_RefNannySetupContext("_slow_cost (wrapper)", 0);
   {
     static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_path,0};
     PyObject* values[2] = {0,0};
@@ -2164,11 +2208,11 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_5cost(PyObject *__pyx_self, PyObject *__p
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_path)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("cost", 1, 2, 2, 1); __PYX_ERR(0, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_slow_cost", 1, 2, 2, 1); __PYX_ERR(0, 21, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cost") < 0)) __PYX_ERR(0, 21, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_slow_cost") < 0)) __PYX_ERR(0, 21, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2181,20 +2225,20 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_5cost(PyObject *__pyx_self, PyObject *__p
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cost", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 21, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_slow_cost", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 21, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("tsp_cy.TSP.cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("tsp_cy.TSP._slow_cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6tsp_cy_3TSP_4cost(__pyx_self, __pyx_v_self, __pyx_v_path);
+  __pyx_r = __pyx_pf_6tsp_cy_3TSP_4_slow_cost(__pyx_self, __pyx_v_self, __pyx_v_path);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6tsp_cy_3TSP_4cost(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
+static PyObject *__pyx_pf_6tsp_cy_3TSP_4_slow_cost(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
   PyObject *__pyx_v_total_dist = NULL;
   PyObject *__pyx_v_i = NULL;
   PyObject *__pyx_v_j = NULL;
@@ -2212,22 +2256,22 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_4cost(CYTHON_UNUSED PyObject *__pyx_self,
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("cost", 0);
+  __Pyx_RefNannySetupContext("_slow_cost", 0);
 
   /* "tsp_cy.pyx":23
- *     def cost(self, path: TSPSolution) -> float:
- *         '''Return the Euclidean distance if the path is followed'''
+ *     def _slow_cost(self, path: TSPSolution) -> float:
+ *         '''Return the Euclidean distance if the path is followed, but unvectorized.'''
  *         total_dist = 0.0             # <<<<<<<<<<<<<<
- *         for i, j in zip(path, [*path[1:], 0]):
+ *         for i, j in zip(path, [*path[1:], path[0]]):
  *             total_dist += self._edge_distance(i, j)
  */
   __Pyx_INCREF(__pyx_float_0_0);
   __pyx_v_total_dist = __pyx_float_0_0;
 
   /* "tsp_cy.pyx":24
- *         '''Return the Euclidean distance if the path is followed'''
+ *         '''Return the Euclidean distance if the path is followed, but unvectorized.'''
  *         total_dist = 0.0
- *         for i, j in zip(path, [*path[1:], 0]):             # <<<<<<<<<<<<<<
+ *         for i, j in zip(path, [*path[1:], path[0]]):             # <<<<<<<<<<<<<<
  *             total_dist += self._edge_distance(i, j)
  *         return total_dist
  */
@@ -2236,7 +2280,10 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_4cost(CYTHON_UNUSED PyObject *__pyx_self,
   __pyx_t_1 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_ListComp_Append(__pyx_t_1, __pyx_int_0) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_path, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (__Pyx_ListComp_Append(__pyx_t_1, __pyx_t_2) < 0) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_v_path);
@@ -2341,7 +2388,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_4cost(CYTHON_UNUSED PyObject *__pyx_self,
 
     /* "tsp_cy.pyx":25
  *         total_dist = 0.0
- *         for i, j in zip(path, [*path[1:], 0]):
+ *         for i, j in zip(path, [*path[1:], path[0]]):
  *             total_dist += self._edge_distance(i, j)             # <<<<<<<<<<<<<<
  *         return total_dist
  * 
@@ -2400,9 +2447,9 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_4cost(CYTHON_UNUSED PyObject *__pyx_self,
     __pyx_t_6 = 0;
 
     /* "tsp_cy.pyx":24
- *         '''Return the Euclidean distance if the path is followed'''
+ *         '''Return the Euclidean distance if the path is followed, but unvectorized.'''
  *         total_dist = 0.0
- *         for i, j in zip(path, [*path[1:], 0]):             # <<<<<<<<<<<<<<
+ *         for i, j in zip(path, [*path[1:], path[0]]):             # <<<<<<<<<<<<<<
  *             total_dist += self._edge_distance(i, j)
  *         return total_dist
  */
@@ -2410,11 +2457,11 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_4cost(CYTHON_UNUSED PyObject *__pyx_self,
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "tsp_cy.pyx":26
- *         for i, j in zip(path, [*path[1:], 0]):
+ *         for i, j in zip(path, [*path[1:], path[0]]):
  *             total_dist += self._edge_distance(i, j)
  *         return total_dist             # <<<<<<<<<<<<<<
  * 
- *     def _find_city_neighbors(self, n) -> Tuple[int, int]:
+ *     def cost(self, path: TSPSolution) -> float:
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_total_dist);
@@ -2422,10 +2469,10 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_4cost(CYTHON_UNUSED PyObject *__pyx_self,
   goto __pyx_L0;
 
   /* "tsp_cy.pyx":21
- *         return (x_i - x_j) ** 2 + (y_i - y_j) ** 2
+ *         return np.sqrt((x_i - x_j) ** 2 + (y_i - y_j) ** 2)
  * 
- *     def cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
- *         '''Return the Euclidean distance if the path is followed'''
+ *     def _slow_cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
+ *         '''Return the Euclidean distance if the path is followed, but unvectorized.'''
  *         total_dist = 0.0
  */
 
@@ -2436,7 +2483,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_4cost(CYTHON_UNUSED PyObject *__pyx_self,
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("tsp_cy.TSP.cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("tsp_cy.TSP._slow_cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_total_dist);
@@ -2450,16 +2497,350 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_4cost(CYTHON_UNUSED PyObject *__pyx_self,
 /* "tsp_cy.pyx":28
  *         return total_dist
  * 
+ *     def cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
+ *         '''Return the Euclidean distance if the path is followed, but vectorized.'''
+ *         shifted_cities = np.vstack((self.cities[path[1:], :], self.cities[path[0], :]))
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6tsp_cy_3TSP_7cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6tsp_cy_3TSP_6cost[] = "Return the Euclidean distance if the path is followed, but vectorized.";
+static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_7cost = {"cost", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_7cost, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_6cost};
+static PyObject *__pyx_pw_6tsp_cy_3TSP_7cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  PyObject *__pyx_v_self = 0;
+  PyObject *__pyx_v_path = 0;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("cost (wrapper)", 0);
+  {
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_self,&__pyx_n_s_path,0};
+    PyObject* values[2] = {0,0};
+    if (unlikely(__pyx_kwds)) {
+      Py_ssize_t kw_args;
+      const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
+      switch (pos_args) {
+        case  2: values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = PyDict_Size(__pyx_kwds);
+      switch (pos_args) {
+        case  0:
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_self)) != 0)) kw_args--;
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_path)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("cost", 1, 2, 2, 1); __PYX_ERR(0, 28, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cost") < 0)) __PYX_ERR(0, 28, __pyx_L3_error)
+      }
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
+      values[1] = PyTuple_GET_ITEM(__pyx_args, 1);
+    }
+    __pyx_v_self = values[0];
+    __pyx_v_path = values[1];
+  }
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("cost", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 28, __pyx_L3_error)
+  __pyx_L3_error:;
+  __Pyx_AddTraceback("tsp_cy.TSP.cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6tsp_cy_3TSP_6cost(__pyx_self, __pyx_v_self, __pyx_v_path);
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6tsp_cy_3TSP_6cost(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
+  PyObject *__pyx_v_shifted_cities = NULL;
+  PyObject *__pyx_v_differences = NULL;
+  PyObject *__pyx_v_cost = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_7;
+  PyObject *__pyx_t_8 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("cost", 0);
+
+  /* "tsp_cy.pyx":30
+ *     def cost(self, path: TSPSolution) -> float:
+ *         '''Return the Euclidean distance if the path is followed, but vectorized.'''
+ *         shifted_cities = np.vstack((self.cities[path[1:], :], self.cities[path[0], :]))             # <<<<<<<<<<<<<<
+ *         differences = np.power(self.cities[path] - shifted_cities, 2)
+ *         cost = np.sum(np.sqrt(differences[:, 0] + differences[:, 1]))
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_vstack); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cities); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_v_path, 1, 0, NULL, NULL, &__pyx_slice__2, 1, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_4);
+  __Pyx_INCREF(__pyx_slice_);
+  __Pyx_GIVEREF(__pyx_slice_);
+  PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_slice_);
+  __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cities); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_path, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_2);
+  __Pyx_INCREF(__pyx_slice_);
+  __Pyx_GIVEREF(__pyx_slice_);
+  PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_slice_);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_4);
+  PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_t_4);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_2);
+  __pyx_t_4 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_v_shifted_cities = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "tsp_cy.pyx":31
+ *         '''Return the Euclidean distance if the path is followed, but vectorized.'''
+ *         shifted_cities = np.vstack((self.cities[path[1:], :], self.cities[path[0], :]))
+ *         differences = np.power(self.cities[path] - shifted_cities, 2)             # <<<<<<<<<<<<<<
+ *         cost = np.sum(np.sqrt(differences[:, 0] + differences[:, 1]))
+ * 
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_power); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cities); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_v_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_v_shifted_cities); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  __pyx_t_7 = 0;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_6))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_6);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_6, function);
+      __pyx_t_7 = 1;
+    }
+  }
+  #if CYTHON_FAST_PYCALL
+  if (PyFunction_Check(__pyx_t_6)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_t_3, __pyx_int_2};
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  } else
+  #endif
+  #if CYTHON_FAST_PYCCALL
+  if (__Pyx_PyFastCFunction_Check(__pyx_t_6)) {
+    PyObject *__pyx_temp[3] = {__pyx_t_2, __pyx_t_3, __pyx_int_2};
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_6, __pyx_temp+1-__pyx_t_7, 2+__pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  } else
+  #endif
+  {
+    __pyx_t_4 = PyTuple_New(2+__pyx_t_7); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 31, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    if (__pyx_t_2) {
+      __Pyx_GIVEREF(__pyx_t_2); PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2); __pyx_t_2 = NULL;
+    }
+    __Pyx_GIVEREF(__pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_4, 0+__pyx_t_7, __pyx_t_3);
+    __Pyx_INCREF(__pyx_int_2);
+    __Pyx_GIVEREF(__pyx_int_2);
+    PyTuple_SET_ITEM(__pyx_t_4, 1+__pyx_t_7, __pyx_int_2);
+    __pyx_t_3 = 0;
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_v_differences = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "tsp_cy.pyx":32
+ *         shifted_cities = np.vstack((self.cities[path[1:], :], self.cities[path[0], :]))
+ *         differences = np.power(self.cities[path] - shifted_cities, 2)
+ *         cost = np.sum(np.sqrt(differences[:, 0] + differences[:, 1]))             # <<<<<<<<<<<<<<
+ * 
+ *         return cost
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_sum); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_sqrt); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_v_differences, __pyx_tuple__3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_v_differences, __pyx_tuple__4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_8 = PyNumber_Add(__pyx_t_3, __pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_6 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_5, __pyx_t_8) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_8);
+  __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_4))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_4);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_4, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_2, __pyx_t_6) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_v_cost = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "tsp_cy.pyx":34
+ *         cost = np.sum(np.sqrt(differences[:, 0] + differences[:, 1]))
+ * 
+ *         return cost             # <<<<<<<<<<<<<<
+ * 
+ *     def _find_city_neighbors(self, n) -> Tuple[int, int]:
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF(__pyx_v_cost);
+  __pyx_r = __pyx_v_cost;
+  goto __pyx_L0;
+
+  /* "tsp_cy.pyx":28
+ *         return total_dist
+ * 
+ *     def cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
+ *         '''Return the Euclidean distance if the path is followed, but vectorized.'''
+ *         shifted_cities = np.vstack((self.cities[path[1:], :], self.cities[path[0], :]))
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_AddTraceback("tsp_cy.TSP.cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_shifted_cities);
+  __Pyx_XDECREF(__pyx_v_differences);
+  __Pyx_XDECREF(__pyx_v_cost);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "tsp_cy.pyx":36
+ *         return cost
+ * 
  *     def _find_city_neighbors(self, n) -> Tuple[int, int]:             # <<<<<<<<<<<<<<
  *         '''Find adjacent neighbors to n'''
  *         i = self.path.index(n)
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6tsp_cy_3TSP_7_find_city_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6tsp_cy_3TSP_6_find_city_neighbors[] = "Find adjacent neighbors to n";
-static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_7_find_city_neighbors = {"_find_city_neighbors", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_7_find_city_neighbors, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_6_find_city_neighbors};
-static PyObject *__pyx_pw_6tsp_cy_3TSP_7_find_city_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6tsp_cy_3TSP_9_find_city_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6tsp_cy_3TSP_8_find_city_neighbors[] = "Find adjacent neighbors to n";
+static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_9_find_city_neighbors = {"_find_city_neighbors", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_9_find_city_neighbors, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_8_find_city_neighbors};
+static PyObject *__pyx_pw_6tsp_cy_3TSP_9_find_city_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_n = 0;
   int __pyx_lineno = 0;
@@ -2491,11 +2872,11 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_7_find_city_neighbors(PyObject *__pyx_sel
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_n)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_find_city_neighbors", 1, 2, 2, 1); __PYX_ERR(0, 28, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_find_city_neighbors", 1, 2, 2, 1); __PYX_ERR(0, 36, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_find_city_neighbors") < 0)) __PYX_ERR(0, 28, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_find_city_neighbors") < 0)) __PYX_ERR(0, 36, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2508,20 +2889,20 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_7_find_city_neighbors(PyObject *__pyx_sel
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_find_city_neighbors", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 28, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_find_city_neighbors", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 36, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("tsp_cy.TSP._find_city_neighbors", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6tsp_cy_3TSP_6_find_city_neighbors(__pyx_self, __pyx_v_self, __pyx_v_n);
+  __pyx_r = __pyx_pf_6tsp_cy_3TSP_8_find_city_neighbors(__pyx_self, __pyx_v_self, __pyx_v_n);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6tsp_cy_3TSP_6_find_city_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_n) {
+static PyObject *__pyx_pf_6tsp_cy_3TSP_8_find_city_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_n) {
   PyObject *__pyx_v_i = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2535,16 +2916,16 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_6_find_city_neighbors(CYTHON_UNUSED PyObj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_find_city_neighbors", 0);
 
-  /* "tsp_cy.pyx":30
+  /* "tsp_cy.pyx":38
  *     def _find_city_neighbors(self, n) -> Tuple[int, int]:
  *         '''Find adjacent neighbors to n'''
  *         i = self.path.index(n)             # <<<<<<<<<<<<<<
  *         return self.path[(i - 1) % self.N], self.path[(i + 1) % self.N]
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -2559,13 +2940,13 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_6_find_city_neighbors(CYTHON_UNUSED PyObj
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_n) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_n);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_i = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "tsp_cy.pyx":31
+  /* "tsp_cy.pyx":39
  *         '''Find adjacent neighbors to n'''
  *         i = self.path.index(n)
  *         return self.path[(i - 1) % self.N], self.path[(i + 1) % self.N]             # <<<<<<<<<<<<<<
@@ -2573,35 +2954,35 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_6_find_city_neighbors(CYTHON_UNUSED PyObj
  *     def _ensure_order_and_provide_indices(self, a, b) -> Tuple[int, int, int, int]:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyInt_SubtractObjC(__pyx_v_i, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_SubtractObjC(__pyx_v_i, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_N); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyNumber_Remainder(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Remainder(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_i, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_N); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = PyNumber_Remainder(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Remainder(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
@@ -2613,8 +2994,8 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_6_find_city_neighbors(CYTHON_UNUSED PyObj
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "tsp_cy.pyx":28
- *         return total_dist
+  /* "tsp_cy.pyx":36
+ *         return cost
  * 
  *     def _find_city_neighbors(self, n) -> Tuple[int, int]:             # <<<<<<<<<<<<<<
  *         '''Find adjacent neighbors to n'''
@@ -2637,7 +3018,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_6_find_city_neighbors(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "tsp_cy.pyx":33
+/* "tsp_cy.pyx":41
  *         return self.path[(i - 1) % self.N], self.path[(i + 1) % self.N]
  * 
  *     def _ensure_order_and_provide_indices(self, a, b) -> Tuple[int, int, int, int]:             # <<<<<<<<<<<<<<
@@ -2646,10 +3027,10 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_6_find_city_neighbors(CYTHON_UNUSED PyObj
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6tsp_cy_3TSP_9_ensure_order_and_provide_indices(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6tsp_cy_3TSP_8_ensure_order_and_provide_indices[] = "Swap a and b if index(b) < index(a), and return their indices";
-static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_9_ensure_order_and_provide_indices = {"_ensure_order_and_provide_indices", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_9_ensure_order_and_provide_indices, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_8_ensure_order_and_provide_indices};
-static PyObject *__pyx_pw_6tsp_cy_3TSP_9_ensure_order_and_provide_indices(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6tsp_cy_3TSP_11_ensure_order_and_provide_indices(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6tsp_cy_3TSP_10_ensure_order_and_provide_indices[] = "Swap a and b if index(b) < index(a), and return their indices";
+static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_11_ensure_order_and_provide_indices = {"_ensure_order_and_provide_indices", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_11_ensure_order_and_provide_indices, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_10_ensure_order_and_provide_indices};
+static PyObject *__pyx_pw_6tsp_cy_3TSP_11_ensure_order_and_provide_indices(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_a = 0;
   PyObject *__pyx_v_b = 0;
@@ -2684,17 +3065,17 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_9_ensure_order_and_provide_indices(PyObje
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_a)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_ensure_order_and_provide_indices", 1, 3, 3, 1); __PYX_ERR(0, 33, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_ensure_order_and_provide_indices", 1, 3, 3, 1); __PYX_ERR(0, 41, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_b)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_ensure_order_and_provide_indices", 1, 3, 3, 2); __PYX_ERR(0, 33, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_ensure_order_and_provide_indices", 1, 3, 3, 2); __PYX_ERR(0, 41, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_ensure_order_and_provide_indices") < 0)) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_ensure_order_and_provide_indices") < 0)) __PYX_ERR(0, 41, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -2709,20 +3090,20 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_9_ensure_order_and_provide_indices(PyObje
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_ensure_order_and_provide_indices", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 33, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_ensure_order_and_provide_indices", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 41, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("tsp_cy.TSP._ensure_order_and_provide_indices", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(__pyx_self, __pyx_v_self, __pyx_v_a, __pyx_v_b);
+  __pyx_r = __pyx_pf_6tsp_cy_3TSP_10_ensure_order_and_provide_indices(__pyx_self, __pyx_v_self, __pyx_v_a, __pyx_v_b);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_a, PyObject *__pyx_v_b) {
+static PyObject *__pyx_pf_6tsp_cy_3TSP_10_ensure_order_and_provide_indices(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_a, PyObject *__pyx_v_b) {
   PyObject *__pyx_v_index_a = NULL;
   PyObject *__pyx_v_index_b = NULL;
   PyObject *__pyx_r = NULL;
@@ -2736,16 +3117,16 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(CYTHON
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_ensure_order_and_provide_indices", 0);
 
-  /* "tsp_cy.pyx":35
+  /* "tsp_cy.pyx":43
  *     def _ensure_order_and_provide_indices(self, a, b) -> Tuple[int, int, int, int]:
  *         '''Swap a and b if index(b) < index(a), and return their indices'''
  *         index_a = self.path.index(a)             # <<<<<<<<<<<<<<
  *         index_b = self.path.index(b)
  *         return (b, a, index_b, index_a) if index_b < index_a else (a, b, index_a, index_b)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -2760,22 +3141,22 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(CYTHON
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_a) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_a);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_index_a = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "tsp_cy.pyx":36
+  /* "tsp_cy.pyx":44
  *         '''Swap a and b if index(b) < index(a), and return their indices'''
  *         index_a = self.path.index(a)
  *         index_b = self.path.index(b)             # <<<<<<<<<<<<<<
  *         return (b, a, index_b, index_a) if index_b < index_a else (a, b, index_a, index_b)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_index); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_index); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -2790,13 +3171,13 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(CYTHON
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_b) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_b);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_index_b = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "tsp_cy.pyx":37
+  /* "tsp_cy.pyx":45
  *         index_a = self.path.index(a)
  *         index_b = self.path.index(b)
  *         return (b, a, index_b, index_a) if index_b < index_a else (a, b, index_a, index_b)             # <<<<<<<<<<<<<<
@@ -2804,11 +3185,11 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(CYTHON
  *     def _reformat_path(self, path) -> TSPSolution:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_v_index_b, __pyx_v_index_a, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_v_index_b, __pyx_v_index_a, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 45, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_4) {
-    __pyx_t_2 = PyTuple_New(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_v_b);
     __Pyx_GIVEREF(__pyx_v_b);
@@ -2825,7 +3206,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(CYTHON
     __pyx_t_1 = __pyx_t_2;
     __pyx_t_2 = 0;
   } else {
-    __pyx_t_2 = PyTuple_New(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_v_a);
     __Pyx_GIVEREF(__pyx_v_a);
@@ -2846,7 +3227,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(CYTHON
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "tsp_cy.pyx":33
+  /* "tsp_cy.pyx":41
  *         return self.path[(i - 1) % self.N], self.path[(i + 1) % self.N]
  * 
  *     def _ensure_order_and_provide_indices(self, a, b) -> Tuple[int, int, int, int]:             # <<<<<<<<<<<<<<
@@ -2869,7 +3250,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(CYTHON
   return __pyx_r;
 }
 
-/* "tsp_cy.pyx":39
+/* "tsp_cy.pyx":47
  *         return (b, a, index_b, index_a) if index_b < index_a else (a, b, index_a, index_b)
  * 
  *     def _reformat_path(self, path) -> TSPSolution:             # <<<<<<<<<<<<<<
@@ -2878,10 +3259,10 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_8_ensure_order_and_provide_indices(CYTHON
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6tsp_cy_3TSP_11_reformat_path(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6tsp_cy_3TSP_10_reformat_path[] = "Reformat path so that 0 is the first entry";
-static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_11_reformat_path = {"_reformat_path", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_11_reformat_path, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_10_reformat_path};
-static PyObject *__pyx_pw_6tsp_cy_3TSP_11_reformat_path(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6tsp_cy_3TSP_13_reformat_path(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6tsp_cy_3TSP_12_reformat_path[] = "Reformat path so that 0 is the first entry";
+static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_13_reformat_path = {"_reformat_path", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_13_reformat_path, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_12_reformat_path};
+static PyObject *__pyx_pw_6tsp_cy_3TSP_13_reformat_path(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   CYTHON_UNUSED PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_path = 0;
   int __pyx_lineno = 0;
@@ -2913,11 +3294,11 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_11_reformat_path(PyObject *__pyx_self, Py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_path)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_reformat_path", 1, 2, 2, 1); __PYX_ERR(0, 39, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_reformat_path", 1, 2, 2, 1); __PYX_ERR(0, 47, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_reformat_path") < 0)) __PYX_ERR(0, 39, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_reformat_path") < 0)) __PYX_ERR(0, 47, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -2930,20 +3311,20 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_11_reformat_path(PyObject *__pyx_self, Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_reformat_path", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 39, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_reformat_path", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 47, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("tsp_cy.TSP._reformat_path", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6tsp_cy_3TSP_10_reformat_path(__pyx_self, __pyx_v_self, __pyx_v_path);
+  __pyx_r = __pyx_pf_6tsp_cy_3TSP_12_reformat_path(__pyx_self, __pyx_v_self, __pyx_v_path);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6tsp_cy_3TSP_10_reformat_path(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
+static PyObject *__pyx_pf_6tsp_cy_3TSP_12_reformat_path(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
   PyObject *__pyx_v_i = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2955,14 +3336,14 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_10_reformat_path(CYTHON_UNUSED PyObject *
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_reformat_path", 0);
 
-  /* "tsp_cy.pyx":41
+  /* "tsp_cy.pyx":49
  *     def _reformat_path(self, path) -> TSPSolution:
  *         '''Reformat path so that 0 is the first entry'''
  *         i = path.index(0)             # <<<<<<<<<<<<<<
  *         return [*path[i:], *path[:i]]
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_path, __pyx_n_s_index); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_path, __pyx_n_s_index); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -2976,13 +3357,13 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_10_reformat_path(CYTHON_UNUSED PyObject *
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_int_0) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_int_0);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_i = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "tsp_cy.pyx":42
+  /* "tsp_cy.pyx":50
  *         '''Reformat path so that 0 is the first entry'''
  *         i = path.index(0)
  *         return [*path[i:], *path[:i]]             # <<<<<<<<<<<<<<
@@ -2990,20 +3371,20 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_10_reformat_path(CYTHON_UNUSED PyObject *
  *     def _interpolations(self, a, b) -> Set[TSPSolution]:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_path, 0, 0, &__pyx_v_i, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_path, 0, 0, &__pyx_v_i, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = PySequence_List(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_path, 0, 0, NULL, &__pyx_v_i, NULL, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetSlice(__pyx_v_path, 0, 0, NULL, &__pyx_v_i, NULL, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_PyList_Extend(__pyx_t_1, __pyx_t_2) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
+  if (__Pyx_PyList_Extend(__pyx_t_1, __pyx_t_2) < 0) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "tsp_cy.pyx":39
+  /* "tsp_cy.pyx":47
  *         return (b, a, index_b, index_a) if index_b < index_a else (a, b, index_a, index_b)
  * 
  *     def _reformat_path(self, path) -> TSPSolution:             # <<<<<<<<<<<<<<
@@ -3025,7 +3406,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_10_reformat_path(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "tsp_cy.pyx":44
+/* "tsp_cy.pyx":52
  *         return [*path[i:], *path[:i]]
  * 
  *     def _interpolations(self, a, b) -> Set[TSPSolution]:             # <<<<<<<<<<<<<<
@@ -3034,10 +3415,10 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_10_reformat_path(CYTHON_UNUSED PyObject *
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6tsp_cy_3TSP_13_interpolations(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6tsp_cy_3TSP_12_interpolations[] = "\n        Return a set of tuples with all interpolations of cities a and b.\n        ";
-static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_13_interpolations = {"_interpolations", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_13_interpolations, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_12_interpolations};
-static PyObject *__pyx_pw_6tsp_cy_3TSP_13_interpolations(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6tsp_cy_3TSP_15_interpolations(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6tsp_cy_3TSP_14_interpolations[] = "\n        Return a set of tuples with all interpolations of cities a and b.\n        ";
+static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_15_interpolations = {"_interpolations", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_15_interpolations, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_14_interpolations};
+static PyObject *__pyx_pw_6tsp_cy_3TSP_15_interpolations(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_a = 0;
   PyObject *__pyx_v_b = 0;
@@ -3072,17 +3453,17 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_13_interpolations(PyObject *__pyx_self, P
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_a)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_interpolations", 1, 3, 3, 1); __PYX_ERR(0, 44, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_interpolations", 1, 3, 3, 1); __PYX_ERR(0, 52, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_b)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_interpolations", 1, 3, 3, 2); __PYX_ERR(0, 44, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_interpolations", 1, 3, 3, 2); __PYX_ERR(0, 52, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_interpolations") < 0)) __PYX_ERR(0, 44, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_interpolations") < 0)) __PYX_ERR(0, 52, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -3097,20 +3478,20 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_13_interpolations(PyObject *__pyx_self, P
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_interpolations", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 44, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_interpolations", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 52, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("tsp_cy.TSP._interpolations", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6tsp_cy_3TSP_12_interpolations(__pyx_self, __pyx_v_self, __pyx_v_a, __pyx_v_b);
+  __pyx_r = __pyx_pf_6tsp_cy_3TSP_14_interpolations(__pyx_self, __pyx_v_self, __pyx_v_a, __pyx_v_b);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_a, PyObject *__pyx_v_b) {
+static PyObject *__pyx_pf_6tsp_cy_3TSP_14_interpolations(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_a, PyObject *__pyx_v_b) {
   PyObject *__pyx_v_index_a = NULL;
   PyObject *__pyx_v_index_b = NULL;
   PyObject *__pyx_v_path_1 = NULL;
@@ -3140,14 +3521,14 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
   __Pyx_INCREF(__pyx_v_a);
   __Pyx_INCREF(__pyx_v_b);
 
-  /* "tsp_cy.pyx":48
+  /* "tsp_cy.pyx":56
  *         Return a set of tuples with all interpolations of cities a and b.
  *         '''
  *         a, b, index_a, index_b = self._ensure_order_and_provide_indices(a, b)             # <<<<<<<<<<<<<<
  * 
  *         # get path between a and b excluding them
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_ensure_order_and_provide_indice); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_ensure_order_and_provide_indice); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -3164,7 +3545,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
   #if CYTHON_FAST_PYCALL
   if (PyFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_a, __pyx_v_b};
-    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
@@ -3172,13 +3553,13 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
   #if CYTHON_FAST_PYCCALL
   if (__Pyx_PyFastCFunction_Check(__pyx_t_2)) {
     PyObject *__pyx_temp[3] = {__pyx_t_3, __pyx_v_a, __pyx_v_b};
-    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyCFunction_FastCall(__pyx_t_2, __pyx_temp+1-__pyx_t_4, 2+__pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_GOTREF(__pyx_t_1);
   } else
   #endif
   {
-    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_New(2+__pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     if (__pyx_t_3) {
       __Pyx_GIVEREF(__pyx_t_3); PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_3); __pyx_t_3 = NULL;
@@ -3189,7 +3570,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
     __Pyx_INCREF(__pyx_v_b);
     __Pyx_GIVEREF(__pyx_v_b);
     PyTuple_SET_ITEM(__pyx_t_5, 1+__pyx_t_4, __pyx_v_b);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -3200,7 +3581,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
     if (unlikely(size != 4)) {
       if (size > 4) __Pyx_RaiseTooManyValuesError(4);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 48, __pyx_L1_error)
+      __PYX_ERR(0, 56, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -3223,7 +3604,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
       Py_ssize_t i;
       PyObject** temps[4] = {&__pyx_t_2,&__pyx_t_5,&__pyx_t_3,&__pyx_t_6};
       for (i=0; i < 4; i++) {
-        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 48, __pyx_L1_error)
+        PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 56, __pyx_L1_error)
         __Pyx_GOTREF(item);
         *(temps[i]) = item;
       }
@@ -3233,7 +3614,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
   } else {
     Py_ssize_t index = -1;
     PyObject** temps[4] = {&__pyx_t_2,&__pyx_t_5,&__pyx_t_3,&__pyx_t_6};
-    __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 48, __pyx_L1_error)
+    __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_8 = Py_TYPE(__pyx_t_7)->tp_iternext;
@@ -3242,7 +3623,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
       __Pyx_GOTREF(item);
       *(temps[index]) = item;
     }
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 4) < 0) __PYX_ERR(0, 48, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_8(__pyx_t_7), 4) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
     __pyx_t_8 = NULL;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     goto __pyx_L4_unpacking_done;
@@ -3250,7 +3631,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_8 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 48, __pyx_L1_error)
+    __PYX_ERR(0, 56, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
   __Pyx_DECREF_SET(__pyx_v_a, __pyx_t_2);
@@ -3262,94 +3643,94 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
   __pyx_v_index_b = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "tsp_cy.pyx":51
+  /* "tsp_cy.pyx":59
  * 
  *         # get path between a and b excluding them
  *         path_1 = self.path[(index_a + 1):index_b]             # <<<<<<<<<<<<<<
  *         # get part of path that isn't path_1
  *         path_2 = [*self.path[0:(index_a + 1)], *self.path[index_b:]]
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyInt_AddObjC(__pyx_v_index_a, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_AddObjC(__pyx_v_index_a, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_t_1, 0, 0, &__pyx_t_6, &__pyx_v_index_b, NULL, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_t_1, 0, 0, &__pyx_t_6, &__pyx_v_index_b, NULL, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_path_1 = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "tsp_cy.pyx":53
+  /* "tsp_cy.pyx":61
  *         path_1 = self.path[(index_a + 1):index_b]
  *         # get part of path that isn't path_1
  *         path_2 = [*self.path[0:(index_a + 1)], *self.path[index_b:]]             # <<<<<<<<<<<<<<
  * 
  *         interpolations = set()
  */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_index_a, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_AddObjC(__pyx_v_index_a, __pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_t_6, 0, 0, NULL, &__pyx_t_1, NULL, 1, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetSlice(__pyx_t_6, 0, 0, NULL, &__pyx_t_1, NULL, 1, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = PySequence_List(__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_3 = PySequence_List(__pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_path); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_5, 0, 0, &__pyx_v_index_b, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_t_5, 0, 0, &__pyx_v_index_b, NULL, NULL, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_PyList_Extend(__pyx_t_3, __pyx_t_1) < 0) __PYX_ERR(0, 53, __pyx_L1_error)
+  if (__Pyx_PyList_Extend(__pyx_t_3, __pyx_t_1) < 0) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_path_2 = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "tsp_cy.pyx":55
+  /* "tsp_cy.pyx":63
  *         path_2 = [*self.path[0:(index_a + 1)], *self.path[index_b:]]
  * 
  *         interpolations = set()             # <<<<<<<<<<<<<<
  * 
  *         for i in range(len(path_1)):
  */
-  __pyx_t_3 = PySet_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_3 = PySet_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_interpolations = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "tsp_cy.pyx":57
+  /* "tsp_cy.pyx":65
  *         interpolations = set()
  * 
  *         for i in range(len(path_1)):             # <<<<<<<<<<<<<<
  *             interp = self._reformat_path([*path_2[:i], *path_1, *path_2[i:]])
  *             interpolations.add(tuple(interp))
  */
-  __pyx_t_9 = PyObject_Length(__pyx_v_path_1); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_9 = PyObject_Length(__pyx_v_path_1); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 65, __pyx_L1_error)
   __pyx_t_10 = __pyx_t_9;
   for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
     __pyx_v_i = __pyx_t_11;
 
-    /* "tsp_cy.pyx":58
+    /* "tsp_cy.pyx":66
  * 
  *         for i in range(len(path_1)):
  *             interp = self._reformat_path([*path_2[:i], *path_1, *path_2[i:]])             # <<<<<<<<<<<<<<
  *             interpolations.add(tuple(interp))
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_reformat_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_reformat_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_path_2, 0, __pyx_v_i); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 58, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_path_2, 0, __pyx_v_i); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = PySequence_List(__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
+    __pyx_t_5 = PySequence_List(__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (__Pyx_PyList_Extend(__pyx_t_5, __pyx_v_path_1) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
-    __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_path_2, __pyx_v_i, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 58, __pyx_L1_error)
+    if (__Pyx_PyList_Extend(__pyx_t_5, __pyx_v_path_1) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyList_GetSlice(__pyx_v_path_2, __pyx_v_i, PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_PyList_Extend(__pyx_t_5, __pyx_t_6) < 0) __PYX_ERR(0, 58, __pyx_L1_error)
+    if (__Pyx_PyList_Extend(__pyx_t_5, __pyx_t_6) < 0) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -3364,55 +3745,55 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
     __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_6, __pyx_t_5) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_interp, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "tsp_cy.pyx":59
+    /* "tsp_cy.pyx":67
  *         for i in range(len(path_1)):
  *             interp = self._reformat_path([*path_2[:i], *path_1, *path_2[i:]])
  *             interpolations.add(tuple(interp))             # <<<<<<<<<<<<<<
  * 
  *         for j in range(len(path_2)):
  */
-    __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_v_interp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_v_interp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_12 = PySet_Add(__pyx_v_interpolations, __pyx_t_3); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 59, __pyx_L1_error)
+    __pyx_t_12 = PySet_Add(__pyx_v_interpolations, __pyx_t_3); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 67, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
 
-  /* "tsp_cy.pyx":61
+  /* "tsp_cy.pyx":69
  *             interpolations.add(tuple(interp))
  * 
  *         for j in range(len(path_2)):             # <<<<<<<<<<<<<<
  *             interp = self._reformat_path([*path_1[:j], *path_2, *path_1[j:]])
  *             interpolations.add(tuple(interp))
  */
-  __pyx_t_9 = PyList_GET_SIZE(__pyx_v_path_2); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_9 = PyList_GET_SIZE(__pyx_v_path_2); if (unlikely(__pyx_t_9 == ((Py_ssize_t)-1))) __PYX_ERR(0, 69, __pyx_L1_error)
   __pyx_t_10 = __pyx_t_9;
   for (__pyx_t_11 = 0; __pyx_t_11 < __pyx_t_10; __pyx_t_11+=1) {
     __pyx_v_j = __pyx_t_11;
 
-    /* "tsp_cy.pyx":62
+    /* "tsp_cy.pyx":70
  * 
  *         for j in range(len(path_2)):
  *             interp = self._reformat_path([*path_1[:j], *path_2, *path_1[j:]])             # <<<<<<<<<<<<<<
  *             interpolations.add(tuple(interp))
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_reformat_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_reformat_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_path_1, 0, __pyx_v_j, NULL, NULL, NULL, 0, 1, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_path_1, 0, __pyx_v_j, NULL, NULL, NULL, 0, 1, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_5 = PySequence_List(__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_5 = PySequence_List(__pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (__Pyx_PyList_Extend(__pyx_t_5, __pyx_v_path_2) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
-    __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_path_1, __pyx_v_j, 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 62, __pyx_L1_error)
+    if (__Pyx_PyList_Extend(__pyx_t_5, __pyx_v_path_2) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_path_1, __pyx_v_j, 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_PyList_Extend(__pyx_t_5, __pyx_t_6) < 0) __PYX_ERR(0, 62, __pyx_L1_error)
+    if (__Pyx_PyList_Extend(__pyx_t_5, __pyx_t_6) < 0) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_6 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
@@ -3427,26 +3808,26 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
     __pyx_t_3 = (__pyx_t_6) ? __Pyx_PyObject_Call2Args(__pyx_t_1, __pyx_t_6, __pyx_t_5) : __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_t_5);
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_XDECREF_SET(__pyx_v_interp, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "tsp_cy.pyx":63
+    /* "tsp_cy.pyx":71
  *         for j in range(len(path_2)):
  *             interp = self._reformat_path([*path_1[:j], *path_2, *path_1[j:]])
  *             interpolations.add(tuple(interp))             # <<<<<<<<<<<<<<
  * 
  *         return interpolations
  */
-    __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_v_interp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PySequence_Tuple(__pyx_v_interp); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_12 = PySet_Add(__pyx_v_interpolations, __pyx_t_3); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 63, __pyx_L1_error)
+    __pyx_t_12 = PySet_Add(__pyx_v_interpolations, __pyx_t_3); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
 
-  /* "tsp_cy.pyx":65
+  /* "tsp_cy.pyx":73
  *             interpolations.add(tuple(interp))
  * 
  *         return interpolations             # <<<<<<<<<<<<<<
@@ -3458,7 +3839,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
   __pyx_r = __pyx_v_interpolations;
   goto __pyx_L0;
 
-  /* "tsp_cy.pyx":44
+  /* "tsp_cy.pyx":52
  *         return [*path[i:], *path[:i]]
  * 
  *     def _interpolations(self, a, b) -> Set[TSPSolution]:             # <<<<<<<<<<<<<<
@@ -3490,7 +3871,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
   return __pyx_r;
 }
 
-/* "tsp_cy.pyx":67
+/* "tsp_cy.pyx":75
  *         return interpolations
  * 
  *     def _first_find_neighbors(self, path) -> List[TSPSolution]:             # <<<<<<<<<<<<<<
@@ -3499,10 +3880,10 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_12_interpolations(CYTHON_UNUSED PyObject 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6tsp_cy_3TSP_15_first_find_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_6tsp_cy_3TSP_14_first_find_neighbors[] = "\n        A neighbor of a path is another path that is 'closely related'.\n        We construct a 'closely related' path where a sequence in the path\n        is inserted between any of the elements of the remaining elements\n        in the path.\n\n        This results in a poor choice of neighbors, and finds many repeats (75% are repeated).\n        ";
-static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_15_first_find_neighbors = {"_first_find_neighbors", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_15_first_find_neighbors, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_14_first_find_neighbors};
-static PyObject *__pyx_pw_6tsp_cy_3TSP_15_first_find_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6tsp_cy_3TSP_17_first_find_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_6tsp_cy_3TSP_16_first_find_neighbors[] = "\n        A neighbor of a path is another path that is 'closely related'.\n        We construct a 'closely related' path where a sequence in the path\n        is inserted between any of the elements of the remaining elements\n        in the path.\n\n        This results in a poor choice of neighbors, and finds many repeats (75% are repeated).\n        ";
+static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_17_first_find_neighbors = {"_first_find_neighbors", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_17_first_find_neighbors, METH_VARARGS|METH_KEYWORDS, __pyx_doc_6tsp_cy_3TSP_16_first_find_neighbors};
+static PyObject *__pyx_pw_6tsp_cy_3TSP_17_first_find_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_path = 0;
   int __pyx_lineno = 0;
@@ -3534,11 +3915,11 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_15_first_find_neighbors(PyObject *__pyx_s
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_path)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("_first_find_neighbors", 1, 2, 2, 1); __PYX_ERR(0, 67, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("_first_find_neighbors", 1, 2, 2, 1); __PYX_ERR(0, 75, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_first_find_neighbors") < 0)) __PYX_ERR(0, 67, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_first_find_neighbors") < 0)) __PYX_ERR(0, 75, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -3551,20 +3932,20 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_15_first_find_neighbors(PyObject *__pyx_s
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_first_find_neighbors", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 67, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_first_find_neighbors", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 75, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("tsp_cy.TSP._first_find_neighbors", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(__pyx_self, __pyx_v_self, __pyx_v_path);
+  __pyx_r = __pyx_pf_6tsp_cy_3TSP_16_first_find_neighbors(__pyx_self, __pyx_v_self, __pyx_v_path);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
+static PyObject *__pyx_pf_6tsp_cy_3TSP_16_first_find_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
   PyObject *__pyx_v_all_cities = NULL;
   PyObject *__pyx_v_all_interpolations = NULL;
   PyObject *__pyx_v_a = NULL;
@@ -3592,40 +3973,40 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_first_find_neighbors", 0);
 
-  /* "tsp_cy.pyx":76
+  /* "tsp_cy.pyx":84
  *         This results in a poor choice of neighbors, and finds many repeats (75% are repeated).
  *         '''
  *         self.path = path             # <<<<<<<<<<<<<<
  *         all_cities = set(path)
  *         all_interpolations = set()
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_path, __pyx_v_path) < 0) __PYX_ERR(0, 76, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_path, __pyx_v_path) < 0) __PYX_ERR(0, 84, __pyx_L1_error)
 
-  /* "tsp_cy.pyx":77
+  /* "tsp_cy.pyx":85
  *         '''
  *         self.path = path
  *         all_cities = set(path)             # <<<<<<<<<<<<<<
  *         all_interpolations = set()
  *         for a in all_cities:
  */
-  __pyx_t_1 = PySet_New(__pyx_v_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(__pyx_v_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_all_cities = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "tsp_cy.pyx":78
+  /* "tsp_cy.pyx":86
  *         self.path = path
  *         all_cities = set(path)
  *         all_interpolations = set()             # <<<<<<<<<<<<<<
  *         for a in all_cities:
  *             i, k = self._find_city_neighbors(a)
  */
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_all_interpolations = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "tsp_cy.pyx":79
+  /* "tsp_cy.pyx":87
  *         all_cities = set(path)
  *         all_interpolations = set()
  *         for a in all_cities:             # <<<<<<<<<<<<<<
@@ -3633,7 +4014,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
  *             for j in all_cities.difference(set([a, i, k])):
  */
   __pyx_t_2 = 0;
-  __pyx_t_5 = __Pyx_set_iterator(__pyx_v_all_cities, 1, (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_set_iterator(__pyx_v_all_cities, 1, (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_1);
   __pyx_t_1 = __pyx_t_5;
@@ -3641,19 +4022,19 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
   while (1) {
     __pyx_t_6 = __Pyx_set_iter_next(__pyx_t_1, __pyx_t_3, &__pyx_t_2, &__pyx_t_5, __pyx_t_4);
     if (unlikely(__pyx_t_6 == 0)) break;
-    if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 79, __pyx_L1_error)
+    if (unlikely(__pyx_t_6 == -1)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_XDECREF_SET(__pyx_v_a, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "tsp_cy.pyx":80
+    /* "tsp_cy.pyx":88
  *         all_interpolations = set()
  *         for a in all_cities:
  *             i, k = self._find_city_neighbors(a)             # <<<<<<<<<<<<<<
  *             for j in all_cities.difference(set([a, i, k])):
  *                 # j is a new neighbor to i
  */
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_find_city_neighbors); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 80, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_find_city_neighbors); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 88, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_8 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_7))) {
@@ -3667,7 +4048,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
     }
     __pyx_t_5 = (__pyx_t_8) ? __Pyx_PyObject_Call2Args(__pyx_t_7, __pyx_t_8, __pyx_v_a) : __Pyx_PyObject_CallOneArg(__pyx_t_7, __pyx_v_a);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 80, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 88, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     if ((likely(PyTuple_CheckExact(__pyx_t_5))) || (PyList_CheckExact(__pyx_t_5))) {
@@ -3676,7 +4057,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 80, __pyx_L1_error)
+        __PYX_ERR(0, 88, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -3689,15 +4070,15 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
       __Pyx_INCREF(__pyx_t_7);
       __Pyx_INCREF(__pyx_t_8);
       #else
-      __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_7 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 88, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_8 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 88, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       #endif
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_9 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 80, __pyx_L1_error)
+      __pyx_t_9 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 88, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_10 = Py_TYPE(__pyx_t_9)->tp_iternext;
@@ -3705,7 +4086,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
       __Pyx_GOTREF(__pyx_t_7);
       index = 1; __pyx_t_8 = __pyx_t_10(__pyx_t_9); if (unlikely(!__pyx_t_8)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_8);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 2) < 0) __PYX_ERR(0, 80, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 2) < 0) __PYX_ERR(0, 88, __pyx_L1_error)
       __pyx_t_10 = NULL;
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       goto __pyx_L6_unpacking_done;
@@ -3713,7 +4094,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __pyx_t_10 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 80, __pyx_L1_error)
+      __PYX_ERR(0, 88, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_7);
@@ -3721,28 +4102,28 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
     __Pyx_XDECREF_SET(__pyx_v_k, __pyx_t_8);
     __pyx_t_8 = 0;
 
-    /* "tsp_cy.pyx":81
+    /* "tsp_cy.pyx":89
  *         for a in all_cities:
  *             i, k = self._find_city_neighbors(a)
  *             for j in all_cities.difference(set([a, i, k])):             # <<<<<<<<<<<<<<
  *                 # j is a new neighbor to i
  *                 all_interpolations |= self._interpolations(i, j)
  */
-    __pyx_t_5 = PySet_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 81, __pyx_L1_error)
+    __pyx_t_5 = PySet_New(0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 89, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    if (PySet_Add(__pyx_t_5, __pyx_v_a) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
-    if (PySet_Add(__pyx_t_5, __pyx_v_i) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
-    if (PySet_Add(__pyx_t_5, __pyx_v_k) < 0) __PYX_ERR(0, 81, __pyx_L1_error)
-    __pyx_t_8 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PySet_Type_difference, __pyx_v_all_cities, __pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+    if (PySet_Add(__pyx_t_5, __pyx_v_a) < 0) __PYX_ERR(0, 89, __pyx_L1_error)
+    if (PySet_Add(__pyx_t_5, __pyx_v_i) < 0) __PYX_ERR(0, 89, __pyx_L1_error)
+    if (PySet_Add(__pyx_t_5, __pyx_v_k) < 0) __PYX_ERR(0, 89, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PySet_Type_difference, __pyx_v_all_cities, __pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 89, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     if (likely(PyList_CheckExact(__pyx_t_8)) || PyTuple_CheckExact(__pyx_t_8)) {
       __pyx_t_5 = __pyx_t_8; __Pyx_INCREF(__pyx_t_5); __pyx_t_11 = 0;
       __pyx_t_12 = NULL;
     } else {
-      __pyx_t_11 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 81, __pyx_L1_error)
+      __pyx_t_11 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 89, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_12 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 81, __pyx_L1_error)
+      __pyx_t_12 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 89, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     for (;;) {
@@ -3750,17 +4131,17 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
         if (likely(PyList_CheckExact(__pyx_t_5))) {
           if (__pyx_t_11 >= PyList_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_8 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_8); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_8); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 89, __pyx_L1_error)
           #else
-          __pyx_t_8 = PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 89, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           #endif
         } else {
           if (__pyx_t_11 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_8 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_8); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_11); __Pyx_INCREF(__pyx_t_8); __pyx_t_11++; if (unlikely(0 < 0)) __PYX_ERR(0, 89, __pyx_L1_error)
           #else
-          __pyx_t_8 = PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 81, __pyx_L1_error)
+          __pyx_t_8 = PySequence_ITEM(__pyx_t_5, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 89, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           #endif
         }
@@ -3770,7 +4151,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 81, __pyx_L1_error)
+            else __PYX_ERR(0, 89, __pyx_L1_error)
           }
           break;
         }
@@ -3779,14 +4160,14 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
       __Pyx_XDECREF_SET(__pyx_v_j, __pyx_t_8);
       __pyx_t_8 = 0;
 
-      /* "tsp_cy.pyx":83
+      /* "tsp_cy.pyx":91
  *             for j in all_cities.difference(set([a, i, k])):
  *                 # j is a new neighbor to i
  *                 all_interpolations |= self._interpolations(i, j)             # <<<<<<<<<<<<<<
  * 
  *         return [list(interp) for interp in all_interpolations]
  */
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_interpolations); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 83, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_interpolations); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 91, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __pyx_t_9 = NULL;
       __pyx_t_6 = 0;
@@ -3803,7 +4184,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
       #if CYTHON_FAST_PYCALL
       if (PyFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[3] = {__pyx_t_9, __pyx_v_i, __pyx_v_j};
-        __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 83, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 91, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
         __Pyx_GOTREF(__pyx_t_8);
       } else
@@ -3811,13 +4192,13 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
       #if CYTHON_FAST_PYCCALL
       if (__Pyx_PyFastCFunction_Check(__pyx_t_7)) {
         PyObject *__pyx_temp[3] = {__pyx_t_9, __pyx_v_i, __pyx_v_j};
-        __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 83, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyCFunction_FastCall(__pyx_t_7, __pyx_temp+1-__pyx_t_6, 2+__pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 91, __pyx_L1_error)
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
         __Pyx_GOTREF(__pyx_t_8);
       } else
       #endif
       {
-        __pyx_t_13 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 83, __pyx_L1_error)
+        __pyx_t_13 = PyTuple_New(2+__pyx_t_6); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 91, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
         if (__pyx_t_9) {
           __Pyx_GIVEREF(__pyx_t_9); PyTuple_SET_ITEM(__pyx_t_13, 0, __pyx_t_9); __pyx_t_9 = NULL;
@@ -3828,18 +4209,18 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
         __Pyx_INCREF(__pyx_v_j);
         __Pyx_GIVEREF(__pyx_v_j);
         PyTuple_SET_ITEM(__pyx_t_13, 1+__pyx_t_6, __pyx_v_j);
-        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_13, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 83, __pyx_L1_error)
+        __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_7, __pyx_t_13, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 91, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
       }
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = PyNumber_InPlaceOr(__pyx_v_all_interpolations, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 83, __pyx_L1_error)
+      __pyx_t_7 = PyNumber_InPlaceOr(__pyx_v_all_interpolations, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 91, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF_SET(__pyx_v_all_interpolations, __pyx_t_7);
       __pyx_t_7 = 0;
 
-      /* "tsp_cy.pyx":81
+      /* "tsp_cy.pyx":89
  *         for a in all_cities:
  *             i, k = self._find_city_neighbors(a)
  *             for j in all_cities.difference(set([a, i, k])):             # <<<<<<<<<<<<<<
@@ -3851,7 +4232,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "tsp_cy.pyx":85
+  /* "tsp_cy.pyx":93
  *                 all_interpolations |= self._interpolations(i, j)
  * 
  *         return [list(interp) for interp in all_interpolations]             # <<<<<<<<<<<<<<
@@ -3860,32 +4241,32 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
  */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 85, __pyx_L11_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L11_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (likely(PyList_CheckExact(__pyx_v_all_interpolations)) || PyTuple_CheckExact(__pyx_v_all_interpolations)) {
       __pyx_t_5 = __pyx_v_all_interpolations; __Pyx_INCREF(__pyx_t_5); __pyx_t_3 = 0;
       __pyx_t_12 = NULL;
     } else {
-      __pyx_t_3 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_v_all_interpolations); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L11_error)
+      __pyx_t_3 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_v_all_interpolations); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 93, __pyx_L11_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_12 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 85, __pyx_L11_error)
+      __pyx_t_12 = Py_TYPE(__pyx_t_5)->tp_iternext; if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 93, __pyx_L11_error)
     }
     for (;;) {
       if (likely(!__pyx_t_12)) {
         if (likely(PyList_CheckExact(__pyx_t_5))) {
           if (__pyx_t_3 >= PyList_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_7 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_3); __Pyx_INCREF(__pyx_t_7); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 85, __pyx_L11_error)
+          __pyx_t_7 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_3); __Pyx_INCREF(__pyx_t_7); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 93, __pyx_L11_error)
           #else
-          __pyx_t_7 = PySequence_ITEM(__pyx_t_5, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 85, __pyx_L11_error)
+          __pyx_t_7 = PySequence_ITEM(__pyx_t_5, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 93, __pyx_L11_error)
           __Pyx_GOTREF(__pyx_t_7);
           #endif
         } else {
           if (__pyx_t_3 >= PyTuple_GET_SIZE(__pyx_t_5)) break;
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_3); __Pyx_INCREF(__pyx_t_7); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 85, __pyx_L11_error)
+          __pyx_t_7 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_3); __Pyx_INCREF(__pyx_t_7); __pyx_t_3++; if (unlikely(0 < 0)) __PYX_ERR(0, 93, __pyx_L11_error)
           #else
-          __pyx_t_7 = PySequence_ITEM(__pyx_t_5, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 85, __pyx_L11_error)
+          __pyx_t_7 = PySequence_ITEM(__pyx_t_5, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 93, __pyx_L11_error)
           __Pyx_GOTREF(__pyx_t_7);
           #endif
         }
@@ -3895,7 +4276,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 85, __pyx_L11_error)
+            else __PYX_ERR(0, 93, __pyx_L11_error)
           }
           break;
         }
@@ -3903,9 +4284,9 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
       }
       __Pyx_XDECREF_SET(__pyx_7genexpr__pyx_v_interp, __pyx_t_7);
       __pyx_t_7 = 0;
-      __pyx_t_7 = PySequence_List(__pyx_7genexpr__pyx_v_interp); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 85, __pyx_L11_error)
+      __pyx_t_7 = PySequence_List(__pyx_7genexpr__pyx_v_interp); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 93, __pyx_L11_error)
       __Pyx_GOTREF(__pyx_t_7);
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_7))) __PYX_ERR(0, 85, __pyx_L11_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_7))) __PYX_ERR(0, 93, __pyx_L11_error)
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -3920,7 +4301,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "tsp_cy.pyx":67
+  /* "tsp_cy.pyx":75
  *         return interpolations
  * 
  *     def _first_find_neighbors(self, path) -> List[TSPSolution]:             # <<<<<<<<<<<<<<
@@ -3951,7 +4332,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
   return __pyx_r;
 }
 
-/* "tsp_cy.pyx":87
+/* "tsp_cy.pyx":95
  *         return [list(interp) for interp in all_interpolations]
  * 
  *     def find_neighbors(self, path):             # <<<<<<<<<<<<<<
@@ -3960,9 +4341,9 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_14_first_find_neighbors(CYTHON_UNUSED PyO
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6tsp_cy_3TSP_17find_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_17find_neighbors = {"find_neighbors", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_17find_neighbors, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_6tsp_cy_3TSP_17find_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_6tsp_cy_3TSP_19find_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_19find_neighbors = {"find_neighbors", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_6tsp_cy_3TSP_19find_neighbors, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_6tsp_cy_3TSP_19find_neighbors(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_path = 0;
   int __pyx_lineno = 0;
@@ -3994,11 +4375,11 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_17find_neighbors(PyObject *__pyx_self, Py
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_path)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("find_neighbors", 1, 2, 2, 1); __PYX_ERR(0, 87, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("find_neighbors", 1, 2, 2, 1); __PYX_ERR(0, 95, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "find_neighbors") < 0)) __PYX_ERR(0, 87, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "find_neighbors") < 0)) __PYX_ERR(0, 95, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 2) {
       goto __pyx_L5_argtuple_error;
@@ -4011,20 +4392,20 @@ static PyObject *__pyx_pw_6tsp_cy_3TSP_17find_neighbors(PyObject *__pyx_self, Py
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("find_neighbors", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 87, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("find_neighbors", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 95, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("tsp_cy.TSP.find_neighbors", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6tsp_cy_3TSP_16find_neighbors(__pyx_self, __pyx_v_self, __pyx_v_path);
+  __pyx_r = __pyx_pf_6tsp_cy_3TSP_18find_neighbors(__pyx_self, __pyx_v_self, __pyx_v_path);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6tsp_cy_3TSP_16find_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
+static PyObject *__pyx_pf_6tsp_cy_3TSP_18find_neighbors(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_path) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4035,7 +4416,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_16find_neighbors(CYTHON_UNUSED PyObject *
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("find_neighbors", 0);
 
-  /* "tsp_cy.pyx":89
+  /* "tsp_cy.pyx":97
  *     def find_neighbors(self, path):
  *         # TODO: Find a more computationally efficient definition of neighbor.
  *         return self._first_find_neighbors(path)             # <<<<<<<<<<<<<<
@@ -4043,7 +4424,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_16find_neighbors(CYTHON_UNUSED PyObject *
  *     def nearest_neighbor_heuristic_solution(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_first_find_neighbors); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_first_find_neighbors); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -4057,14 +4438,14 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_16find_neighbors(CYTHON_UNUSED PyObject *
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_path) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_path);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "tsp_cy.pyx":87
+  /* "tsp_cy.pyx":95
  *         return [list(interp) for interp in all_interpolations]
  * 
  *     def find_neighbors(self, path):             # <<<<<<<<<<<<<<
@@ -4085,7 +4466,7 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_16find_neighbors(CYTHON_UNUSED PyObject *
   return __pyx_r;
 }
 
-/* "tsp_cy.pyx":91
+/* "tsp_cy.pyx":99
  *         return self._first_find_neighbors(path)
  * 
  *     def nearest_neighbor_heuristic_solution(self):             # <<<<<<<<<<<<<<
@@ -4094,20 +4475,20 @@ static PyObject *__pyx_pf_6tsp_cy_3TSP_16find_neighbors(CYTHON_UNUSED PyObject *
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6tsp_cy_3TSP_19nearest_neighbor_heuristic_solution(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
-static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_19nearest_neighbor_heuristic_solution = {"nearest_neighbor_heuristic_solution", (PyCFunction)__pyx_pw_6tsp_cy_3TSP_19nearest_neighbor_heuristic_solution, METH_O, 0};
-static PyObject *__pyx_pw_6tsp_cy_3TSP_19nearest_neighbor_heuristic_solution(PyObject *__pyx_self, PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_6tsp_cy_3TSP_21nearest_neighbor_heuristic_solution(PyObject *__pyx_self, PyObject *__pyx_v_self); /*proto*/
+static PyMethodDef __pyx_mdef_6tsp_cy_3TSP_21nearest_neighbor_heuristic_solution = {"nearest_neighbor_heuristic_solution", (PyCFunction)__pyx_pw_6tsp_cy_3TSP_21nearest_neighbor_heuristic_solution, METH_O, 0};
+static PyObject *__pyx_pw_6tsp_cy_3TSP_21nearest_neighbor_heuristic_solution(PyObject *__pyx_self, PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("nearest_neighbor_heuristic_solution (wrapper)", 0);
-  __pyx_r = __pyx_pf_6tsp_cy_3TSP_18nearest_neighbor_heuristic_solution(__pyx_self, ((PyObject *)__pyx_v_self));
+  __pyx_r = __pyx_pf_6tsp_cy_3TSP_20nearest_neighbor_heuristic_solution(__pyx_self, ((PyObject *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6tsp_cy_3TSP_18nearest_neighbor_heuristic_solution(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self) {
+static PyObject *__pyx_pf_6tsp_cy_3TSP_20nearest_neighbor_heuristic_solution(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("nearest_neighbor_heuristic_solution", 0);
@@ -4178,6 +4559,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_TSP__first_find_neighbors, __pyx_k_TSP__first_find_neighbors, sizeof(__pyx_k_TSP__first_find_neighbors), 0, 0, 1, 1},
   {&__pyx_n_s_TSP__interpolations, __pyx_k_TSP__interpolations, sizeof(__pyx_k_TSP__interpolations), 0, 0, 1, 1},
   {&__pyx_n_s_TSP__reformat_path, __pyx_k_TSP__reformat_path, sizeof(__pyx_k_TSP__reformat_path), 0, 0, 1, 1},
+  {&__pyx_n_s_TSP__slow_cost, __pyx_k_TSP__slow_cost, sizeof(__pyx_k_TSP__slow_cost), 0, 0, 1, 1},
   {&__pyx_n_s_TSP_cost, __pyx_k_TSP_cost, sizeof(__pyx_k_TSP_cost), 0, 0, 1, 1},
   {&__pyx_n_s_TSP_find_neighbors, __pyx_k_TSP_find_neighbors, sizeof(__pyx_k_TSP_find_neighbors), 0, 0, 1, 1},
   {&__pyx_n_s_TSP_nearest_neighbor_heuristic_s, __pyx_k_TSP_nearest_neighbor_heuristic_s, sizeof(__pyx_k_TSP_nearest_neighbor_heuristic_s), 0, 0, 1, 1},
@@ -4189,7 +4571,9 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_cities, __pyx_k_cities, sizeof(__pyx_k_cities), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_cost, __pyx_k_cost, sizeof(__pyx_k_cost), 0, 0, 1, 1},
+  {&__pyx_kp_s_cython_tsp_cy_pyx, __pyx_k_cython_tsp_cy_pyx, sizeof(__pyx_k_cython_tsp_cy_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_difference, __pyx_k_difference, sizeof(__pyx_k_difference), 0, 0, 1, 1},
+  {&__pyx_n_s_differences, __pyx_k_differences, sizeof(__pyx_k_differences), 0, 0, 1, 1},
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
   {&__pyx_n_s_edge_distance, __pyx_k_edge_distance, sizeof(__pyx_k_edge_distance), 0, 0, 1, 1},
   {&__pyx_n_s_ensure_order_and_provide_indice, __pyx_k_ensure_order_and_provide_indice, sizeof(__pyx_k_ensure_order_and_provide_indice), 0, 0, 1, 1},
@@ -4204,7 +4588,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_index_b, __pyx_k_index_b, sizeof(__pyx_k_index_b), 0, 0, 1, 1},
   {&__pyx_n_s_init, __pyx_k_init, sizeof(__pyx_k_init), 0, 0, 1, 1},
   {&__pyx_n_u_int, __pyx_k_int, sizeof(__pyx_k_int), 0, 1, 0, 1},
-  {&__pyx_n_s_interfaces, __pyx_k_interfaces, sizeof(__pyx_k_interfaces), 0, 0, 1, 1},
   {&__pyx_n_s_interp, __pyx_k_interp, sizeof(__pyx_k_interp), 0, 0, 1, 1},
   {&__pyx_n_s_interpolations, __pyx_k_interpolations, sizeof(__pyx_k_interpolations), 0, 0, 1, 1},
   {&__pyx_n_s_interpolations_2, __pyx_k_interpolations_2, sizeof(__pyx_k_interpolations_2), 0, 0, 1, 1},
@@ -4221,6 +4604,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_path, __pyx_k_path, sizeof(__pyx_k_path), 0, 0, 1, 1},
   {&__pyx_n_s_path_1, __pyx_k_path_1, sizeof(__pyx_k_path_1), 0, 0, 1, 1},
   {&__pyx_n_s_path_2, __pyx_k_path_2, sizeof(__pyx_k_path_2), 0, 0, 1, 1},
+  {&__pyx_n_s_power, __pyx_k_power, sizeof(__pyx_k_power), 0, 0, 1, 1},
   {&__pyx_n_s_prepare, __pyx_k_prepare, sizeof(__pyx_k_prepare), 0, 0, 1, 1},
   {&__pyx_n_s_qualname, __pyx_k_qualname, sizeof(__pyx_k_qualname), 0, 0, 1, 1},
   {&__pyx_n_s_rand, __pyx_k_rand, sizeof(__pyx_k_rand), 0, 0, 1, 1},
@@ -4229,11 +4613,16 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_reformat_path, __pyx_k_reformat_path, sizeof(__pyx_k_reformat_path), 0, 0, 1, 1},
   {&__pyx_n_s_return, __pyx_k_return, sizeof(__pyx_k_return), 0, 0, 1, 1},
   {&__pyx_n_s_self, __pyx_k_self, sizeof(__pyx_k_self), 0, 0, 1, 1},
+  {&__pyx_n_s_shared_interfaces, __pyx_k_shared_interfaces, sizeof(__pyx_k_shared_interfaces), 0, 0, 1, 1},
+  {&__pyx_n_s_shifted_cities, __pyx_k_shifted_cities, sizeof(__pyx_k_shifted_cities), 0, 0, 1, 1},
+  {&__pyx_n_s_slow_cost, __pyx_k_slow_cost, sizeof(__pyx_k_slow_cost), 0, 0, 1, 1},
+  {&__pyx_n_s_sqrt, __pyx_k_sqrt, sizeof(__pyx_k_sqrt), 0, 0, 1, 1},
+  {&__pyx_n_s_sum, __pyx_k_sum, sizeof(__pyx_k_sum), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_total_dist, __pyx_k_total_dist, sizeof(__pyx_k_total_dist), 0, 0, 1, 1},
   {&__pyx_n_s_tsp_cy, __pyx_k_tsp_cy, sizeof(__pyx_k_tsp_cy), 0, 0, 1, 1},
-  {&__pyx_kp_s_tsp_cy_pyx, __pyx_k_tsp_cy_pyx, sizeof(__pyx_k_tsp_cy_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_typing, __pyx_k_typing, sizeof(__pyx_k_typing), 0, 0, 1, 1},
+  {&__pyx_n_s_vstack, __pyx_k_vstack, sizeof(__pyx_k_vstack), 0, 0, 1, 1},
   {&__pyx_n_s_x_i, __pyx_k_x_i, sizeof(__pyx_k_x_i), 0, 0, 1, 1},
   {&__pyx_n_s_x_j, __pyx_k_x_j, sizeof(__pyx_k_x_j), 0, 0, 1, 1},
   {&__pyx_n_s_y_i, __pyx_k_y_i, sizeof(__pyx_k_y_i), 0, 0, 1, 1},
@@ -4242,7 +4631,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 14, __pyx_L1_error)
   __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_n_s_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 24, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -4258,22 +4647,36 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         '''Return the Euclidean distance between cities i and j'''
  *         x_i, y_i = self.cities[i, :]             # <<<<<<<<<<<<<<
  *         x_j, y_j = self.cities[j, :]
- *         return (x_i - x_j) ** 2 + (y_i - y_j) ** 2
+ *         return np.sqrt((x_i - x_j) ** 2 + (y_i - y_j) ** 2)
  */
   __pyx_slice_ = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice_)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice_);
   __Pyx_GIVEREF(__pyx_slice_);
 
   /* "tsp_cy.pyx":24
- *         '''Return the Euclidean distance if the path is followed'''
+ *         '''Return the Euclidean distance if the path is followed, but unvectorized.'''
  *         total_dist = 0.0
- *         for i, j in zip(path, [*path[1:], 0]):             # <<<<<<<<<<<<<<
+ *         for i, j in zip(path, [*path[1:], path[0]]):             # <<<<<<<<<<<<<<
  *             total_dist += self._edge_distance(i, j)
  *         return total_dist
  */
   __pyx_slice__2 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__2);
   __Pyx_GIVEREF(__pyx_slice__2);
+
+  /* "tsp_cy.pyx":32
+ *         shifted_cities = np.vstack((self.cities[path[1:], :], self.cities[path[0], :]))
+ *         differences = np.power(self.cities[path] - shifted_cities, 2)
+ *         cost = np.sum(np.sqrt(differences[:, 0] + differences[:, 1]))             # <<<<<<<<<<<<<<
+ * 
+ *         return cost
+ */
+  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_slice_, __pyx_int_0); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__3);
+  __Pyx_GIVEREF(__pyx_tuple__3);
+  __pyx_tuple__4 = PyTuple_Pack(2, __pyx_slice_, __pyx_int_1); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__4);
+  __Pyx_GIVEREF(__pyx_tuple__4);
 
   /* "tsp_cy.pyx":10
  * 
@@ -4282,118 +4685,130 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         self.N = N # number of cities
  *         self.cities = np.random.rand(N, 2) # coordinates of cities
  */
-  __pyx_tuple__3 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_N); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 10, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__3);
-  __Pyx_GIVEREF(__pyx_tuple__3);
-  __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_tsp_cy_pyx, __pyx_n_s_init, 10, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_N); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
+  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_init, 10, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 10, __pyx_L1_error)
 
   /* "tsp_cy.pyx":15
- *         self.path = list(range(N)) # Invariant - integers 0 to N - 1 appear exactly once
- * 
+ *         # Invariant - integers 0 to N - 1 appear exactly once in the path
+ *         self.path = list(range(N))
  *     def _edge_distance(self, i: int, j: int) -> float:             # <<<<<<<<<<<<<<
  *         '''Return the Euclidean distance between cities i and j'''
  *         x_i, y_i = self.cities[i, :]
  */
-  __pyx_tuple__5 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_x_i, __pyx_n_s_y_i, __pyx_n_s_x_j, __pyx_n_s_y_j); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 15, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__5);
-  __Pyx_GIVEREF(__pyx_tuple__5);
-  __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(3, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_tsp_cy_pyx, __pyx_n_s_edge_distance, 15, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 15, __pyx_L1_error)
-
-  /* "tsp_cy.pyx":21
- *         return (x_i - x_j) ** 2 + (y_i - y_j) ** 2
- * 
- *     def cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
- *         '''Return the Euclidean distance if the path is followed'''
- *         total_dist = 0.0
- */
-  __pyx_tuple__7 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_total_dist, __pyx_n_s_i, __pyx_n_s_j); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_x_i, __pyx_n_s_y_i, __pyx_n_s_x_j, __pyx_n_s_y_j); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
-  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_tsp_cy_pyx, __pyx_n_s_cost, 21, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(3, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_edge_distance, 15, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 15, __pyx_L1_error)
+
+  /* "tsp_cy.pyx":21
+ *         return np.sqrt((x_i - x_j) ** 2 + (y_i - y_j) ** 2)
+ * 
+ *     def _slow_cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
+ *         '''Return the Euclidean distance if the path is followed, but unvectorized.'''
+ *         total_dist = 0.0
+ */
+  __pyx_tuple__9 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_total_dist, __pyx_n_s_i, __pyx_n_s_j); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__9);
+  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_slow_cost, 21, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 21, __pyx_L1_error)
 
   /* "tsp_cy.pyx":28
  *         return total_dist
+ * 
+ *     def cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
+ *         '''Return the Euclidean distance if the path is followed, but vectorized.'''
+ *         shifted_cities = np.vstack((self.cities[path[1:], :], self.cities[path[0], :]))
+ */
+  __pyx_tuple__11 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_shifted_cities, __pyx_n_s_differences, __pyx_n_s_cost); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_cost, 28, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 28, __pyx_L1_error)
+
+  /* "tsp_cy.pyx":36
+ *         return cost
  * 
  *     def _find_city_neighbors(self, n) -> Tuple[int, int]:             # <<<<<<<<<<<<<<
  *         '''Find adjacent neighbors to n'''
  *         i = self.path.index(n)
  */
-  __pyx_tuple__9 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_n, __pyx_n_s_i); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__9);
-  __Pyx_GIVEREF(__pyx_tuple__9);
-  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_tsp_cy_pyx, __pyx_n_s_find_city_neighbors, 28, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_n, __pyx_n_s_i); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_find_city_neighbors, 36, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 36, __pyx_L1_error)
 
-  /* "tsp_cy.pyx":33
+  /* "tsp_cy.pyx":41
  *         return self.path[(i - 1) % self.N], self.path[(i + 1) % self.N]
  * 
  *     def _ensure_order_and_provide_indices(self, a, b) -> Tuple[int, int, int, int]:             # <<<<<<<<<<<<<<
  *         '''Swap a and b if index(b) < index(a), and return their indices'''
  *         index_a = self.path.index(a)
  */
-  __pyx_tuple__11 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_a, __pyx_n_s_b, __pyx_n_s_index_a, __pyx_n_s_index_b); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_tsp_cy_pyx, __pyx_n_s_ensure_order_and_provide_indice, 33, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_tuple__15 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_a, __pyx_n_s_b, __pyx_n_s_index_a, __pyx_n_s_index_b); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
+  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_ensure_order_and_provide_indice, 41, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 41, __pyx_L1_error)
 
-  /* "tsp_cy.pyx":39
+  /* "tsp_cy.pyx":47
  *         return (b, a, index_b, index_a) if index_b < index_a else (a, b, index_a, index_b)
  * 
  *     def _reformat_path(self, path) -> TSPSolution:             # <<<<<<<<<<<<<<
  *         '''Reformat path so that 0 is the first entry'''
  *         i = path.index(0)
  */
-  __pyx_tuple__13 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_i); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 39, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_tsp_cy_pyx, __pyx_n_s_reformat_path, 39, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_i); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_reformat_path, 47, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 47, __pyx_L1_error)
 
-  /* "tsp_cy.pyx":44
+  /* "tsp_cy.pyx":52
  *         return [*path[i:], *path[:i]]
  * 
  *     def _interpolations(self, a, b) -> Set[TSPSolution]:             # <<<<<<<<<<<<<<
  *         '''
  *         Return a set of tuples with all interpolations of cities a and b.
  */
-  __pyx_tuple__15 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_a, __pyx_n_s_b, __pyx_n_s_index_a, __pyx_n_s_index_b, __pyx_n_s_path_1, __pyx_n_s_path_2, __pyx_n_s_interpolations_2, __pyx_n_s_i, __pyx_n_s_interp, __pyx_n_s_j); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 44, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(3, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_tsp_cy_pyx, __pyx_n_s_interpolations, 44, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_a, __pyx_n_s_b, __pyx_n_s_index_a, __pyx_n_s_index_b, __pyx_n_s_path_1, __pyx_n_s_path_2, __pyx_n_s_interpolations_2, __pyx_n_s_i, __pyx_n_s_interp, __pyx_n_s_j); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(3, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_interpolations, 52, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 52, __pyx_L1_error)
 
-  /* "tsp_cy.pyx":67
+  /* "tsp_cy.pyx":75
  *         return interpolations
  * 
  *     def _first_find_neighbors(self, path) -> List[TSPSolution]:             # <<<<<<<<<<<<<<
  *         '''
  *         A neighbor of a path is another path that is 'closely related'.
  */
-  __pyx_tuple__17 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_all_cities, __pyx_n_s_all_interpolations, __pyx_n_s_a, __pyx_n_s_i, __pyx_n_s_k, __pyx_n_s_j, __pyx_n_s_interp); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__17);
-  __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_tsp_cy_pyx, __pyx_n_s_first_find_neighbors, 67, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(9, __pyx_n_s_self, __pyx_n_s_path, __pyx_n_s_all_cities, __pyx_n_s_all_interpolations, __pyx_n_s_a, __pyx_n_s_i, __pyx_n_s_k, __pyx_n_s_j, __pyx_n_s_interp); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(2, 0, 9, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_first_find_neighbors, 75, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 75, __pyx_L1_error)
 
-  /* "tsp_cy.pyx":87
+  /* "tsp_cy.pyx":95
  *         return [list(interp) for interp in all_interpolations]
  * 
  *     def find_neighbors(self, path):             # <<<<<<<<<<<<<<
  *         # TODO: Find a more computationally efficient definition of neighbor.
  *         return self._first_find_neighbors(path)
  */
-  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_path); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__19);
-  __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_tsp_cy_pyx, __pyx_n_s_find_neighbors, 87, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_path); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__23);
+  __Pyx_GIVEREF(__pyx_tuple__23);
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_find_neighbors, 95, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 95, __pyx_L1_error)
 
-  /* "tsp_cy.pyx":91
+  /* "tsp_cy.pyx":99
  *         return self._first_find_neighbors(path)
  * 
  *     def nearest_neighbor_heuristic_solution(self):             # <<<<<<<<<<<<<<
  *         pass
  * 
  */
-  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__21);
-  __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_tsp_cy_pyx, __pyx_n_s_nearest_neighbor_heuristic_solut, 91, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_tuple__25 = PyTuple_Pack(1, __pyx_n_s_self); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
+  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cython_tsp_cy_pyx, __pyx_n_s_nearest_neighbor_heuristic_solut, 99, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 99, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -4723,7 +5138,7 @@ if (!__Pyx_RefNanny) {
  * from typing import List, Tuple, Set
  * import numpy as np             # <<<<<<<<<<<<<<
  * 
- * from interfaces import Problem, TSPSolution
+ * from shared.interfaces import Problem, TSPSolution
  */
   __pyx_t_2 = __Pyx_Import(__pyx_n_s_numpy, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -4733,7 +5148,7 @@ if (!__Pyx_RefNanny) {
   /* "tsp_cy.pyx":7
  * import numpy as np
  * 
- * from interfaces import Problem, TSPSolution             # <<<<<<<<<<<<<<
+ * from shared.interfaces import Problem, TSPSolution             # <<<<<<<<<<<<<<
  * 
  * class TSP(Problem):
  */
@@ -4745,7 +5160,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(__pyx_n_s_TSPSolution);
   __Pyx_GIVEREF(__pyx_n_s_TSPSolution);
   PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_TSPSolution);
-  __pyx_t_1 = __Pyx_Import(__pyx_n_s_interfaces, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_shared_interfaces, __pyx_t_2, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_1, __pyx_n_s_Problem); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 7, __pyx_L1_error)
@@ -4759,7 +5174,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "tsp_cy.pyx":9
- * from interfaces import Problem, TSPSolution
+ * from shared.interfaces import Problem, TSPSolution
  * 
  * class TSP(Problem):             # <<<<<<<<<<<<<<
  *     def __init__(self, N) -> None:
@@ -4787,7 +5202,7 @@ if (!__Pyx_RefNanny) {
   __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 10, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_return, Py_None) < 0) __PYX_ERR(0, 10, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_1__init__, 0, __pyx_n_s_TSP___init, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_1__init__, 0, __pyx_n_s_TSP___init, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 10, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_4);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -4795,8 +5210,8 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "tsp_cy.pyx":15
- *         self.path = list(range(N)) # Invariant - integers 0 to N - 1 appear exactly once
- * 
+ *         # Invariant - integers 0 to N - 1 appear exactly once in the path
+ *         self.path = list(range(N))
  *     def _edge_distance(self, i: int, j: int) -> float:             # <<<<<<<<<<<<<<
  *         '''Return the Euclidean distance between cities i and j'''
  *         x_i, y_i = self.cities[i, :]
@@ -4806,7 +5221,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_i, __pyx_n_u_int) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_j, __pyx_n_u_int) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_return, __pyx_n_u_float) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_3_edge_distance, 0, __pyx_n_s_TSP__edge_distance, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_3_edge_distance, 0, __pyx_n_s_TSP__edge_distance, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_5);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -4814,10 +5229,10 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "tsp_cy.pyx":21
- *         return (x_i - x_j) ** 2 + (y_i - y_j) ** 2
+ *         return np.sqrt((x_i - x_j) ** 2 + (y_i - y_j) ** 2)
  * 
- *     def cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
- *         '''Return the Euclidean distance if the path is followed'''
+ *     def _slow_cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
+ *         '''Return the Euclidean distance if the path is followed, but unvectorized.'''
  *         total_dist = 0.0
  */
   __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 21, __pyx_L1_error)
@@ -4827,25 +5242,46 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_path, __pyx_t_5) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_return, __pyx_n_u_float) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_5cost, 0, __pyx_n_s_TSP_cost, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_5_slow_cost, 0, __pyx_n_s_TSP__slow_cost, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_4);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_cost, __pyx_t_5) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_slow_cost, __pyx_t_5) < 0) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "tsp_cy.pyx":28
  *         return total_dist
  * 
+ *     def cost(self, path: TSPSolution) -> float:             # <<<<<<<<<<<<<<
+ *         '''Return the Euclidean distance if the path is followed, but vectorized.'''
+ *         shifted_cities = np.vstack((self.cities[path[1:], :], self.cities[path[0], :]))
+ */
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_TSPSolution); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_path, __pyx_t_4) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_return, __pyx_n_u_float) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_7cost, 0, __pyx_n_s_TSP_cost, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_5);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_cost, __pyx_t_4) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "tsp_cy.pyx":36
+ *         return cost
+ * 
  *     def _find_city_neighbors(self, n) -> Tuple[int, int]:             # <<<<<<<<<<<<<<
  *         '''Find adjacent neighbors to n'''
  *         i = self.path.index(n)
  */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Tuple); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Tuple); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(((PyObject *)(&PyInt_Type)));
   __Pyx_GIVEREF(((PyObject *)(&PyInt_Type)));
@@ -4853,31 +5289,31 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(((PyObject *)(&PyInt_Type)));
   __Pyx_GIVEREF(((PyObject *)(&PyInt_Type)));
   PyTuple_SET_ITEM(__pyx_t_6, 1, ((PyObject *)(&PyInt_Type)));
-  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_return, __pyx_t_7) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_7_find_city_neighbors, 0, __pyx_n_s_TSP__find_city_neighbors, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_7, __pyx_t_5);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_find_city_neighbors, __pyx_t_7) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_return, __pyx_t_7) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_9_find_city_neighbors, 0, __pyx_n_s_TSP__find_city_neighbors, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_7, __pyx_t_4);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_find_city_neighbors, __pyx_t_7) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "tsp_cy.pyx":33
+  /* "tsp_cy.pyx":41
  *         return self.path[(i - 1) % self.N], self.path[(i + 1) % self.N]
  * 
  *     def _ensure_order_and_provide_indices(self, a, b) -> Tuple[int, int, int, int]:             # <<<<<<<<<<<<<<
  *         '''Swap a and b if index(b) < index(a), and return their indices'''
  *         index_a = self.path.index(a)
  */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Tuple); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Tuple); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_6 = PyTuple_New(4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(((PyObject *)(&PyInt_Type)));
   __Pyx_GIVEREF(((PyObject *)(&PyInt_Type)));
@@ -4891,126 +5327,126 @@ if (!__Pyx_RefNanny) {
   __Pyx_INCREF(((PyObject *)(&PyInt_Type)));
   __Pyx_GIVEREF(((PyObject *)(&PyInt_Type)));
   PyTuple_SET_ITEM(__pyx_t_6, 3, ((PyObject *)(&PyInt_Type)));
-  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_return, __pyx_t_4) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_9_ensure_order_and_provide_indices, 0, __pyx_n_s_TSP__ensure_order_and_provide_in, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_7);
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_return, __pyx_t_5) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_11_ensure_order_and_provide_indices, 0, __pyx_n_s_TSP__ensure_order_and_provide_in, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_7);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ensure_order_and_provide_indice, __pyx_t_4) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_ensure_order_and_provide_indice, __pyx_t_5) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "tsp_cy.pyx":39
+  /* "tsp_cy.pyx":47
  *         return (b, a, index_b, index_a) if index_b < index_a else (a, b, index_a, index_b)
  * 
  *     def _reformat_path(self, path) -> TSPSolution:             # <<<<<<<<<<<<<<
  *         '''Reformat path so that 0 is the first entry'''
  *         i = path.index(0)
  */
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_TSPSolution); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_TSPSolution); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_return, __pyx_t_7) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_return, __pyx_t_7) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_11_reformat_path, 0, __pyx_n_s_TSP__reformat_path, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_13_reformat_path, 0, __pyx_n_s_TSP__reformat_path, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_7, __pyx_t_4);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_reformat_path, __pyx_t_7) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_7, __pyx_t_5);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_reformat_path, __pyx_t_7) < 0) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "tsp_cy.pyx":44
+  /* "tsp_cy.pyx":52
  *         return [*path[i:], *path[:i]]
  * 
  *     def _interpolations(self, a, b) -> Set[TSPSolution]:             # <<<<<<<<<<<<<<
  *         '''
  *         Return a set of tuples with all interpolations of cities a and b.
  */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Set); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 44, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_TSPSolution); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_Set); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_TSPSolution); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 44, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_5, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_return, __pyx_t_5) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_13_interpolations, 0, __pyx_n_s_TSP__interpolations, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 44, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_7);
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_return, __pyx_t_4) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_15_interpolations, 0, __pyx_n_s_TSP__interpolations, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_7);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_interpolations, __pyx_t_5) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_interpolations, __pyx_t_4) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "tsp_cy.pyx":67
+  /* "tsp_cy.pyx":75
  *         return interpolations
  * 
  *     def _first_find_neighbors(self, path) -> List[TSPSolution]:             # <<<<<<<<<<<<<<
  *         '''
  *         A neighbor of a path is another path that is 'closely related'.
  */
-  __pyx_t_5 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_List); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_TSPSolution); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_7, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_List); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_TSPSolution); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_5 = __Pyx_PyObject_GetItem(__pyx_t_7, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  if (PyDict_SetItem(__pyx_t_5, __pyx_n_s_return, __pyx_t_4) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_15_first_find_neighbors, 0, __pyx_n_s_TSP__first_find_neighbors, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 67, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_5);
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_return, __pyx_t_5) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_first_find_neighbors, __pyx_t_4) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_17_first_find_neighbors, 0, __pyx_n_s_TSP__first_find_neighbors, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_5, __pyx_t_4);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_first_find_neighbors, __pyx_t_5) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "tsp_cy.pyx":87
+  /* "tsp_cy.pyx":95
  *         return [list(interp) for interp in all_interpolations]
  * 
  *     def find_neighbors(self, path):             # <<<<<<<<<<<<<<
  *         # TODO: Find a more computationally efficient definition of neighbor.
  *         return self._first_find_neighbors(path)
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_17find_neighbors, 0, __pyx_n_s_TSP_find_neighbors, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_find_neighbors, __pyx_t_4) < 0) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_19find_neighbors, 0, __pyx_n_s_TSP_find_neighbors, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_find_neighbors, __pyx_t_5) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "tsp_cy.pyx":91
+  /* "tsp_cy.pyx":99
  *         return self._first_find_neighbors(path)
  * 
  *     def nearest_neighbor_heuristic_solution(self):             # <<<<<<<<<<<<<<
  *         pass
  * 
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_19nearest_neighbor_heuristic_solution, 0, __pyx_n_s_TSP_nearest_neighbor_heuristic_s, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_nearest_neighbor_heuristic_solut, __pyx_t_4) < 0) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_6tsp_cy_3TSP_21nearest_neighbor_heuristic_solution, 0, __pyx_n_s_TSP_nearest_neighbor_heuristic_s, NULL, __pyx_n_s_tsp_cy, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_nearest_neighbor_heuristic_solut, __pyx_t_5) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "tsp_cy.pyx":9
- * from interfaces import Problem, TSPSolution
+ * from shared.interfaces import Problem, TSPSolution
  * 
  * class TSP(Problem):             # <<<<<<<<<<<<<<
  *     def __init__(self, N) -> None:
  *         self.N = N # number of cities
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_TSP, __pyx_t_2, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 9, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_TSP, __pyx_t_4) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_5 = __Pyx_Py3ClassCreate(__pyx_t_1, __pyx_n_s_TSP, __pyx_t_2, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_TSP, __pyx_t_5) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -5716,6 +6152,35 @@ static int __Pyx_IternextUnpackEndCheck(PyObject *retval, Py_ssize_t expected) {
     return 0;
 }
 
+/* PyObjectCall2Args */
+static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
+    PyObject *args, *result = NULL;
+    #if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(function)) {
+        PyObject *args[2] = {arg1, arg2};
+        return __Pyx_PyFunction_FastCall(function, args, 2);
+    }
+    #endif
+    #if CYTHON_FAST_PYCCALL
+    if (__Pyx_PyFastCFunction_Check(function)) {
+        PyObject *args[2] = {arg1, arg2};
+        return __Pyx_PyCFunction_FastCall(function, args, 2);
+    }
+    #endif
+    args = PyTuple_New(2);
+    if (unlikely(!args)) goto done;
+    Py_INCREF(arg1);
+    PyTuple_SET_ITEM(args, 0, arg1);
+    Py_INCREF(arg2);
+    PyTuple_SET_ITEM(args, 1, arg2);
+    Py_INCREF(function);
+    result = __Pyx_PyObject_Call(function, args, NULL);
+    Py_DECREF(args);
+    Py_DECREF(function);
+done:
+    return result;
+}
+
 /* SliceObject */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,
         Py_ssize_t cstart, Py_ssize_t cstop,
@@ -5811,35 +6276,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,
         "'%.200s' object is unsliceable", Py_TYPE(obj)->tp_name);
 bad:
     return NULL;
-}
-
-/* PyObjectCall2Args */
-static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
-    PyObject *args, *result = NULL;
-    #if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(function)) {
-        PyObject *args[2] = {arg1, arg2};
-        return __Pyx_PyFunction_FastCall(function, args, 2);
-    }
-    #endif
-    #if CYTHON_FAST_PYCCALL
-    if (__Pyx_PyFastCFunction_Check(function)) {
-        PyObject *args[2] = {arg1, arg2};
-        return __Pyx_PyCFunction_FastCall(function, args, 2);
-    }
-    #endif
-    args = PyTuple_New(2);
-    if (unlikely(!args)) goto done;
-    Py_INCREF(arg1);
-    PyTuple_SET_ITEM(args, 0, arg1);
-    Py_INCREF(arg2);
-    PyTuple_SET_ITEM(args, 1, arg2);
-    Py_INCREF(function);
-    result = __Pyx_PyObject_Call(function, args, NULL);
-    Py_DECREF(args);
-    Py_DECREF(function);
-done:
-    return result;
 }
 
 /* PyIntBinop */

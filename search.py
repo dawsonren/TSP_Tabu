@@ -3,7 +3,7 @@ Provide the LocalSearch and TabuSearch classes.
 '''
 from collections import deque
 import random
-from interfaces import SolutionProtocol, Problem
+from shared.interfaces import SolutionProtocol, Problem
 
 class LocalSearch(SolutionProtocol):
     def __init__(self) -> None:

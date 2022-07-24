@@ -4,7 +4,7 @@ Provide the TSP Solver class.
 from matplotlib import pyplot as plt
 from matplotlib import collections as mc
 
-from interfaces import SolutionProtocol, Solver, TSPSolution
+from shared.interfaces import SolutionProtocol, Solver, TSPSolution
 from tsp import TSP
 
 class TSPSolver(Solver):
