@@ -12,7 +12,8 @@ class TSP(Problem):
         self.N = N # number of cities
         self.cities = np.random.rand(N, 2) # coordinates of cities
         # Invariant - integers 0 to N - 1 appear exactly once in the path
-        self.path = list(range(N)) 
+        self.path = list(range(N))
+    
     def _edge_distance(self, i: int, j: int) -> float:
         '''Return the Euclidean distance between cities i and j'''
         x_i, y_i = self.cities[i, :]
@@ -50,7 +51,7 @@ class TSP(Problem):
         i = path.index(0)
         return [*path[i:], *path[:i]]
     
-    def _interpolations(self, a, b) -> Set[TSPSolution]:
+    def _interpolations(self, a, b) -> Set[Tuple[int, ...]]:
         '''
         Return a set of tuples with all interpolations of cities a and b.
         '''
@@ -93,9 +94,30 @@ class TSP(Problem):
                 
         return [list(interp) for interp in all_interpolations]
 
-    def find_neighbors(self, path):
+    def find_neighbors(self, path: TSPSolution) -> List[TSPSolution]:
         # TODO: Find a more computationally efficient definition of neighbor.
         return self._first_find_neighbors(path)
 
-    def nearest_neighbor_heuristic_solution(self):
-        pass
+    def _find_argmin_excluding(self, lst, excluding) -> int:
+        # set to initial value that's not in excluding
+        argmin = list(set(range(len(lst))) - set(excluding))[0]
+        min = lst[argmin]
+
+        for i, l in enumerate(lst):
+            if l < min and i not in excluding:
+                min = l
+                argmin = i
+        
+        return argmin
+
+    def nearest_neighbor_heuristic_solution(self) -> TSPSolution:
+        '''Uses the nearest neighbor heuristic to find an approximate solution'''
+        path = [0]
+
+        # For the rest of the cities
+        for _ in range(1, self.N):
+            distances = np.sqrt(np.sum(np.power(self.cities - self.cities[path[-1], :], 2), 1))
+            closest = self._find_argmin_excluding(distances, path)
+            path.append(closest)
+
+        return path

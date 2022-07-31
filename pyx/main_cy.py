@@ -4,8 +4,8 @@ Travelling Salesman Problem with Tabu Search
 Dawson Ren, July 15th, 2022
 '''
 import pyximport; pyximport.install()
-from search_cy import LocalSearch
-from tsp_cy import TSP
+from .search_cy import LocalSearch
+from .tsp_cy import TSP
 from solver import TSPSolver
 from utils.timer import timer
 

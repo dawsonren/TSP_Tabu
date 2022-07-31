@@ -13,12 +13,12 @@ TSPSolution = List[int]
 
 class Problem(ABC):
     @abstractmethod
-    def find_neighbors(self, solution):
+    def find_neighbors(self, solution: TSPSolution) -> List[TSPSolution]:
         '''Find neighbor solutions.'''
         pass
 
     @abstractmethod
-    def cost(self, solution):
+    def cost(self, solution: TSPSolution) -> float:
         '''Determine cost of solution. Lower is better.'''
         pass
 
@@ -28,14 +28,10 @@ class SolutionProtocol(ABC):
         pass
 
     @abstractmethod
-    def search(self, problem: Problem, starting_solution):
+    def search(self, problem: Problem, starting_solution: TSPSolution):
         pass
 
 class Solver(ABC):
     @abstractmethod
     def solve(self, problem: Problem, solution_protocol: SolutionProtocol):
-        pass
-
-    @abstractmethod
-    def display(self):
         pass

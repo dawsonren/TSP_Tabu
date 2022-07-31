@@ -3,17 +3,18 @@ Provide the LocalSearch and TabuSearch classes.
 '''
 from collections import deque
 import random
-from shared.interfaces import SolutionProtocol, Problem
+from typing import Tuple
+from shared.interfaces import SolutionProtocol, Problem, TSPSolution
 
 class LocalSearch(SolutionProtocol):
     def __init__(self) -> None:
-        self.max_iter = 30
+        self.max_iter = 50
         self.iters = 0
 
     def stoppingCondition(self) -> bool:
         return self.iters > self.max_iter
 
-    def search(self, problem: Problem, starting_solution) -> None:
+    def search(self, problem: Problem, starting_solution: TSPSolution) -> TSPSolution:
         best_sol = starting_solution
         best_candidate = starting_solution
         while not self.stoppingCondition():
@@ -32,7 +33,7 @@ class LocalSearch(SolutionProtocol):
                 print('Stuck in a local minima...')
                 break
         
-        return best_sol, problem.cost(best_sol)
+        return best_sol
 
 
 class TabuSearch(SolutionProtocol):
@@ -45,7 +46,7 @@ class TabuSearch(SolutionProtocol):
     def stoppingCondition(self) -> bool:
         return self.iters > self.max_iter
 
-    def search(self, problem: Problem, starting_solution) -> None:
+    def search(self, problem: Problem, starting_solution: TSPSolution) -> TSPSolution:
         best_sol = starting_solution
         best_candidate = starting_solution
         tabu_list = deque([starting_solution], self.max_tabu_size)
@@ -68,4 +69,4 @@ class TabuSearch(SolutionProtocol):
             if len(tabu_list) > self.max_tabu_size:
                 tabu_list.popleft()
 
-        return best_sol, problem.cost(best_sol)
+        return best_sol
