@@ -11,7 +11,8 @@ class TSP(Problem):
         self.N = N # number of cities
         self.cities = np.random.rand(N, 2) # coordinates of cities
         # Invariant - integers 0 to N - 1 appear exactly once in the path
-        self.path = list(range(N)) 
+        self.path = list(range(N))
+    
     def _edge_distance(self, i: int, j: int) -> float:
         '''Return the Euclidean distance between cities i and j'''
         x_i, y_i = self.cities[i, :]

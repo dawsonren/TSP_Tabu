@@ -35,3 +35,7 @@ class Solver(ABC):
     @abstractmethod
     def solve(self, problem: Problem, solution_protocol: SolutionProtocol):
         pass
+
+    @abstractmethod
+    def display(self):
+        pass

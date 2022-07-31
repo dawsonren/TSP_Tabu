@@ -8,6 +8,9 @@ from shared.interfaces import SolutionProtocol, Solver, TSPSolution
 from tsp import TSP
 
 class TSPSolver(Solver):
+    def __init__(self) -> None:
+        super().__init__()
+
     def _plot_points(self, problem: TSP, solution: TSPSolution, cost: float):
         '''Plot the points of a given solution'''
         points = problem.cities[solution].tolist()
@@ -26,12 +29,14 @@ class TSPSolver(Solver):
         ax.set_title(f'Cost: {cost}')
 
     def solve(self, problem: TSP, solution_protocol: SolutionProtocol) -> None:
-        '''Solve and plot'''
-        starting_sol = problem.path
-        starting_cost = problem.cost(starting_sol)
+        '''Solve the system and store in the class'''
+        self.problem = problem
+        self.starting_sol, self.starting_cost = problem.path, problem.cost(problem.path)
+        self.best_sol, self.best_cost = solution_protocol.search(problem, problem.path)
 
-        best_sol, best_cost = solution_protocol.search(problem, starting_sol)
-
-        self._plot_points(problem, starting_sol, starting_cost)
-        self._plot_points(problem, best_sol, best_cost)
+    def display(self):
+        '''Display the starting and best solutions. Must be called after solve()'''
+        self._plot_points(self.problem, self.starting_sol, self.starting_cost)
+        self._plot_points(self.problem, self.best_sol, self.best_cost)
         plt.show()
+

@@ -37,6 +37,7 @@ class LocalSearch(SolutionProtocol):
 
 class TabuSearch(SolutionProtocol):
     def __init__(self) -> None:
+        super().__init__()
         self.max_iter = 100
         self.iters = 0
         self.max_tabu_size = 1000

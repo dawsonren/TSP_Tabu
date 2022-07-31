@@ -3,8 +3,9 @@ Travelling Salesman Problem with Tabu Search
 
 Dawson Ren, July 15th, 2022
 '''
-from search import LocalSearch
-from tsp import TSP
+import pyximport; pyximport.install()
+from search_cy import LocalSearch
+from tsp_cy import TSP
 from solver import TSPSolver
 from utils.timer import timer
 
@@ -20,3 +21,4 @@ if __name__ == '__main__':
     solve(problem, ls, tsp_solver)
     tsp_solver.display()
     
+

@@ -11,4 +11,10 @@ Instead of trying to find "the best route", we find one that is good enough. We 
 ## Additional Notes
 We use Cython to speed up computation and mypy to check types.
 
-To run the Cython compilation, run the command `python3 cython/setup.py build_ext --inplace`.
+To run the Cython compilation, run the command `python3 pyx/setup.py build_ext --inplace`
+
+To run the mypy type check, run the command `mypy .`
+
+With some simple benchmarking, I've found that the simple compilation step reduces the solution time by 1.5x, which is non-negligible. However, the effort required to fully utilize Cython syntax is probably not worth the effort at this stage. Instead, being conscious of vectorization and parallelism is probably the easier way to go, for example see the `_slow_cost()` and `cost()` methods of the TSP class in `tsp.py`.
+
+For this reason, the code in `/pyx` are not currently being developed.

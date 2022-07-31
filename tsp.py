@@ -8,6 +8,7 @@ from shared.interfaces import Problem, TSPSolution
 
 class TSP(Problem):
     def __init__(self, N) -> None:
+        super().__init__()
         self.N = N # number of cities
         self.cities = np.random.rand(N, 2) # coordinates of cities
         # Invariant - integers 0 to N - 1 appear exactly once in the path
