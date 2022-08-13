@@ -121,3 +121,69 @@ class TSP(Problem):
             path.append(closest)
 
         return path
+
+    def _edges_to_path(self, path_edges: List[Tuple[int, int]]) -> TSPSolution:
+        '''Takes a list of i, j tuples and turns it into a valid path'''
+        path = [0]
+
+        for _ in range(self.N - 1):
+            # get previous node
+            prev = path[-1]
+            print(prev)
+            # get an edge that contains the node
+            curr_edge = list(filter(lambda edge: prev in edge, path_edges))[0]
+            print(curr_edge)
+            # remove it from future consideration
+            path_edges.remove(curr_edge)
+            # add whichever node we haven't seen yet
+            curr = curr_edge[0] if curr_edge[0] != prev else curr_edge[1]
+            path.append(curr)
+            print(path)
+
+        return self._reformat_path(path)
+
+    def _detect_cycle(self, path_edges: List[Tuple[int, int]]) -> bool:
+        '''Detects a cycle using path edges'''
+        seen = set(path_edges[0])
+
+        # this doesn't work :()
+
+        for edge in path_edges[1:]:
+            i, j = edge
+            if i in seen and j in seen:
+                return True
+
+        return False
+
+
+    def greedy_path_heuristic_solution(self) -> TSPSolution:
+        '''Enumerates all posible paths and chooses the shortest ones greedily'''
+        # Holds tuples of index i to index j, then their cost
+        edge_distances: List[int, int, float] = []
+
+        # collect all edges
+        for i in range(self.N):
+            for j in range(i + 1, self.N):
+                edge_distances.append((i, j, self._edge_distance(i, j)))
+
+        # sort by distance
+        sorted_edge_distances = sorted(edge_distances, key=lambda x: x[2])
+
+        degree = [0] * self.N # needs to be two for all nodes to be a path
+        path_edges = []
+
+        # greedily add to solution
+        for edge in sorted_edge_distances:
+            # check if path already fully connected
+            if all([d == 2 for d in degree]):
+                break
+
+            i, j, _ = edge
+
+            # if it won't break the path conditions, namely no node degrees > 2 and no cycles
+            if degree[i] < 2 and degree[j] < 2 and not self._detect_cycle([*path_edges, (i, j)]):
+                path_edges.append((i, j))
+                degree[i] += 1
+                degree[j] += 1
+
+        return self._edges_to_path(path_edges)
