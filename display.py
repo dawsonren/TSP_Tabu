@@ -3,13 +3,13 @@ Provide plotting functionality for TSP Solutions
 '''
 from matplotlib import pyplot as plt
 from matplotlib import collections as mc
-from shared.interfaces import Problem, TSPSolution
+from shared.interfaces import Problem, Solution
 from tsp import TSP
 
 
-def plot_points(problem: Problem, solution: TSPSolution, cost: float, strategy: str = '') -> None:
+def plot_points(problem: Problem, solution: Solution, cost: float, strategy: str = '') -> None:
         '''Plot the points of a given solution'''
-        points = problem.cities[solution].tolist()
+        points = problem.cities[solution.path()].tolist()
         x_vals, y_vals = zip(*points)
 
         lines = []

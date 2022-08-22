@@ -9,16 +9,30 @@ Solver is the highest level of abstraction.
 from abc import ABC, abstractmethod
 from typing import List
 
-TSPSolution = List[int]
+Path = List[int]
+
+class Solution(ABC):
+    @property
+    @abstractmethod
+    def path(self) -> Path:
+        '''Provide the path'''
+        pass
+
+    @path.setter
+    @abstractmethod
+    def set_path(self, path: Path) -> None:
+        '''Sets the path. INVARIANT - contains any permutation of 0 to N - 1,
+        with N being the number of cities.'''
+        pass
 
 class Problem(ABC):
     @abstractmethod
-    def find_neighbors(self, solution: TSPSolution) -> List[TSPSolution]:
+    def find_neighbors(self, solution: Path) -> List[Path]:
         '''Find neighbor solutions.'''
         pass
 
     @abstractmethod
-    def cost(self, solution: TSPSolution) -> float:
+    def cost(self, solution: Path) -> float:
         '''Determine cost of solution. Lower is better.'''
         pass
 
@@ -28,7 +42,7 @@ class SolutionProtocol(ABC):
         pass
 
     @abstractmethod
-    def search(self, problem: Problem, starting_solution: TSPSolution):
+    def search(self, problem: Problem, starting_solution: Solution) -> Solution:
         pass
 
 class Solver(ABC):

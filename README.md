@@ -15,6 +15,6 @@ To run the Cython compilation, run the command `python3 pyx/setup.py build_ext -
 
 To run the mypy type check, run the command `mypy .`
 
-With some simple benchmarking, I've found that the simple compilation step reduces the solution time by 1.5x, which is non-negligible. However, the effort required to fully utilize Cython syntax is probably not worth the effort at this stage. Instead, being conscious of vectorization and parallelism is probably the easier way to go, for example see the `_slow_cost()` and `cost()` methods of the TSP class in `tsp.py`.
+With some simple benchmarking, I've found that the simple compilation step reduces the solution time by 1.5x, which is non-negligible. However, the effort required to fully utilize Cython syntax is probably not worth the effort at this stage. Instead, being conscious of vectorization and parallelism is probably the easier way to go, for example see the improved `cost()` method of the TSP class in `tsp.py`.
 
 For this reason, the code in `/pyx` are not currently being developed.

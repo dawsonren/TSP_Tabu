@@ -4,7 +4,8 @@ Provide the LocalSearch and TabuSearch classes.
 from collections import deque
 import random
 from typing import Tuple
-from shared.interfaces import SolutionProtocol, Problem, TSPSolution
+from shared.interfaces import SolutionProtocol, Problem, Solution
+from tsp_solution import TSPSolution
 
 class LocalSearch(SolutionProtocol):
     def __init__(self) -> None:
@@ -14,26 +15,27 @@ class LocalSearch(SolutionProtocol):
     def stoppingCondition(self) -> bool:
         return self.iters > self.max_iter
 
-    def search(self, problem: Problem, starting_solution: TSPSolution) -> TSPSolution:
-        best_sol = starting_solution
-        best_candidate = starting_solution
+    def search(self, problem: Problem, starting_solution: Solution) -> Solution:
+        best_path = starting_solution.path()
+        best_candidate = starting_solution.path()
         while not self.stoppingCondition():
             self.iters += 1
-            neighborhood = problem.find_neighbors(best_sol)
+            neighborhood = problem.find_neighbors(best_path)
             best_candidate = neighborhood[0]
 
             for candidate in neighborhood:
                 if problem.cost(candidate) < problem.cost(best_candidate):
                     best_candidate = candidate
             
-            if problem.cost(best_candidate) < problem.cost(best_sol):
-                best_sol = best_candidate
-                print(f'Solution was improved! {best_sol}')
+            if problem.cost(best_candidate) < problem.cost(best_path):
+                best_path = best_candidate
+                print(f'Solution was improved! {best_path}')
             else:
                 print('Stuck in a local minima...')
                 break
         
-        return best_sol
+        starting_solution.set_path(best_path)
+        return starting_solution
 
 
 class TabuSearch(SolutionProtocol):
@@ -46,21 +48,21 @@ class TabuSearch(SolutionProtocol):
     def stoppingCondition(self) -> bool:
         return self.iters > self.max_iter
 
-    def search(self, problem: Problem, starting_solution: TSPSolution) -> TSPSolution:
-        best_sol = starting_solution
-        best_candidate = starting_solution
+    def search(self, problem: Problem, starting_solution: Solution) -> Solution:
+        best_path = starting_solution.path()
+        best_candidate = starting_solution.path()
         tabu_list = deque([starting_solution], self.max_tabu_size)
 
         while not self.stoppingCondition():
             self.iters += 1
-            neighborhood = problem.find_neighbors(best_sol)
+            neighborhood = problem.find_neighbors(best_path)
             best_candidate = random.sample(neighborhood, 1)[0]
 
             for candidate in neighborhood:
                 if problem.cost(candidate) < problem.cost(best_candidate) and not candidate in tabu_list:
                     best_candidate = candidate
             
-            if problem.cost(best_candidate) < problem.cost(best_sol):
+            if problem.cost(best_candidate) < problem.cost(best_path):
                 best_sol = best_candidate
                 print(f'Solution was improved! {best_sol}')
             
@@ -69,4 +71,5 @@ class TabuSearch(SolutionProtocol):
             if len(tabu_list) > self.max_tabu_size:
                 tabu_list.popleft()
 
-        return best_sol
+        starting_solution.set_path(best_sol)
+        return starting_solution
