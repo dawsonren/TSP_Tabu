@@ -37,8 +37,12 @@ class TSP(Problem):
 
         return runs
 
+    def _two_opt_swap(self, path: Path, v1: int, v2: int):
+        '''2-opt swap'''
+        return [*path[:v1 + 1], *path[v2:v1:-1], *path[v2 + 1:]]
+
     def _find_neighbors_k_opt(self, path: Path, **kwargs) -> List[Path]:
-        k = kwargs['k'] if k in kwargs else 2
+        k = kwargs['k'] if 'k' in kwargs else 2
 
         if k != 2:
             raise NotImplementedError('Only 2-opt optimization supported.')
@@ -46,10 +50,11 @@ class TSP(Problem):
         neighbors = []
         
         for v1 in range(self.N):
-            for n in range(v1 + 2, self.N):
-                # TODO: Find out what to do to get 2-opt working
-                pass
-
+            for v2 in range(v1 + 2, self.N):
+                neighbors.append(self._two_opt_swap(path, v1, v2))
+        
+        return neighbors
+        
 
     def find_neighbors(self, path: Path, method: str = 'opt', **kwargs) -> List[Path]:
         '''
@@ -59,7 +64,7 @@ class TSP(Problem):
         - opt is related to k-opt optimization. For now, only 2-opt is implemented.
         '''
         if method == 'opt':
-            return self._find_neighbors_k_opt(path, kwargs)
+            return self._find_neighbors_k_opt(path, **kwargs)
         else:
             raise NotImplementedError('Only k-opt optimization supported.')
 

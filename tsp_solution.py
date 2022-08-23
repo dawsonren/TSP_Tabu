@@ -17,3 +17,10 @@ class TSPSolution(Solution):
         '''Reformat path so that 0 is the first entry'''
         i = path.index(0)
         return [*path[i:], *path[:i]]
+
+    def copy(self):
+        '''Return a copy of the current object.'''
+        sol = TSPSolution(self.N)
+        sol.set_path(self.path())
+        return sol
+
