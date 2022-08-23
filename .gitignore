@@ -161,3 +161,6 @@ cython_debug/
 
 # Profiles
 profiles/
+
+# Mac OS
+.DS_Store

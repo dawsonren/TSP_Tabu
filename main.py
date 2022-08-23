@@ -10,7 +10,7 @@ from utils.timer import timer
 from display import plot_points, display
 
 if __name__ == '__main__':
-    N = 20
+    N = 100
     problem = TSP(N)
 
     solution_greedy = problem.greedy_path_heuristic_solution()
