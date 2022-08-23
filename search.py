@@ -13,7 +13,7 @@ class LocalSearch(SolutionProtocol):
     def stoppingCondition(self) -> bool:
         return self.iters > self.max_iter
 
-    def search(self, problem: Problem, starting_solution: Solution) -> Solution:
+    def search(self, problem: Problem, starting_solution: Solution, verbose = True) -> Solution:
         best_path = starting_solution.path()
         best_candidate = starting_solution.path()
         best_candidate_cost = None
@@ -30,9 +30,11 @@ class LocalSearch(SolutionProtocol):
             
             if best_candidate_cost < problem.cost(best_path):
                 best_path = best_candidate
-                print(f'Solution was improved! {best_path}')
+                if verbose:
+                    print(f'Solution was improved! {best_path}')
             else:
-                print('Stuck in a local minima...')
+                if verbose:
+                    print('Stuck in a local minima...')
                 break
         
         starting_solution.set_path(best_path)
@@ -55,7 +57,7 @@ class TabuSearch(SolutionProtocol):
         d.pop(k)
         return d
 
-    def search(self, problem: Problem, starting_solution: Solution) -> Solution:
+    def search(self, problem: Problem, starting_solution: Solution, verbose = True) -> Solution:
         best_path = starting_solution.path()
         best_inter = starting_solution.path() # intermediate, not the best path but better than the candidate
         # use tuples as immutable type to check membership
@@ -79,17 +81,20 @@ class TabuSearch(SolutionProtocol):
                     best_candidate = candidate
 
             if best_candidate is None:
-                print('There are no neighbors that can be selected because they are all in the tabu list.')
+                if verbose:
+                    print('There are no neighbors that can be selected because they are all in the tabu list.')
                 break
             
             # set intermediate to best candidate
             best_inter = best_candidate
             if problem.cost(best_candidate) < problem.cost(best_path):
-                print(f'Solution was improved!\n{best_path}')
+                if verbose:
+                    print(f'Solution was improved!\n{best_path}')
                 # set best path to our newly found one
                 best_path = best_inter
             else:
-                print(f'Solution was not able to be improved, but taking the next best option...\n{best_inter}')
+                if verbose:
+                    print(f'Solution was not able to be improved, but taking the next best option...\n{best_inter}')
             
             # make sure we don't revisit this best candidate
             tabu_list[tuple(best_candidate)] = True
