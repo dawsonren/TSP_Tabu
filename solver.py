@@ -156,5 +156,17 @@ class TSPGreedySolver(Solver):
 class TSPChristofidesSolver(Solver):
     @timer
     def solve(self, problem: TSP, verbose = False) -> Solution:
-        '''Solve the system and store in the class'''
+        '''Provide solution using algorithm of Christofides'''
+
+        # TODO: write my own MultiGraph class (omg...)
+
+        # create minimum spanning tree using Kruskal's algorithm
+        # find vertices of odd degree
+        # find minimum-weigh perfect matching on the induced subgraph of vertices of odd degree
+        # combine edges from MST and perfect matching to form a multigraph, where every node has even degree
+        # form a eulerian circuit
+        # convert into a hamiltonian circuit
+
         return TSPSolution(problem.N)
+
+# TODO: check out asadpour - probabilistic determination!
