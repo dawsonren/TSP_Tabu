@@ -57,7 +57,8 @@ class TSP(Problem):
         
         for v1 in range(self.N):
             for v2 in range(v1 + 2, self.N):
-                neighbors.append(self._two_opt_swap(path, v1, v2))
+                if self.N < 200 or ccost.shouldPerformTwoOptSwap(self.cities, np.asarray(path), v1, v2):
+                    neighbors.append(self._two_opt_swap(path, v1, v2))
         
         return neighbors
         

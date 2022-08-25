@@ -12,21 +12,16 @@ if __name__ == '__main__':
     N = 100
     problem = TSP(N)
 
+    solution_greedy = problem.greedy_path_heuristic_solution()
+
+    ts = TabuSearch()
     ls = LocalSearch()
     tsp_solver = TSPSolver()
-    solution = tsp_solver.solve(problem, ls, verbose=False)
+    solution = tsp_solver.solve(problem, ts, init_sol=solution_greedy.copy(), verbose=True)
+    solution2 = tsp_solver.solve(problem, ls, init_sol=solution_greedy.copy(), verbose=True)
 
-
-    # solution_greedy = problem.greedy_path_heuristic_solution()
-
-    # ts = TabuSearch()
-    # ls = LocalSearch()
-    # tsp_solver = TSPSolver()
-    # solution = tsp_solver.solve(problem, ts, init_sol=solution_greedy.copy(), verbose=True)
-    # solution2 = tsp_solver.solve(problem, ls, init_sol=solution_greedy.copy(), verbose=True)
-
-    # plot_points(problem, solution_greedy, problem.cost(solution_greedy.path()), 'Greedy Edge')
-    # plot_points(problem, solution, problem.cost(solution.path()), 'Tabu Search on Greedy Edge')
-    # plot_points(problem, solution2, problem.cost(solution2.path()), 'Local Search on Greedy Edge')
-    # display()
+    plot_points(problem, solution_greedy, problem.cost(solution_greedy.path()), 'Greedy Edge')
+    plot_points(problem, solution, problem.cost(solution.path()), 'Tabu Search on Greedy Edge')
+    plot_points(problem, solution2, problem.cost(solution2.path()), 'Local Search on Greedy Edge')
+    display()
     
