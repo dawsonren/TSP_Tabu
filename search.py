@@ -2,10 +2,10 @@
 Provide the LocalSearch and TabuSearch classes.
 '''
 from typing import Optional
-from shared.interfaces import SolutionProtocol, Problem, Solution, Path
+from shared.interfaces import SearchProtocol, Problem, Solution, Path
 from tsp_solution import TSPSolution
 
-class LocalSearch(SolutionProtocol):
+class LocalSearch(SearchProtocol):
     def __init__(self) -> None:
         self.max_iter = 50
         self.iters = 0
@@ -41,7 +41,7 @@ class LocalSearch(SolutionProtocol):
         return starting_solution
 
 
-class TabuSearch(SolutionProtocol):
+class TabuSearch(SearchProtocol):
     def __init__(self) -> None:
         super().__init__()
         self.max_iter = 100

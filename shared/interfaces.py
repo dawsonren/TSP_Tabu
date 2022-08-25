@@ -7,7 +7,7 @@ SolutionProtocol is driven by a Solver.
 Solver is the highest level of abstraction.
 '''
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Optional
 
 Path = List[int]
 
@@ -36,7 +36,7 @@ class Problem(ABC):
         '''Determine cost of solution. Lower is better.'''
         pass
 
-class SolutionProtocol(ABC):
+class SearchProtocol(ABC):
     @abstractmethod
     def stoppingCondition(self) -> bool:
         pass
@@ -47,5 +47,5 @@ class SolutionProtocol(ABC):
 
 class Solver(ABC):
     @abstractmethod
-    def solve(self, problem: Problem, solution_protocol: SolutionProtocol):
+    def solve(self, problem: Problem, search_protocol: Optional[SearchProtocol], init_sol: Optional[Solution] = None, verbose: bool = False):
         pass
