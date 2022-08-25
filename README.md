@@ -17,12 +17,12 @@ To run the Cython compilation, run the command `python3 pyx/setup.py build_ext -
 
 To run the mypy type check, run the command `mypy .`. I didn't do a very good job adhering to their guidelines though...
 
-With some simple benchmarking, I've found that the Cython compilation step reduces the solution time by 1.5x, which is non-negligible. However, the effort required to fully utilize Cython syntax is probably not worth the effort at this stage for further performance benefits. Instead, being conscious of vectorization and parallelism is probably the easier way to go, for example see the improved `cost()` method of the TSP class in `tsp.py`.
+The `cost()` method is the performance bottleneck. We implement the function using Cython in `cost.pyx` for performance benefits, which improved the slution time of a basic local search by 10% for 60 cities, which is non-negligible. More testing with 100 cities showed a more dramatic speed-up. However, the performance gains are limited because we are already using numpy library functions, which are already implemented in C.
 
-For this reason, the code in `/pyx` are not currently being developed.
+Instead, we will be more clever. Being conscious of vectorization and parallelism resulted in the biggest performance gains, for example see the `cost()` method of the TSP class in `tsp.py`. Additionally, we can try to reduce the number of times we run `cost()`. In 2-opt swapping, we can perform a simple check to see if a given swap will be better or worse. See `_find_neighbors_k_opt()` in `tsp.py` for more details.
 
 To analyze the performance of the code, we use cProfile. To run the bash script that runs the profiling process, first make sure the scripts/profile.sh file is executable with `chmod +x scripts/profile.sh`, then run with `./scripts/profile.sh -r`. The resulting output will be in the `/profiles` folder. You can omit the `-r` flag if you want to keep the `.pstats` file generated from cProfile.
 
-The `cost()` method is the source of most of the complexity. We implement the function using Cython for further performance benefits.
+
 
 

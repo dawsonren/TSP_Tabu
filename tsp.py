@@ -4,9 +4,12 @@ Provide the Travelling Salesman Problem class.
 from typing import List, Tuple
 import numpy as np
 from collections import defaultdict
+import pyximport
+pyximport.install()
 
 from shared.interfaces import Problem, Solution, Path
 from tsp_solution import TSPSolution
+import cost as ccost
 
 class TSP(Problem):
     def __init__(self, N: int) -> None:
@@ -17,13 +20,16 @@ class TSP(Problem):
     def _edge_distance(self, i, j) -> float:
         return np.sqrt(np.sum(np.power(self.cities[i, :] - self.cities[j, :], 2)))
 
-    def cost(self, path: Path) -> float:
-        '''Return the Euclidean distance if the path is followed.'''
+    def _python_cost(self, path: Path) -> float:
+        '''Kept here as a reminder of functionality, do not use'''
         shifted_cities = np.vstack((self.cities[path[1:], :], self.cities[path[0], :]))
         differences = np.power(self.cities[path] - shifted_cities, 2)
         cost = np.sum(np.sqrt(differences[:, 0] + differences[:, 1]))
-
         return cost
+
+    def cost(self, path: Path) -> float:
+        '''Return the Euclidean distance if the path is followed.'''
+        return ccost.cost(self.cities, np.asarray(path))
 
     def _get_path_runs(self, path: Path, length: int) ->  List[int]:
         '''Generator for consecutive runs of a path'''
