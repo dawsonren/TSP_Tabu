@@ -1,14 +1,12 @@
 '''
 Provide the Travelling Salesman Problem class.
 '''
-from typing import List, Tuple
+from typing import List
 import numpy as np
-from collections import defaultdict
 import pyximport
 pyximport.install()
 
-from shared.interfaces import Problem, Solution, Path
-from tsp_solution import TSPSolution
+from shared.interfaces import Problem, Path
 import cost as ccost # C cost, colloquially
 
 class TSP(Problem):

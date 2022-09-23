@@ -8,12 +8,15 @@ The travelling salesman problem is a classic problem in optimization. It involve
 ## Tabu Search
 Instead of trying to find "the best route", we find one that is good enough. We can do this by exploiting local search, where we simply search the neighbors. However, this can cause us to become stuck in local minima. We avoid this by marking certain search options as "tabu", which we should never come back to. With this setup, we don't really see the benefits of Tabu Search until 50 cities, where the solution space is large and has more local minima.
 
+## Other Approximations
+We explore other solutions as well. For exact searches, we feature a brute force search and a dynamic programming formulation (Held-Karp). There is a search solver that can take either local or tabu search as input. We also use a variety of heuristic methods, such nearest neighbor, greedy edge, and the algorithm of Christofides (still under construction!). 
+
 ## Additional Notes
 We use Anaconda to manage packages for scientific computing. See the file `requirements.txt` to get started.
 
 We use Cython to speed up computation and mypy to check types.
 
-To run the Cython compilation, run the command `python3 pyx/setup.py build_ext --inplace`
+To run the Cython compilation, run the command `python3 setup.py build_ext --inplace`
 
 To run the mypy type check, run the command `mypy .`. I didn't do a very good job adhering to their guidelines though...
 

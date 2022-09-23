@@ -1,20 +1,89 @@
 '''
 Provide the TSP Solver classes.
 
+TSPBruteForceSolver - Solve the TSP by brute force.
 TSPSearchSolver - Use a SearchProtocol to find a locally optimal solution.
 TSPNNSolver - Use the nearest neighbor heuristic to find an approximate solution.
 TSPGreedySolver - Use the greedy edge algorithm to find an approximate solution.
 TSPChristofidesSolver - Use the Christofides algorithm to find an approximate solution.
 '''
 from collections import defaultdict
-from typing import List, Tuple
+from itertools import permutations, combinations
+from typing import Iterator, List, Tuple
 import numpy as np
+import math
 
-from shared.interfaces import SearchProtocol, Solver, Solution
+from shared.interfaces import Path, SearchProtocol, Solver, Solution
 from tsp_solution import TSPSolution
 from tsp import TSP
 from utils.timer import timer
 
+class TSPBruteForceSolver(Solver):
+    def _tsp_paths(self, problem: TSP) -> Iterator[Path]:
+        '''Provide all possible paths'''
+        for partial_path in permutations(range(1, problem.N), problem.N - 1):
+            yield [0, *partial_path]
+
+    @timer
+    def solve(self, problem: TSP, verbose = False) -> Solution:
+        '''Brute force all (n - 1)! combinations'''
+        best_path = min(self._tsp_paths(problem), key=lambda p: problem.cost(p))
+        sol = TSPSolution(problem.N)
+        sol.set_path(best_path)
+        return sol
+
+# Type for Held-Karp, holding the city (int, called e) representing the path from 1 to e
+# that visits every city in S (the Tuple[int]) exactly once. e is an element of S.
+HKMin = Tuple[int, Tuple[int, ...]]
+
+class TSPHeldKarpSolver(Solver):
+    @timer
+    def solve(self, problem: TSP, verbose = False) -> Solution:
+        '''Solve TSP using Held-Karp, exact solution in exponential time, but memory also exponential'''
+        # Initialize mapping for function g(int, Tuple[int]) = distance
+        g = dict[HKMin, float]()
+        # Initialize mapping for reconstructing path at the end
+        p = dict[HKMin, int]()
+        one_to_N_minus_1 = range(1, problem.N)
+
+        # Note that city 0 is default starting point
+        # Calculate distances from starting point to each
+        for k in one_to_N_minus_1:
+            g[(k, tuple([k]))] = problem.edge_distance(k, 0)
+
+        # dynamically calculate for S length 1 to N - 1
+        for s in one_to_N_minus_1:
+            # find all possible combinations of length s
+            for S in combinations(one_to_N_minus_1, s):
+                # find minimum length from past dynamically calculated of length s - 1
+                for k in S:
+                    S_without_k = tuple(filter(lambda x: x != k, S))
+                    if len(S_without_k) == 0: continue
+                    smallest_index = min(S_without_k, key=lambda m: g[(m, S_without_k)] + problem.edge_distance(m, k))
+                    g[(k, S)] = g[(smallest_index, S_without_k)] + problem.edge_distance(smallest_index, k)
+                    p[(k, S)] = smallest_index
+
+        # find optimal final index (returns back to 0)
+        cur_index = init_index = min(range(1, problem.N), key=lambda k: g[k, tuple(one_to_N_minus_1)] + problem.edge_distance(k, 0))
+        remaining_cities = list(one_to_N_minus_1)
+        best_path = []
+        
+        # reverse traversal from opt_end to reconstruct path
+        for _ in range(problem.N - 2):
+            old_index = cur_index
+            cur_index = p[(cur_index, tuple(remaining_cities))]
+            remaining_cities.remove(old_index)
+            best_path.append(cur_index)
+        
+        # add 0 at the "front", since we append before reversing
+        best_path.append(0)
+        best_path = list(reversed(best_path))
+        # add our initial at the end
+        best_path.append(init_index)
+
+        sol = TSPSolution(problem.N)
+        sol.set_path(best_path)
+        return sol
 
 class TSPSearchSolver(Solver):
     @timer
@@ -160,13 +229,12 @@ class TSPChristofidesSolver(Solver):
 
         # TODO: write my own MultiGraph class (omg...)
 
-        # create minimum spanning tree using Kruskal's algorithm
+        # create minimum spanning tree using Prim's algorithm (works better for dense graphs)
         # find vertices of odd degree
-        # find minimum-weigh perfect matching on the induced subgraph of vertices of odd degree
+        # find minimum-weight perfect matching on the induced subgraph of vertices of odd degree
         # combine edges from MST and perfect matching to form a multigraph, where every node has even degree
         # form a eulerian circuit
         # convert into a hamiltonian circuit
 
         return TSPSolution(problem.N)
 
-# TODO: check out asadpour - probabilistic determination!
