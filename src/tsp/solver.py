@@ -14,8 +14,8 @@ import numpy as np
 import math
 
 from shared.interfaces import Path, SearchProtocol, Solver, Solution
-from tsp_solution import TSPSolution
-from tsp import TSP
+from tsp.tsp_solution import TSPSolution
+from tsp.tsp import TSP
 from utils.timer import timer
 
 class TSPBruteForceSolver(Solver):
@@ -68,7 +68,7 @@ class TSPHeldKarpSolver(Solver):
         remaining_cities = list(one_to_N_minus_1)
         best_path = []
         
-        # reverse traversal from opt_end to reconstruct path
+        # reverse traversal from cur_index to reconstruct path
         for _ in range(problem.N - 2):
             old_index = cur_index
             cur_index = p[(cur_index, tuple(remaining_cities))]

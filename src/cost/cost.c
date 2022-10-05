@@ -16,12 +16,12 @@
         "include_dirs": [
             "/Users/dawsonren/opt/miniconda3/envs/tsp/lib/python3.10/site-packages/numpy/core/include"
         ],
-        "name": "cost",
+        "name": "src.cost",
         "sources": [
-            "cost.pyx"
+            "src/cost/cost.pyx"
         ]
     },
-    "module_name": "cost"
+    "module_name": "src.cost"
 }
 END: Cython Metadata */
 
@@ -704,8 +704,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__cost
-#define __PYX_HAVE_API__cost
+#define __PYX_HAVE__src__cost
+#define __PYX_HAVE_API__src__cost
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -948,7 +948,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "cost.pyx",
+  "src/cost/cost.pyx",
   "__init__.pxd",
   "type.pxd",
 };
@@ -1178,23 +1178,23 @@ typedef npy_double __pyx_t_5numpy_double_t;
  */
 typedef npy_longdouble __pyx_t_5numpy_longdouble_t;
 
-/* "cost.pyx":11
+/* "src/cost/cost.pyx":11
  * FLOAT = np.float
  * 
  * ctypedef np.int_t INT_t             # <<<<<<<<<<<<<<
  * ctypedef np.float_t FLOAT_t
  * 
  */
-typedef __pyx_t_5numpy_int_t __pyx_t_4cost_INT_t;
+typedef __pyx_t_5numpy_int_t __pyx_t_3src_4cost_INT_t;
 
-/* "cost.pyx":12
+/* "src/cost/cost.pyx":12
  * 
  * ctypedef np.int_t INT_t
  * ctypedef np.float_t FLOAT_t             # <<<<<<<<<<<<<<
  * 
  * @cython.boundscheck(False) # turn off bounds-checking for entire function
  */
-typedef __pyx_t_5numpy_float_t __pyx_t_4cost_FLOAT_t;
+typedef __pyx_t_5numpy_float_t __pyx_t_3src_4cost_FLOAT_t;
 /* Declarations.proto */
 #if CYTHON_CCOMPLEX
   #ifdef __cplusplus
@@ -1817,14 +1817,14 @@ static CYTHON_INLINE int __pyx_f_5numpy_import_array(void); /*proto*/
 
 /* Module declarations from 'cython' */
 
-/* Module declarations from 'cost' */
-static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_4cost_FLOAT_t = { "FLOAT_t", NULL, sizeof(__pyx_t_4cost_FLOAT_t), { 0 }, 0, 'R', 0, 0 };
-static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_4cost_INT_t = { "INT_t", NULL, sizeof(__pyx_t_4cost_INT_t), { 0 }, 0, IS_UNSIGNED(__pyx_t_4cost_INT_t) ? 'U' : 'I', IS_UNSIGNED(__pyx_t_4cost_INT_t), 0 };
-#define __Pyx_MODULE_NAME "cost"
-extern int __pyx_module_is_main_cost;
-int __pyx_module_is_main_cost = 0;
+/* Module declarations from 'src.cost' */
+static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_3src_4cost_FLOAT_t = { "FLOAT_t", NULL, sizeof(__pyx_t_3src_4cost_FLOAT_t), { 0 }, 0, 'R', 0, 0 };
+static __Pyx_TypeInfo __Pyx_TypeInfo_nn___pyx_t_3src_4cost_INT_t = { "INT_t", NULL, sizeof(__pyx_t_3src_4cost_INT_t), { 0 }, 0, IS_UNSIGNED(__pyx_t_3src_4cost_INT_t) ? 'U' : 'I', IS_UNSIGNED(__pyx_t_3src_4cost_INT_t), 0 };
+#define __Pyx_MODULE_NAME "src.cost"
+extern int __pyx_module_is_main_src__cost;
+int __pyx_module_is_main_src__cost = 0;
 
-/* Implementation of 'cost' */
+/* Implementation of 'src.cost' */
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_ImportError;
 static const char __pyx_k_n[] = "n";
@@ -1848,7 +1848,7 @@ static const char __pyx_k_power[] = "power";
 static const char __pyx_k_cities[] = "cities";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_vstack[] = "vstack";
-static const char __pyx_k_cost_pyx[] = "cost.pyx";
+static const char __pyx_k_src_cost[] = "src.cost";
 static const char __pyx_k_new_path1[] = "new_path1";
 static const char __pyx_k_new_path2[] = "new_path2";
 static const char __pyx_k_old_path1[] = "old_path1";
@@ -1859,6 +1859,7 @@ static const char __pyx_k_differences[] = "differences";
 static const char __pyx_k_lengthDelta[] = "lengthDelta";
 static const char __pyx_k_relative_cost[] = "relative_cost";
 static const char __pyx_k_shifted_cities[] = "shifted_cities";
+static const char __pyx_k_src_cost_cost_pyx[] = "src/cost/cost.pyx";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_shouldPerformTwoOptSwap[] = "shouldPerformTwoOptSwap";
 static const char __pyx_k_numpy_core_multiarray_failed_to[] = "numpy.core.multiarray failed to import";
@@ -1874,7 +1875,6 @@ static PyObject *__pyx_n_s_ValueError;
 static PyObject *__pyx_n_s_cities;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_cost;
-static PyObject *__pyx_kp_s_cost_pyx;
 static PyObject *__pyx_n_s_differences;
 static PyObject *__pyx_n_s_dtype;
 static PyObject *__pyx_n_s_float;
@@ -1898,14 +1898,16 @@ static PyObject *__pyx_n_s_relative_cost;
 static PyObject *__pyx_n_s_shifted_cities;
 static PyObject *__pyx_n_s_shouldPerformTwoOptSwap;
 static PyObject *__pyx_n_s_sqrt;
+static PyObject *__pyx_n_s_src_cost;
+static PyObject *__pyx_kp_s_src_cost_cost_pyx;
 static PyObject *__pyx_n_s_sum;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_v1;
 static PyObject *__pyx_n_s_v2;
 static PyObject *__pyx_n_s_vstack;
-static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path, int __pyx_v_v1, int __pyx_v_v2); /* proto */
+static PyObject *__pyx_pf_3src_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_3src_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_3src_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path, int __pyx_v_v1, int __pyx_v_v2); /* proto */
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
@@ -1927,7 +1929,7 @@ static PyObject *__pyx_codeobj__13;
 static PyObject *__pyx_codeobj__15;
 /* Late includes */
 
-/* "cost.pyx":16
+/* "src/cost/cost.pyx":16
  * @cython.boundscheck(False) # turn off bounds-checking for entire function
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):             # <<<<<<<<<<<<<<
@@ -1936,9 +1938,9 @@ static PyObject *__pyx_codeobj__15;
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4cost_1cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_4cost_1cost = {"cost", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4cost_1cost, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4cost_1cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3src_4cost_1cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_3src_4cost_1cost = {"cost", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3src_4cost_1cost, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_3src_4cost_1cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyArrayObject *__pyx_v_cities = 0;
   PyArrayObject *__pyx_v_path = 0;
   int __pyx_lineno = 0;
@@ -1989,13 +1991,13 @@ static PyObject *__pyx_pw_4cost_1cost(PyObject *__pyx_self, PyObject *__pyx_args
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("cost", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 16, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cost.cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cost.cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_cities), __pyx_ptype_5numpy_ndarray, 1, "cities", 0))) __PYX_ERR(0, 16, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_path), __pyx_ptype_5numpy_ndarray, 1, "path", 0))) __PYX_ERR(0, 16, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4cost_cost(__pyx_self, __pyx_v_cities, __pyx_v_path);
+  __pyx_r = __pyx_pf_3src_4cost_cost(__pyx_self, __pyx_v_cities, __pyx_v_path);
 
   /* function exit code */
   goto __pyx_L0;
@@ -2006,7 +2008,7 @@ static PyObject *__pyx_pw_4cost_1cost(PyObject *__pyx_self, PyObject *__pyx_args
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path) {
+static PyObject *__pyx_pf_3src_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path) {
   PyArrayObject *__pyx_v_shifted_cities = 0;
   PyArrayObject *__pyx_v_differences = 0;
   float __pyx_v_cost;
@@ -2042,16 +2044,16 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
   __pyx_pybuffernd_path.rcbuffer = &__pyx_pybuffer_path;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_cities.rcbuffer->pybuffer, (PyObject*)__pyx_v_cities, &__Pyx_TypeInfo_nn___pyx_t_4cost_FLOAT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 16, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_cities.rcbuffer->pybuffer, (PyObject*)__pyx_v_cities, &__Pyx_TypeInfo_nn___pyx_t_3src_4cost_FLOAT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 16, __pyx_L1_error)
   }
   __pyx_pybuffernd_cities.diminfo[0].strides = __pyx_pybuffernd_cities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_cities.diminfo[0].shape = __pyx_pybuffernd_cities.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_cities.diminfo[1].strides = __pyx_pybuffernd_cities.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_cities.diminfo[1].shape = __pyx_pybuffernd_cities.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_path.rcbuffer->pybuffer, (PyObject*)__pyx_v_path, &__Pyx_TypeInfo_nn___pyx_t_4cost_INT_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 16, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_path.rcbuffer->pybuffer, (PyObject*)__pyx_v_path, &__Pyx_TypeInfo_nn___pyx_t_3src_4cost_INT_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 16, __pyx_L1_error)
   }
   __pyx_pybuffernd_path.diminfo[0].strides = __pyx_pybuffernd_path.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_path.diminfo[0].shape = __pyx_pybuffernd_path.rcbuffer->pybuffer.shape[0];
 
-  /* "cost.pyx":17
+  /* "src/cost/cost.pyx":17
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):
  *     if cities.shape[1] != 2:             # <<<<<<<<<<<<<<
@@ -2061,7 +2063,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
   __pyx_t_1 = (((__pyx_v_cities->dimensions[1]) != 2) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cost.pyx":18
+    /* "src/cost/cost.pyx":18
  * def cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):
  *     if cities.shape[1] != 2:
  *         raise ValueError('Argument cities must have exactly two columns.')             # <<<<<<<<<<<<<<
@@ -2074,7 +2076,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __PYX_ERR(0, 18, __pyx_L1_error)
 
-    /* "cost.pyx":17
+    /* "src/cost/cost.pyx":17
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):
  *     if cities.shape[1] != 2:             # <<<<<<<<<<<<<<
@@ -2083,7 +2085,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
  */
   }
 
-  /* "cost.pyx":19
+  /* "src/cost/cost.pyx":19
  *     if cities.shape[1] != 2:
  *         raise ValueError('Argument cities must have exactly two columns.')
  *     if cities.shape[0] != path.shape[0]:             # <<<<<<<<<<<<<<
@@ -2093,7 +2095,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
   __pyx_t_1 = (((__pyx_v_cities->dimensions[0]) != (__pyx_v_path->dimensions[0])) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cost.pyx":20
+    /* "src/cost/cost.pyx":20
  *         raise ValueError('Argument cities must have exactly two columns.')
  *     if cities.shape[0] != path.shape[0]:
  *         raise ValueError('Path and cities have unresolvable lengths.')             # <<<<<<<<<<<<<<
@@ -2106,7 +2108,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __PYX_ERR(0, 20, __pyx_L1_error)
 
-    /* "cost.pyx":19
+    /* "src/cost/cost.pyx":19
  *     if cities.shape[1] != 2:
  *         raise ValueError('Argument cities must have exactly two columns.')
  *     if cities.shape[0] != path.shape[0]:             # <<<<<<<<<<<<<<
@@ -2115,7 +2117,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
  */
   }
 
-  /* "cost.pyx":22
+  /* "src/cost/cost.pyx":22
  *         raise ValueError('Path and cities have unresolvable lengths.')
  * 
  *     assert cities.dtype == FLOAT and path.dtype == INT             # <<<<<<<<<<<<<<
@@ -2156,7 +2158,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
   }
   #endif
 
-  /* "cost.pyx":24
+  /* "src/cost/cost.pyx":24
  *     assert cities.dtype == FLOAT and path.dtype == INT
  * 
  *     cdef np.ndarray shifted_cities = np.vstack((cities[path[1:], :], cities[path[0], :]))             # <<<<<<<<<<<<<<
@@ -2182,7 +2184,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_7 = 0;
-  __pyx_t_6 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_7, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_3src_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_7, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
@@ -2223,7 +2225,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
   __pyx_v_shifted_cities = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cost.pyx":25
+  /* "src/cost/cost.pyx":25
  * 
  *     cdef np.ndarray shifted_cities = np.vstack((cities[path[1:], :], cities[path[0], :]))
  *     cdef np.ndarray differences = np.power(cities[path] - shifted_cities, 2)             # <<<<<<<<<<<<<<
@@ -2291,7 +2293,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
   __pyx_v_differences = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cost.pyx":26
+  /* "src/cost/cost.pyx":26
  *     cdef np.ndarray shifted_cities = np.vstack((cities[path[1:], :], cities[path[0], :]))
  *     cdef np.ndarray differences = np.power(cities[path] - shifted_cities, 2)
  *     cdef float cost = np.sum(np.sqrt(differences[:, 0] + differences[:, 1]))             # <<<<<<<<<<<<<<
@@ -2352,7 +2354,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_cost = __pyx_t_12;
 
-  /* "cost.pyx":28
+  /* "src/cost/cost.pyx":28
  *     cdef float cost = np.sum(np.sqrt(differences[:, 0] + differences[:, 1]))
  * 
  *     return cost             # <<<<<<<<<<<<<<
@@ -2366,7 +2368,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cost.pyx":16
+  /* "src/cost/cost.pyx":16
  * @cython.boundscheck(False) # turn off bounds-checking for entire function
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):             # <<<<<<<<<<<<<<
@@ -2390,7 +2392,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_cities.rcbuffer->pybuffer);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_path.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("cost.cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cost.cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   goto __pyx_L2;
   __pyx_L0:;
@@ -2404,7 +2406,7 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
   return __pyx_r;
 }
 
-/* "cost.pyx":33
+/* "src/cost/cost.pyx":33
  * # Doesn't take the square room of the distance and doesn't complete the path (acyclic)
  * @cython.boundscheck(False)
  * def relative_cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):             # <<<<<<<<<<<<<<
@@ -2413,9 +2415,9 @@ static PyObject *__pyx_pf_4cost_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArray
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4cost_3relative_cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_4cost_3relative_cost = {"relative_cost", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4cost_3relative_cost, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4cost_3relative_cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3src_4cost_3relative_cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_3src_4cost_3relative_cost = {"relative_cost", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3src_4cost_3relative_cost, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_3src_4cost_3relative_cost(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyArrayObject *__pyx_v_cities = 0;
   PyArrayObject *__pyx_v_path = 0;
   int __pyx_lineno = 0;
@@ -2466,13 +2468,13 @@ static PyObject *__pyx_pw_4cost_3relative_cost(PyObject *__pyx_self, PyObject *_
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("relative_cost", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 33, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cost.relative_cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cost.relative_cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_cities), __pyx_ptype_5numpy_ndarray, 1, "cities", 0))) __PYX_ERR(0, 33, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_path), __pyx_ptype_5numpy_ndarray, 1, "path", 0))) __PYX_ERR(0, 33, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4cost_2relative_cost(__pyx_self, __pyx_v_cities, __pyx_v_path);
+  __pyx_r = __pyx_pf_3src_4cost_2relative_cost(__pyx_self, __pyx_v_cities, __pyx_v_path);
 
   /* function exit code */
   goto __pyx_L0;
@@ -2483,7 +2485,7 @@ static PyObject *__pyx_pw_4cost_3relative_cost(PyObject *__pyx_self, PyObject *_
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path) {
+static PyObject *__pyx_pf_3src_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path) {
   PyArrayObject *__pyx_v_differences = 0;
   float __pyx_v_cost;
   __Pyx_LocalBuf_ND __pyx_pybuffernd_cities;
@@ -2515,16 +2517,16 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
   __pyx_pybuffernd_path.rcbuffer = &__pyx_pybuffer_path;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_cities.rcbuffer->pybuffer, (PyObject*)__pyx_v_cities, &__Pyx_TypeInfo_nn___pyx_t_4cost_FLOAT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 33, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_cities.rcbuffer->pybuffer, (PyObject*)__pyx_v_cities, &__Pyx_TypeInfo_nn___pyx_t_3src_4cost_FLOAT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 33, __pyx_L1_error)
   }
   __pyx_pybuffernd_cities.diminfo[0].strides = __pyx_pybuffernd_cities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_cities.diminfo[0].shape = __pyx_pybuffernd_cities.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_cities.diminfo[1].strides = __pyx_pybuffernd_cities.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_cities.diminfo[1].shape = __pyx_pybuffernd_cities.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_path.rcbuffer->pybuffer, (PyObject*)__pyx_v_path, &__Pyx_TypeInfo_nn___pyx_t_4cost_INT_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 33, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_path.rcbuffer->pybuffer, (PyObject*)__pyx_v_path, &__Pyx_TypeInfo_nn___pyx_t_3src_4cost_INT_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 33, __pyx_L1_error)
   }
   __pyx_pybuffernd_path.diminfo[0].strides = __pyx_pybuffernd_path.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_path.diminfo[0].shape = __pyx_pybuffernd_path.rcbuffer->pybuffer.shape[0];
 
-  /* "cost.pyx":34
+  /* "src/cost/cost.pyx":34
  * @cython.boundscheck(False)
  * def relative_cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):
  *     if cities.shape[1] != 2:             # <<<<<<<<<<<<<<
@@ -2534,7 +2536,7 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
   __pyx_t_1 = (((__pyx_v_cities->dimensions[1]) != 2) != 0);
   if (unlikely(__pyx_t_1)) {
 
-    /* "cost.pyx":35
+    /* "src/cost/cost.pyx":35
  * def relative_cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):
  *     if cities.shape[1] != 2:
  *         raise ValueError('Argument cities must have exactly two columns.')             # <<<<<<<<<<<<<<
@@ -2547,7 +2549,7 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __PYX_ERR(0, 35, __pyx_L1_error)
 
-    /* "cost.pyx":34
+    /* "src/cost/cost.pyx":34
  * @cython.boundscheck(False)
  * def relative_cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):
  *     if cities.shape[1] != 2:             # <<<<<<<<<<<<<<
@@ -2556,7 +2558,7 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
  */
   }
 
-  /* "cost.pyx":37
+  /* "src/cost/cost.pyx":37
  *         raise ValueError('Argument cities must have exactly two columns.')
  * 
  *     assert cities.dtype == FLOAT and path.dtype == INT             # <<<<<<<<<<<<<<
@@ -2597,7 +2599,7 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
   }
   #endif
 
-  /* "cost.pyx":39
+  /* "src/cost/cost.pyx":39
  *     assert cities.dtype == FLOAT and path.dtype == INT
  * 
  *     cdef np.ndarray differences = np.power(cities[path[:-1]] - cities[path[1:]], 2)             # <<<<<<<<<<<<<<
@@ -2674,7 +2676,7 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
   __pyx_v_differences = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "cost.pyx":40
+  /* "src/cost/cost.pyx":40
  * 
  *     cdef np.ndarray differences = np.power(cities[path[:-1]] - cities[path[1:]], 2)
  *     cdef float cost = np.sum(differences)             # <<<<<<<<<<<<<<
@@ -2705,7 +2707,7 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_cost = __pyx_t_9;
 
-  /* "cost.pyx":42
+  /* "src/cost/cost.pyx":42
  *     cdef float cost = np.sum(differences)
  * 
  *     return cost             # <<<<<<<<<<<<<<
@@ -2719,7 +2721,7 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "cost.pyx":33
+  /* "src/cost/cost.pyx":33
  * # Doesn't take the square room of the distance and doesn't complete the path (acyclic)
  * @cython.boundscheck(False)
  * def relative_cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):             # <<<<<<<<<<<<<<
@@ -2741,7 +2743,7 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_cities.rcbuffer->pybuffer);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_path.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("cost.relative_cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cost.relative_cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   goto __pyx_L2;
   __pyx_L0:;
@@ -2754,7 +2756,7 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
   return __pyx_r;
 }
 
-/* "cost.pyx":46
+/* "src/cost/cost.pyx":46
  * # Check whether or not we should perform a 2-opt swap in O(1) time
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def shouldPerformTwoOptSwap(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path, int v1, int v2):             # <<<<<<<<<<<<<<
@@ -2763,9 +2765,9 @@ static PyObject *__pyx_pf_4cost_2relative_cost(CYTHON_UNUSED PyObject *__pyx_sel
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4cost_5shouldPerformTwoOptSwap(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_4cost_5shouldPerformTwoOptSwap = {"shouldPerformTwoOptSwap", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4cost_5shouldPerformTwoOptSwap, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4cost_5shouldPerformTwoOptSwap(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3src_4cost_5shouldPerformTwoOptSwap(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_3src_4cost_5shouldPerformTwoOptSwap = {"shouldPerformTwoOptSwap", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3src_4cost_5shouldPerformTwoOptSwap, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_3src_4cost_5shouldPerformTwoOptSwap(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyArrayObject *__pyx_v_cities = 0;
   PyArrayObject *__pyx_v_path = 0;
   int __pyx_v_v1;
@@ -2838,13 +2840,13 @@ static PyObject *__pyx_pw_4cost_5shouldPerformTwoOptSwap(PyObject *__pyx_self, P
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("shouldPerformTwoOptSwap", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 46, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("cost.shouldPerformTwoOptSwap", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cost.shouldPerformTwoOptSwap", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_cities), __pyx_ptype_5numpy_ndarray, 1, "cities", 0))) __PYX_ERR(0, 46, __pyx_L1_error)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_path), __pyx_ptype_5numpy_ndarray, 1, "path", 0))) __PYX_ERR(0, 46, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4cost_4shouldPerformTwoOptSwap(__pyx_self, __pyx_v_cities, __pyx_v_path, __pyx_v_v1, __pyx_v_v2);
+  __pyx_r = __pyx_pf_3src_4cost_4shouldPerformTwoOptSwap(__pyx_self, __pyx_v_cities, __pyx_v_path, __pyx_v_v1, __pyx_v_v2);
 
   /* function exit code */
   goto __pyx_L0;
@@ -2855,7 +2857,7 @@ static PyObject *__pyx_pw_4cost_5shouldPerformTwoOptSwap(PyObject *__pyx_self, P
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path, int __pyx_v_v1, int __pyx_v_v2) {
+static PyObject *__pyx_pf_3src_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject *__pyx_self, PyArrayObject *__pyx_v_cities, PyArrayObject *__pyx_v_path, int __pyx_v_v1, int __pyx_v_v2) {
   int __pyx_v_n;
   float __pyx_v_old_path1;
   float __pyx_v_old_path2;
@@ -2893,16 +2895,16 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
   __pyx_pybuffernd_path.rcbuffer = &__pyx_pybuffer_path;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_cities.rcbuffer->pybuffer, (PyObject*)__pyx_v_cities, &__Pyx_TypeInfo_nn___pyx_t_4cost_FLOAT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 46, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_cities.rcbuffer->pybuffer, (PyObject*)__pyx_v_cities, &__Pyx_TypeInfo_nn___pyx_t_3src_4cost_FLOAT_t, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 46, __pyx_L1_error)
   }
   __pyx_pybuffernd_cities.diminfo[0].strides = __pyx_pybuffernd_cities.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_cities.diminfo[0].shape = __pyx_pybuffernd_cities.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_cities.diminfo[1].strides = __pyx_pybuffernd_cities.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_cities.diminfo[1].shape = __pyx_pybuffernd_cities.rcbuffer->pybuffer.shape[1];
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_path.rcbuffer->pybuffer, (PyObject*)__pyx_v_path, &__Pyx_TypeInfo_nn___pyx_t_4cost_INT_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 46, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_path.rcbuffer->pybuffer, (PyObject*)__pyx_v_path, &__Pyx_TypeInfo_nn___pyx_t_3src_4cost_INT_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 46, __pyx_L1_error)
   }
   __pyx_pybuffernd_path.diminfo[0].strides = __pyx_pybuffernd_path.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_path.diminfo[0].shape = __pyx_pybuffernd_path.rcbuffer->pybuffer.shape[0];
 
-  /* "cost.pyx":47
+  /* "src/cost/cost.pyx":47
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def shouldPerformTwoOptSwap(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path, int v1, int v2):
  *     cdef int n = path.shape[0]             # <<<<<<<<<<<<<<
@@ -2911,7 +2913,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
  */
   __pyx_v_n = (__pyx_v_path->dimensions[0]);
 
-  /* "cost.pyx":48
+  /* "src/cost/cost.pyx":48
  * def shouldPerformTwoOptSwap(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path, int v1, int v2):
  *     cdef int n = path.shape[0]
  *     cdef float old_path1 = np.sum(np.power(cities[path[v1], :] - cities[path[(v1 + 1) % n], :], 2))             # <<<<<<<<<<<<<<
@@ -2937,7 +2939,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
     __Pyx_RaiseBufferIndexError(__pyx_t_7);
     __PYX_ERR(0, 48, __pyx_L1_error)
   }
-  __pyx_t_4 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_3src_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
@@ -2960,7 +2962,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
     __Pyx_RaiseBufferIndexError(__pyx_t_7);
     __PYX_ERR(0, 48, __pyx_L1_error)
   }
-  __pyx_t_8 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_3src_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
@@ -3044,7 +3046,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_old_path1 = __pyx_t_11;
 
-  /* "cost.pyx":49
+  /* "src/cost/cost.pyx":49
  *     cdef int n = path.shape[0]
  *     cdef float old_path1 = np.sum(np.power(cities[path[v1], :] - cities[path[(v1 + 1) % n], :], 2))
  *     cdef float old_path2 = np.sum(np.power(cities[path[v2], :] - cities[path[(v2 + 1) % n], :], 2))             # <<<<<<<<<<<<<<
@@ -3070,7 +3072,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
     __Pyx_RaiseBufferIndexError(__pyx_t_7);
     __PYX_ERR(0, 49, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_3src_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
@@ -3093,7 +3095,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
     __Pyx_RaiseBufferIndexError(__pyx_t_7);
     __PYX_ERR(0, 49, __pyx_L1_error)
   }
-  __pyx_t_10 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_3src_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
@@ -3177,7 +3179,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_old_path2 = __pyx_t_11;
 
-  /* "cost.pyx":50
+  /* "src/cost/cost.pyx":50
  *     cdef float old_path1 = np.sum(np.power(cities[path[v1], :] - cities[path[(v1 + 1) % n], :], 2))
  *     cdef float old_path2 = np.sum(np.power(cities[path[v2], :] - cities[path[(v2 + 1) % n], :], 2))
  *     cdef float new_path1 = np.sum(np.power(cities[path[(v1 + 1) % n], :] - cities[path[(v2 + 1) % n], :], 2))             # <<<<<<<<<<<<<<
@@ -3204,7 +3206,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
     __Pyx_RaiseBufferIndexError(__pyx_t_7);
     __PYX_ERR(0, 50, __pyx_L1_error)
   }
-  __pyx_t_4 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_3src_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
@@ -3227,7 +3229,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
     __Pyx_RaiseBufferIndexError(__pyx_t_7);
     __PYX_ERR(0, 50, __pyx_L1_error)
   }
-  __pyx_t_8 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_3src_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
@@ -3311,7 +3313,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_new_path1 = __pyx_t_11;
 
-  /* "cost.pyx":51
+  /* "src/cost/cost.pyx":51
  *     cdef float old_path2 = np.sum(np.power(cities[path[v2], :] - cities[path[(v2 + 1) % n], :], 2))
  *     cdef float new_path1 = np.sum(np.power(cities[path[(v1 + 1) % n], :] - cities[path[(v2 + 1) % n], :], 2))
  *     cdef float new_path2 = np.sum(np.power(cities[path[v1], :] - cities[path[v2], :], 2))             # <<<<<<<<<<<<<<
@@ -3337,7 +3339,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
     __Pyx_RaiseBufferIndexError(__pyx_t_7);
     __PYX_ERR(0, 51, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_3src_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_10 = PyTuple_New(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
@@ -3359,7 +3361,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
     __Pyx_RaiseBufferIndexError(__pyx_t_7);
     __PYX_ERR(0, 51, __pyx_L1_error)
   }
-  __pyx_t_10 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyInt_From_npy_long((*__Pyx_BufPtrStrided1d(__pyx_t_3src_4cost_INT_t *, __pyx_pybuffernd_path.rcbuffer->pybuffer.buf, __pyx_t_6, __pyx_pybuffernd_path.diminfo[0].strides))); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
@@ -3443,7 +3445,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_new_path2 = __pyx_t_11;
 
-  /* "cost.pyx":53
+  /* "src/cost/cost.pyx":53
  *     cdef float new_path2 = np.sum(np.power(cities[path[v1], :] - cities[path[v2], :], 2))
  * 
  *     cdef float lengthDelta = new_path1 + new_path2 - old_path1 - old_path2             # <<<<<<<<<<<<<<
@@ -3452,7 +3454,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
  */
   __pyx_v_lengthDelta = (((__pyx_v_new_path1 + __pyx_v_new_path2) - __pyx_v_old_path1) - __pyx_v_old_path2);
 
-  /* "cost.pyx":55
+  /* "src/cost/cost.pyx":55
  *     cdef float lengthDelta = new_path1 + new_path2 - old_path1 - old_path2
  * 
  *     return lengthDelta < 0             # <<<<<<<<<<<<<<
@@ -3464,7 +3466,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "cost.pyx":46
+  /* "src/cost/cost.pyx":46
  * # Check whether or not we should perform a 2-opt swap in O(1) time
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def shouldPerformTwoOptSwap(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path, int v1, int v2):             # <<<<<<<<<<<<<<
@@ -3488,7 +3490,7 @@ static PyObject *__pyx_pf_4cost_4shouldPerformTwoOptSwap(CYTHON_UNUSED PyObject 
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_cities.rcbuffer->pybuffer);
     __Pyx_SafeReleaseBuffer(&__pyx_pybuffernd_path.rcbuffer->pybuffer);
   __Pyx_ErrRestore(__pyx_type, __pyx_value, __pyx_tb);}
-  __Pyx_AddTraceback("cost.shouldPerformTwoOptSwap", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("src.cost.shouldPerformTwoOptSwap", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   goto __pyx_L2;
   __pyx_L0:;
@@ -4572,7 +4574,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_cities, __pyx_k_cities, sizeof(__pyx_k_cities), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_cost, __pyx_k_cost, sizeof(__pyx_k_cost), 0, 0, 1, 1},
-  {&__pyx_kp_s_cost_pyx, __pyx_k_cost_pyx, sizeof(__pyx_k_cost_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_differences, __pyx_k_differences, sizeof(__pyx_k_differences), 0, 0, 1, 1},
   {&__pyx_n_s_dtype, __pyx_k_dtype, sizeof(__pyx_k_dtype), 0, 0, 1, 1},
   {&__pyx_n_s_float, __pyx_k_float, sizeof(__pyx_k_float), 0, 0, 1, 1},
@@ -4596,6 +4597,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_shifted_cities, __pyx_k_shifted_cities, sizeof(__pyx_k_shifted_cities), 0, 0, 1, 1},
   {&__pyx_n_s_shouldPerformTwoOptSwap, __pyx_k_shouldPerformTwoOptSwap, sizeof(__pyx_k_shouldPerformTwoOptSwap), 0, 0, 1, 1},
   {&__pyx_n_s_sqrt, __pyx_k_sqrt, sizeof(__pyx_k_sqrt), 0, 0, 1, 1},
+  {&__pyx_n_s_src_cost, __pyx_k_src_cost, sizeof(__pyx_k_src_cost), 0, 0, 1, 1},
+  {&__pyx_kp_s_src_cost_cost_pyx, __pyx_k_src_cost_cost_pyx, sizeof(__pyx_k_src_cost_cost_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_sum, __pyx_k_sum, sizeof(__pyx_k_sum), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_v1, __pyx_k_v1, sizeof(__pyx_k_v1), 0, 0, 1, 1},
@@ -4615,7 +4618,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "cost.pyx":18
+  /* "src/cost/cost.pyx":18
  * def cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):
  *     if cities.shape[1] != 2:
  *         raise ValueError('Argument cities must have exactly two columns.')             # <<<<<<<<<<<<<<
@@ -4626,7 +4629,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "cost.pyx":20
+  /* "src/cost/cost.pyx":20
  *         raise ValueError('Argument cities must have exactly two columns.')
  *     if cities.shape[0] != path.shape[0]:
  *         raise ValueError('Path and cities have unresolvable lengths.')             # <<<<<<<<<<<<<<
@@ -4637,7 +4640,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "cost.pyx":24
+  /* "src/cost/cost.pyx":24
  *     assert cities.dtype == FLOAT and path.dtype == INT
  * 
  *     cdef np.ndarray shifted_cities = np.vstack((cities[path[1:], :], cities[path[0], :]))             # <<<<<<<<<<<<<<
@@ -4651,7 +4654,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_slice__4);
   __Pyx_GIVEREF(__pyx_slice__4);
 
-  /* "cost.pyx":26
+  /* "src/cost/cost.pyx":26
  *     cdef np.ndarray shifted_cities = np.vstack((cities[path[1:], :], cities[path[0], :]))
  *     cdef np.ndarray differences = np.power(cities[path] - shifted_cities, 2)
  *     cdef float cost = np.sum(np.sqrt(differences[:, 0] + differences[:, 1]))             # <<<<<<<<<<<<<<
@@ -4665,7 +4668,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "cost.pyx":39
+  /* "src/cost/cost.pyx":39
  *     assert cities.dtype == FLOAT and path.dtype == INT
  * 
  *     cdef np.ndarray differences = np.power(cities[path[:-1]] - cities[path[1:]], 2)             # <<<<<<<<<<<<<<
@@ -4698,7 +4701,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "cost.pyx":16
+  /* "src/cost/cost.pyx":16
  * @cython.boundscheck(False) # turn off bounds-checking for entire function
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):             # <<<<<<<<<<<<<<
@@ -4708,9 +4711,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__10 = PyTuple_Pack(5, __pyx_n_s_cities, __pyx_n_s_path, __pyx_n_s_shifted_cities, __pyx_n_s_differences, __pyx_n_s_cost); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cost_pyx, __pyx_n_s_cost, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_codeobj__11 = (PyObject*)__Pyx_PyCode_New(2, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_cost_cost_pyx, __pyx_n_s_cost, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__11)) __PYX_ERR(0, 16, __pyx_L1_error)
 
-  /* "cost.pyx":33
+  /* "src/cost/cost.pyx":33
  * # Doesn't take the square room of the distance and doesn't complete the path (acyclic)
  * @cython.boundscheck(False)
  * def relative_cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):             # <<<<<<<<<<<<<<
@@ -4720,9 +4723,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__12 = PyTuple_Pack(4, __pyx_n_s_cities, __pyx_n_s_path, __pyx_n_s_differences, __pyx_n_s_cost); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
-  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cost_pyx, __pyx_n_s_relative_cost, 33, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_codeobj__13 = (PyObject*)__Pyx_PyCode_New(2, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__12, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_cost_cost_pyx, __pyx_n_s_relative_cost, 33, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__13)) __PYX_ERR(0, 33, __pyx_L1_error)
 
-  /* "cost.pyx":46
+  /* "src/cost/cost.pyx":46
  * # Check whether or not we should perform a 2-opt swap in O(1) time
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def shouldPerformTwoOptSwap(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path, int v1, int v2):             # <<<<<<<<<<<<<<
@@ -4732,7 +4735,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__14 = PyTuple_Pack(10, __pyx_n_s_cities, __pyx_n_s_path, __pyx_n_s_v1, __pyx_n_s_v2, __pyx_n_s_n, __pyx_n_s_old_path1, __pyx_n_s_old_path2, __pyx_n_s_new_path1, __pyx_n_s_new_path2, __pyx_n_s_lengthDelta); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
-  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(4, 0, 10, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_cost_pyx, __pyx_n_s_shouldPerformTwoOptSwap, 46, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_codeobj__15 = (PyObject*)__Pyx_PyCode_New(4, 0, 10, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__14, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_cost_cost_pyx, __pyx_n_s_shouldPerformTwoOptSwap, 46, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__15)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -5041,14 +5044,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_cost) {
+  if (__pyx_module_is_main_src__cost) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "cost")) {
-      if (unlikely(PyDict_SetItemString(modules, "cost", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "src.cost")) {
+      if (unlikely(PyDict_SetItemString(modules, "src.cost", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -5069,7 +5072,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "cost.pyx":1
+  /* "src/cost/cost.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * 
  * cimport numpy as np
@@ -5079,7 +5082,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cost.pyx":6
+  /* "src/cost/cost.pyx":6
  * cimport cython
  * 
  * np.import_array()             # <<<<<<<<<<<<<<
@@ -5088,7 +5091,7 @@ if (!__Pyx_RefNanny) {
  */
   __pyx_t_2 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 6, __pyx_L1_error)
 
-  /* "cost.pyx":8
+  /* "src/cost/cost.pyx":8
  * np.import_array()
  * 
  * INT = np.int             # <<<<<<<<<<<<<<
@@ -5103,7 +5106,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_INT, __pyx_t_3) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "cost.pyx":9
+  /* "src/cost/cost.pyx":9
  * 
  * INT = np.int
  * FLOAT = np.float             # <<<<<<<<<<<<<<
@@ -5118,43 +5121,43 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_FLOAT, __pyx_t_1) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cost.pyx":16
+  /* "src/cost/cost.pyx":16
  * @cython.boundscheck(False) # turn off bounds-checking for entire function
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):             # <<<<<<<<<<<<<<
  *     if cities.shape[1] != 2:
  *         raise ValueError('Argument cities must have exactly two columns.')
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_4cost_1cost, NULL, __pyx_n_s_cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3src_4cost_1cost, NULL, __pyx_n_s_src_cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_cost, __pyx_t_1) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cost.pyx":33
+  /* "src/cost/cost.pyx":33
  * # Doesn't take the square room of the distance and doesn't complete the path (acyclic)
  * @cython.boundscheck(False)
  * def relative_cost(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path):             # <<<<<<<<<<<<<<
  *     if cities.shape[1] != 2:
  *         raise ValueError('Argument cities must have exactly two columns.')
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_4cost_3relative_cost, NULL, __pyx_n_s_cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3src_4cost_3relative_cost, NULL, __pyx_n_s_src_cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_relative_cost, __pyx_t_1) < 0) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cost.pyx":46
+  /* "src/cost/cost.pyx":46
  * # Check whether or not we should perform a 2-opt swap in O(1) time
  * @cython.wraparound(False) # turn off negative indexing for entire function
  * def shouldPerformTwoOptSwap(np.ndarray[FLOAT_t, ndim=2] cities, np.ndarray[INT_t, ndim=1] path, int v1, int v2):             # <<<<<<<<<<<<<<
  *     cdef int n = path.shape[0]
  *     cdef float old_path1 = np.sum(np.power(cities[path[v1], :] - cities[path[(v1 + 1) % n], :], 2))
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_4cost_5shouldPerformTwoOptSwap, NULL, __pyx_n_s_cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3src_4cost_5shouldPerformTwoOptSwap, NULL, __pyx_n_s_src_cost); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_shouldPerformTwoOptSwap, __pyx_t_1) < 0) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "cost.pyx":1
+  /* "src/cost/cost.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * 
  * cimport numpy as np
@@ -5180,11 +5183,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_3);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init src.cost", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init cost");
+    PyErr_SetString(PyExc_ImportError, "init src.cost");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

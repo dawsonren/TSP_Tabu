@@ -3,7 +3,7 @@ Provide the LocalSearch and TabuSearch classes.
 '''
 from typing import Optional
 from shared.interfaces import SearchProtocol, Problem, Solution, Path
-from tsp_solution import TSPSolution
+from tsp.tsp_solution import TSPSolution
 
 class LocalSearch(SearchProtocol):
     def __init__(self) -> None:

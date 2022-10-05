@@ -7,7 +7,7 @@ import pyximport
 pyximport.install()
 
 from shared.interfaces import Problem, Path
-import cost as ccost # C cost, colloquially
+import cost.cost as ccost # C cost, colloquially
 
 class TSP(Problem):
     def __init__(self, N: int) -> None:

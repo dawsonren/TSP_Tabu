@@ -3,10 +3,10 @@ Travelling Salesman Problem with Tabu Search
 
 Dawson Ren, July 15th, 2022
 '''
-from search import LocalSearch, TabuSearch
+from tsp.search import LocalSearch, TabuSearch
 from shared.interfaces import SolutionWrapper
-from tsp import TSP
-from solver import TSPBruteForceSolver, TSPGreedySolver, TSPHeldKarpSolver, TSPNNSolver, TSPSearchSolver
+from tsp.tsp import TSP
+from tsp.solver import TSPBruteForceSolver, TSPGreedySolver, TSPHeldKarpSolver, TSPNNSolver, TSPSearchSolver
 from utils.display import plot_points, display, compare_plot_points
 
 def main():
@@ -51,7 +51,7 @@ def hk():
     display()
 
 if __name__ == '__main__':
-    hk()
+    main()
 
 
 
