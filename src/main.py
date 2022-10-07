@@ -52,8 +52,3 @@ def hk():
 
 if __name__ == '__main__':
     main()
-
-
-
-    # TODO: Experiment - create 100 different TSPs and find the distribution of paths and the likelihood of being
-    # in the optimal path. Is there any way we can model a probability distribution?

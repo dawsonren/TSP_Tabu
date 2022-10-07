@@ -1,6 +1,7 @@
 '''
 Provide plotting functionality for TSP Solutions
 '''
+import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import collections as mc
 from shared.interfaces import SolutionWrapper, Problem, Solution
@@ -58,9 +59,20 @@ def compare_plot_points(problem: Problem, sw1: SolutionWrapper, sw2: SolutionWra
 
     return ax
 
-def plot_path_length_histogram():
+def plot_path_length_histogram(array: np.ndarray):
     '''Given a problem, plot a histogram of all its path lengths.'''
-    pass
+    _, ax = plt.subplots()
+    ax.autoscale()
+    ax.margins(0.1)
+    ax.set_title('PDF of distance between two points on the unit square')
+    ax.hist(array, density=True, bins=100)
+
+def plot_basic(x: np.ndarray, y: np.ndarray, title: str):
+    _, ax = plt.subplots()
+    ax.autoscale()
+    ax.margins(0.1)
+    ax.set_title(title)
+    ax.plot(x, y)
 
 def display():
     plt.show()

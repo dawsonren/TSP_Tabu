@@ -11,9 +11,10 @@ from collections import defaultdict
 from itertools import permutations, combinations
 from typing import Iterator, List, Tuple
 import numpy as np
-import math
 
+from shared.WUGraph import WUGraph
 from shared.interfaces import Path, SearchProtocol, Solver, Solution
+from shared.union_find import UnionFind
 from tsp.tsp_solution import TSPSolution
 from tsp.tsp import TSP
 from utils.timer import timer
@@ -145,20 +146,12 @@ class TSPGreedySolver(Solver):
         sol.set_path(path)
 
         return sol
-    
-    def _union(self, parent: List[int], x: int, y: int) -> None:
-        parent[x] = y
-
-    def _find_parent(self, parent: List[int], i: int) -> int:
-        '''Utility function for _detect_cycle to find the subset of element i'''
-        if parent[i] == -1:
-            # no further subsets, is its own subset
-            return i
-        else:
-            return self._find_parent(parent, parent[i])
 
     def _detect_cycle(self, N: int, path_edges: List[Tuple[int, int]]) -> bool:
-        parent = [-1] * N
+        # TODO: Make this more efficient. We are repeating work every time we detect cycle.
+        # We are adding edges one at a time, so we can check if the new edge creates a cycle.
+        # We have the previous invariant that no cycle exists, which we can leverage to reduce work.
+        uf = UnionFind(N)
 
         # create mapping from i to j to store edges
         graph = defaultdict(list)
@@ -171,11 +164,11 @@ class TSPGreedySolver(Solver):
         # of every edge, if both subsets the same, there is a cycle
         for i in graph:
             for j in graph[i]:
-                x = self._find_parent(parent, i)
-                y = self._find_parent(parent, j)
+                x = uf.find_parent(i)
+                y = uf.find_parent(j)
                 if x == y:
                     return True
-                self._union(parent, x, y)
+                uf.union(x, y)
 
         return False
     
@@ -229,10 +222,23 @@ class TSPChristofidesSolver(Solver):
 
         # TODO: write my own MultiGraph class (omg...)
 
-        # create minimum spanning tree using Prim's algorithm (works better for dense graphs)
-        # find vertices of odd degree
-        # find minimum-weight perfect matching on the induced subgraph of vertices of odd degree
+        # Get MST using Prim's algorithm
+        wug = WUGraph(problem.N)
+        wug.load_cities(problem.cities)
+        mst = wug.get_mst()
+
+        # Find vertices of odd degree
+        # Note: this also serves as a mapping of the new node values in oddg to the actual node value
+        vertices_with_odd = [v for v in range(len(mst)) if mst.get_degree(v) % 2 == 1]
+
+        # Find minimum-weight perfect matching on the induced subgraph of vertices of odd degree
+        oddg = WUGraph(len(vertices_with_odd))
+        oddg.load_cities(problem.cities[vertices_with_odd, :])
+        # TODO: create the bipartite mapping in oddg and map back to original vertex values
+        
         # combine edges from MST and perfect matching to form a multigraph, where every node has even degree
+        
+
         # form a eulerian circuit
         # convert into a hamiltonian circuit
 

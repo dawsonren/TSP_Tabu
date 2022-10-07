@@ -1,20 +1,7 @@
 """
 A weighted undirected multigraph implementation in pure python.
 
-Graphs have nodes connected by edges. The edges have a "weight" attached to
-them. We use a combination of a hashmap and direct map to keep track of
-arbitrary hashable node values and their corresponding natural number id.
 
-We implement the following interface:
-set_edge(u: any, v: any, w: float) -> None : sets weight w from node u to v.
-get_edge(u: any, v: any) -> float : gets weight w from node u to v.
-get_outdegree(u: any) -> int : gets number of nodes pointing from u.
-
-To keep track of the nodes and edges, we use an adjacency list implementation.
-This scheme works best when the graph is relatively sparse. For every node,
-we have a list of outgoing edges, which are stored as pairs of [target, weight].
-Unfortunately, this makes get_indegree quite slow as we have to search
-all the other adjacency lists, so we do not implement it.
 """
 
 # TODO: implement as a multi-graph

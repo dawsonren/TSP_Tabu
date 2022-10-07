@@ -52,7 +52,7 @@ class SearchProtocol(ABC):
 
 class Solver(ABC):
     @abstractmethod
-    def solve(self, problem: Problem, search_protocol: Optional[SearchProtocol], init_sol: Optional[Solution] = None, verbose: bool = False):
+    def solve(self, problem: Problem, search_protocol: Optional[SearchProtocol], init_sol: Optional[Solution] = None, verbose: bool = False) -> Solution:
         pass
 
 @dataclass
